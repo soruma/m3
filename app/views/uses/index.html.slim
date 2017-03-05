@@ -1,0 +1,21 @@
+h1 Listing uses
+
+table
+  thead
+    tr
+      th = t('activerecord.attributes.use.name')
+      th
+      th
+      th
+
+  tbody
+    - @uses.each do |use|
+      tr
+        td = use.name
+        td = link_to t('view.show'), use
+        td = link_to t('view.edit'), edit_use_path(use)
+        td = link_to t('view.destroy'), use, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Use', new_use_path

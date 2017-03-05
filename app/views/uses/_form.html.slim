@@ -1,0 +1,12 @@
+= form_for @use do |f|
+  - if @use.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@use.errors.count, "error")} prohibited this use from being saved:"
+      ul
+        - @use.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :name, title: t('activerecord.attributes.use.name')
+    = f.text_field :name
+  .actions = f.submit
