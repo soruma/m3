@@ -61,6 +61,12 @@ class UsesController < ApplicationController
     end
   end
 
+  # POST
+  def import
+    Use.import(params[:file])
+    redirect_to uses_url
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_use

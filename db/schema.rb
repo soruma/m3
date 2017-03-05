@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170305035355) do
+ActiveRecord::Schema.define(version: 20170305042126) do
 
   create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.integer  "use_id"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 20170305035355) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["use_id"], name: "index_accounts_on_use_id", using: :btree
+  end
+
+  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.date     "date_of_onset"
+    t.string   "name"
+    t.string   "remarks"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
