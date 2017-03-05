@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Date of onset:
+  = date_to_month @history.date_of_onset
+p
+  strong Account:
+  = @history.account.name
+p
+  strong Price:
+  = @history.price
+
+= link_to 'Edit', edit_history_path(@history)
+'  |
+= link_to 'Back', histories_path
