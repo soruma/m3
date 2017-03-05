@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      use: Use
+    attributes:
+      use:
+        name: name

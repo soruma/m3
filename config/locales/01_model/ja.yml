@@ -1,0 +1,7 @@
+ja:
+  activerecord:
+    models:
+      use: 用途
+    attributes:
+      use:
+        name: 名称
