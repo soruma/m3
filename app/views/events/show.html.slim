@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Date of onset:
+  = @event.date_of_onset
+p
+  strong Name:
+  = @event.name
+p
+  strong Remarks:
+  = @event.remarks
+
+= link_to 'Edit', edit_event_path(@event)
+'  |
+= link_to 'Back', events_path
