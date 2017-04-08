@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :events
   scope "/:locale" do
     resources :uses
     resources :accounts
     resources :histories
+    resources :events
 
     resources :uses, only: :index do
       collection { post :import }
