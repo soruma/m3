@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  root :to => 'home#index'
   scope "/:locale" do
+    get '/ja', to: 'home#index'
+    get '/en', to: 'home#index'
+    get '/info', to: 'home#info'
+
     resources :uses
     resources :accounts
     resources :histories
