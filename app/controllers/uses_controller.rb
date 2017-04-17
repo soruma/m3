@@ -61,7 +61,7 @@ class UsesController < ApplicationController
     end
   end
 
-  # POST
+  # POST /uses/import
   def import
     Use.import(params[:file])
     redirect_to uses_url
