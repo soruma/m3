@@ -63,8 +63,16 @@ class UsesController < ApplicationController
 
   # POST /uses/import
   def import
-    Use.import(params[:file])
-    redirect_to uses_url
+    if params[:file].class != ActionDispatch::Http::UploadedFile
+      msg = { alert: 'Use was unsuccessfully imports.' }
+    else
+      Use.import(params[:file])
+      msg = { notice: 'Use was successfully imports.' }
+    end
+    respond_to do |format|
+      format.html { redirect_to uses_url, **msg }
+      format.json { head :no_content }
+    end
   end
 
   private
