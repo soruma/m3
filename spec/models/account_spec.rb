@@ -5,4 +5,9 @@ RSpec.describe Account, type: :model do
     account = FactoryGirl.build(:account)
     expect(account).to be_valid
   end
+
+  it "is invalid with name and use" do
+    account = FactoryGirl.build(:invalid_account)
+    expect(account).to be_invalid
+  end
 end

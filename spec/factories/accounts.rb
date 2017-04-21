@@ -4,6 +4,16 @@ FactoryGirl.define do
     use
   end
 
+  factory :invalid_account, class: Account do
+    name ""
+    use nil
+  end
+
+  factory :update_account, class: Account do
+    name "update MyString"
+    use
+  end
+
   # 財布
   factory :wallet, class: Account do
     name "Wallet"
