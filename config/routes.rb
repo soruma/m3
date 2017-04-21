@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  root :to => 'home#index'
-  scope "/:locale" do
-    get '/ja', to: 'home#index'
-    get '/en', to: 'home#index'
+  scope '(:locale)', constraints: { locale: /\w{2}/ } do
+    root 'home#index'
     get '/info', to: 'home#info'
 
     resources :uses
