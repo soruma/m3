@@ -163,6 +163,10 @@ RSpec.describe UsesController, type: :controller do
       fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
     }
 
+    let(:mismatch_import_file) {
+      fixture_file_upload('spec/fixtures/csv/use_mismatch.csv', 'text/comma-separated-values')
+    }
+
     it "not upload file" do
       expect {
         post :import, params: {file: nil}, session: valid_session
@@ -177,6 +181,14 @@ RSpec.describe UsesController, type: :controller do
       }.to change(Use, :count).by(2)
       expect(response).to redirect_to(uses_url)
       expect(controller.notice).to eq("Use was successfully imports.")
+    end
+
+    it "import format mismatch" do
+      expect {
+        post :import, params: {file: mismatch_import_file}, session: valid_session
+      }.to change(Use, :count).by(0)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.alert).to eq("Use was unsuccessfully imports.")
     end
   end
 end
