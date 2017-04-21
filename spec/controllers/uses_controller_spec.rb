@@ -24,11 +24,11 @@ RSpec.describe UsesController, type: :controller do
   # Use. As you add validations to Use, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    attributes_for :use
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    attributes_for :invalid_use
   }
 
   # This should return the minimal set of values that should be in the session
@@ -52,12 +52,12 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
-  #describe "GET #new" do
-  #  it "assigns a new use as @use" do
-  #    get :new, params: {}, session: valid_session
-  #    expect(assigns(:use)).to be_a_new(Use)
-  #  end
-  #end
+  describe "GET #new" do
+    it "assigns a new use as @use" do
+      get :new, params: {}, session: valid_session
+      expect(assigns(:use)).to be_a_new(Use)
+    end
+  end
 
   describe "GET #edit" do
     it "assigns the requested use as @use" do
@@ -103,14 +103,14 @@ RSpec.describe UsesController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        attributes_for :update_use
       }
 
       it "updates the requested use" do
         use = Use.create! valid_attributes
         put :update, params: {id: use.to_param, use: new_attributes}, session: valid_session
         use.reload
-        skip("Add assertions for updated state")
+        expect(controller.notice).to eq("Use was successfully updated.")
       end
 
       it "assigns the requested use as @use" do
@@ -156,4 +156,27 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
+  describe "POST #import" do
+    include ActionDispatch::TestProcess
+
+    let(:import_file) {
+      fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
+    }
+
+    it "not upload file" do
+      expect {
+        post :import, params: {file: nil}, session: valid_session
+      }.to change(Use, :count).by(0)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.alert).to eq("Use was unsuccessfully imports.")
+    end
+
+    it "csv file upload" do
+      expect {
+        post :import, params: {file: import_file}, session: valid_session
+      }.to change(Use, :count).by(2)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.notice).to eq("Use was successfully imports.")
+    end
+  end
 end
