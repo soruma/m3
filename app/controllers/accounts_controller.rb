@@ -64,7 +64,7 @@ class AccountsController < ApplicationController
   # POST /accounts/import
   def import
     message = begin
-      Account.import(params[:file])
+      Account.csv_file_import(params[:file])
       { notice: 'Account was successfully imports.' }
     rescue
       { alert: 'Account was unsuccessfully imports.' }

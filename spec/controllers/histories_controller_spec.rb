@@ -168,9 +168,9 @@ RSpec.describe HistoriesController, type: :controller do
 
     before :each do
       csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
-      Use.import(csv)
+      Use.csv_file_import(csv)
       csv = fixture_file_upload('spec/fixtures/csv/account.csv', 'text/comma-separated-values')
-      Account.import(csv)
+      Account.csv_file_import(csv)
     end
 
     it "not upload file" do

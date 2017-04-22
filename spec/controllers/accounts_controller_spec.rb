@@ -168,7 +168,7 @@ RSpec.describe AccountsController, type: :controller do
 
     before :each do
       csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
-      Use.import(csv)
+      Use.csv_file_import(csv)
     end
 
     it "not upload file" do

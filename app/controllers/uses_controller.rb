@@ -64,7 +64,7 @@ class UsesController < ApplicationController
   # POST /uses/import
   def import
     message = begin
-      Use.import(params[:file])
+      Use.csv_file_import(params[:file])
       { notice: 'Use was successfully imports.' }
     rescue
       { alert: 'Use was unsuccessfully imports.' }

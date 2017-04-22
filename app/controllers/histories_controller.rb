@@ -67,7 +67,7 @@ class HistoriesController < ApplicationController
   # POST /histories/import
   def import
     message = begin
-      History.import(params[:file])
+      History.csv_file_import(params[:file])
       { notice: 'History was successfully imports.' }
     rescue
       { alert: 'History was unsuccessfully imports.' }
