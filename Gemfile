@@ -41,6 +41,12 @@ gem 'rails-i18n', '~> 5.0.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  # pry debug
+  gem 'pry-rails'
+  gem 'pry-doc'
+  gem 'pry-stack_explorer'
+  gem 'pry-byebug'
 end
 
 group :development do

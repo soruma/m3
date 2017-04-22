@@ -94,6 +94,21 @@ GEM
     nio4r (2.0.0)
     nokogiri (1.7.0.1)
       mini_portile2 (~> 2.1.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
+    pry-doc (0.10.0)
+      pry (~> 0.9)
+      yard (~> 0.9)
+    pry-rails (0.3.6)
+      pry (>= 0.10.4)
+    pry-stack_explorer (0.4.9.2)
+      binding_of_caller (>= 0.7)
+      pry (>= 0.9.11)
     puma (3.7.1)
     rack (2.0.1)
     rack-test (0.6.3)
@@ -163,6 +178,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    slop (3.6.0)
     spring (2.0.1)
       activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
@@ -196,6 +212,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
+    yard (0.9.8)
 
 PLATFORMS
   ruby
@@ -210,6 +227,10 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   mysql2 (>= 0.3.18, < 0.5)
+  pry-byebug
+  pry-doc
+  pry-rails
+  pry-stack_explorer
   puma (~> 3.0)
   rails (~> 5.0.1)
   rails-controller-testing (~> 1.0, >= 1.0.1)
@@ -226,4 +247,4 @@ DEPENDENCIES
   web-console (>= 3.3.0)
 
 BUNDLED WITH
-   1.14.5
+   1.14.6
