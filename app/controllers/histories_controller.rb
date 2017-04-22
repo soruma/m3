@@ -69,8 +69,10 @@ class HistoriesController < ApplicationController
     message = begin
       History.csv_file_import(params[:file])
       { notice: 'History was successfully imports.' }
-    rescue
-      { alert: 'History was unsuccessfully imports.' }
+    rescue ActiveRecord::RecordInvalid
+      { alert: 'History was unsuccessfully imports.<br/>The file format is different.' }
+    rescue NoMethodError
+      { alert: 'History was unsuccessfully imports.<br/>Please choose the file to be import.' }
     end
     respond_to do |format|
       format.html { redirect_to histories_url, **message }

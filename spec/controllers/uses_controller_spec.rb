@@ -171,7 +171,7 @@ RSpec.describe UsesController, type: :controller do
         post :import, params: {file: nil}, session: valid_session
       }.to change(Use, :count).by(0)
       expect(response).to redirect_to(uses_url)
-      expect(controller.alert).to eq("Use was unsuccessfully imports.")
+      expect(controller.alert).to eq("Use was unsuccessfully imports.<br/>Please choose the file to be import.")
     end
 
     it "csv file upload" do
@@ -187,7 +187,7 @@ RSpec.describe UsesController, type: :controller do
         post :import, params: {file: mismatch_import_file}, session: valid_session
       }.to change(Use, :count).by(0)
       expect(response).to redirect_to(uses_url)
-      expect(controller.alert).to eq("Use was unsuccessfully imports.")
+      expect(controller.alert).to eq("Use was unsuccessfully imports.<br/>The file format is different.")
     end
   end
 

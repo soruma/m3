@@ -66,8 +66,10 @@ class UsesController < ApplicationController
     message = begin
       Use.csv_file_import(params[:file])
       { notice: 'Use was successfully imports.' }
-    rescue
-      { alert: 'Use was unsuccessfully imports.' }
+    rescue ActiveRecord::RecordInvalid
+      { alert: 'Use was unsuccessfully imports.<br/>The file format is different.' }
+    rescue NoMethodError
+      { alert: 'Use was unsuccessfully imports.<br/>Please choose the file to be import.' }
     end
     respond_to do |format|
       format.html { redirect_to uses_url, **message }

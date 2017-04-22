@@ -66,8 +66,10 @@ class AccountsController < ApplicationController
     message = begin
       Account.csv_file_import(params[:file])
       { notice: 'Account was successfully imports.' }
-    rescue
-      { alert: 'Account was unsuccessfully imports.' }
+    rescue ActiveRecord::RecordInvalid
+      { alert: 'Account was unsuccessfully imports.<br/>The file format is different.' }
+    rescue NoMethodError
+      { alert: 'Account was unsuccessfully imports.<br/>Please choose the file to be import.' }
     end
     respond_to do |format|
       format.html { redirect_to accounts_url, **message }
