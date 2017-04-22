@@ -157,7 +157,6 @@ RSpec.describe UsesController, type: :controller do
   end
 
   describe "POST #import" do
-    include ActionDispatch::TestProcess
 
     let(:import_file) {
       fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
@@ -191,4 +190,5 @@ RSpec.describe UsesController, type: :controller do
       expect(controller.alert).to eq("Use was unsuccessfully imports.")
     end
   end
+
 end
