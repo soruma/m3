@@ -64,6 +64,20 @@ class HistoriesController < ApplicationController
     end
   end
 
+  # POST /histories/import
+  def import
+    message = begin
+      History.import(params[:file])
+      { notice: 'History was successfully imports.' }
+    rescue
+      { alert: 'History was unsuccessfully imports.' }
+    end
+    respond_to do |format|
+      format.html { redirect_to histories_url, **message }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_history

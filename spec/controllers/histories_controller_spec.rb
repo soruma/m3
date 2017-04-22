@@ -156,4 +156,46 @@ RSpec.describe HistoriesController, type: :controller do
     end
   end
 
+  describe "POST #import" do
+
+    let(:import_file) {
+      fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
+    }
+
+    let(:mismatch_import_file) {
+      fixture_file_upload('spec/fixtures/csv/history_mismatch.csv', 'text/comma-separated-values')
+    }
+
+    before :each do
+      csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
+      Use.import(csv)
+      csv = fixture_file_upload('spec/fixtures/csv/account.csv', 'text/comma-separated-values')
+      Account.import(csv)
+    end
+
+    it "not upload file" do
+      expect {
+        post :import, params: {file: nil}, session: valid_session
+      }.to change(History, :count).by(0)
+      expect(response).to redirect_to(histories_url)
+      expect(controller.alert).to eq("History was unsuccessfully imports.")
+    end
+
+    it "csv file upload" do
+      expect {
+        post :import, params: {file: import_file}, session: valid_session
+      }.to change(History, :count).by(6)
+      expect(response).to redirect_to(histories_url)
+      expect(controller.notice).to eq("History was successfully imports.")
+    end
+
+    it "import format mismatch" do
+      expect {
+        post :import, params: {file: mismatch_import_file}, session: valid_session
+      }.to change(History, :count).by(0)
+      expect(response).to redirect_to(histories_url)
+      expect(controller.alert).to eq("History was unsuccessfully imports.")
+    end
+  end
+
 end

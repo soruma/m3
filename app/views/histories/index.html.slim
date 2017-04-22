@@ -23,3 +23,7 @@ table
 br
 
 = link_to 'New History', new_history_path
+
+= form_tag({controller: 'histories', action: 'import', method: 'post'}, {multipart: true}) do
+  = file_field_tag :file
+  = submit_tag 'Import'
