@@ -61,7 +61,7 @@ class AccountsController < ApplicationController
     end
   end
 
-  # POST /uses/import
+  # POST /accounts/import
   def import
     message = begin
       Account.import(params[:file])
