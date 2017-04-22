@@ -1,17 +1,16 @@
 FactoryGirl.define do
   factory :account do
-    name "MyString"
+    sequence(:name) {|n| "MyString#{n}"}
     use
   end
 
   factory :invalid_account, class: Account do
     name ""
-    use nil
   end
 
   factory :update_account, class: Account do
-    name "update MyString"
-    use
+    sequence(:name) {|n| "update MyString#{n}" }
+    association :use, factory: :cost_of_living
   end
 
   # 財布

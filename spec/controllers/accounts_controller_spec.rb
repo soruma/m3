@@ -24,11 +24,11 @@ RSpec.describe AccountsController, type: :controller do
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    attributes_for :account
+    build(:account).attributes
   }
 
   let(:invalid_attributes) {
-    attributes_for :invalid_account
+    build(:invalid_account).attributes
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe AccountsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        build(:update_account).attributes
       }
 
       it "updates the requested account" do
         account = Account.create! valid_attributes
         put :update, params: {id: account.to_param, account: new_attributes}, session: valid_session
         account.reload
-        skip("Add assertions for updated state")
+        expect(controller.notice).to eq("Account was successfully updated.")
       end
 
       it "assigns the requested account as @account" do
@@ -153,6 +153,46 @@ RSpec.describe AccountsController, type: :controller do
       account = Account.create! valid_attributes
       delete :destroy, params: {id: account.to_param}, session: valid_session
       expect(response).to redirect_to(accounts_url)
+    end
+  end
+
+  describe "POST #import" do
+
+    let(:import_file) {
+      fixture_file_upload('spec/fixtures/csv/account.csv', 'text/comma-separated-values')
+    }
+
+    let(:mismatch_import_file) {
+      fixture_file_upload('spec/fixtures/csv/account_mismatch.csv', 'text/comma-separated-values')
+    }
+
+    before :each do
+      csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
+      Use.import(csv)
+    end
+
+    it "not upload file" do
+      expect {
+        post :import, params: {file: nil}, session: valid_session
+      }.to change(Account, :count).by(0)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.alert).to eq("Account was unsuccessfully imports.")
+    end
+
+    it "csv file upload" do
+      expect {
+        post :import, params: {file: import_file}, session: valid_session
+      }.to change(Account, :count).by(3)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.notice).to eq("Account was successfully imports.")
+    end
+
+    it "import format mismatch" do
+      expect {
+        post :import, params: {file: mismatch_import_file}, session: valid_session
+      }.to change(Account, :count).by(0)
+      expect(response).to redirect_to(uses_url)
+      expect(controller.alert).to eq("Account was unsuccessfully imports.")
     end
   end
 

@@ -61,6 +61,20 @@ class AccountsController < ApplicationController
     end
   end
 
+  # POST /uses/import
+  def import
+    message = begin
+      Account.import(params[:file])
+      { notice: 'Account was successfully imports.' }
+    rescue
+      { alert: 'Account was unsuccessfully imports.' }
+    end
+    respond_to do |format|
+      format.html { redirect_to uses_url, **message }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
