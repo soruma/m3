@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :account do
-    sequence(:name) {|n| "MyString#{n}"}
+    sequence(:name) {|n| "account name#{n}"}
     use
   end
 
@@ -9,7 +9,7 @@ FactoryGirl.define do
   end
 
   factory :update_account, class: Account do
-    sequence(:name) {|n| "update MyString#{n}" }
+    sequence(:name) {|n| "update account name#{n}" }
     association :use, factory: :cost_of_living
   end
 
