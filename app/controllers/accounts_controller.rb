@@ -70,7 +70,7 @@ class AccountsController < ApplicationController
       { alert: 'Account was unsuccessfully imports.' }
     end
     respond_to do |format|
-      format.html { redirect_to uses_url, **message }
+      format.html { redirect_to accounts_url, **message }
       format.json { head :no_content }
     end
   end

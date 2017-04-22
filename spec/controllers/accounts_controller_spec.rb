@@ -175,7 +175,7 @@ RSpec.describe AccountsController, type: :controller do
       expect {
         post :import, params: {file: nil}, session: valid_session
       }.to change(Account, :count).by(0)
-      expect(response).to redirect_to(uses_url)
+      expect(response).to redirect_to(accounts_url)
       expect(controller.alert).to eq("Account was unsuccessfully imports.")
     end
 
@@ -183,7 +183,7 @@ RSpec.describe AccountsController, type: :controller do
       expect {
         post :import, params: {file: import_file}, session: valid_session
       }.to change(Account, :count).by(3)
-      expect(response).to redirect_to(uses_url)
+      expect(response).to redirect_to(accounts_url)
       expect(controller.notice).to eq("Account was successfully imports.")
     end
 
@@ -191,7 +191,7 @@ RSpec.describe AccountsController, type: :controller do
       expect {
         post :import, params: {file: mismatch_import_file}, session: valid_session
       }.to change(Account, :count).by(0)
-      expect(response).to redirect_to(uses_url)
+      expect(response).to redirect_to(accounts_url)
       expect(controller.alert).to eq("Account was unsuccessfully imports.")
     end
   end
