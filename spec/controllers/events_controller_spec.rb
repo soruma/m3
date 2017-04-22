@@ -24,11 +24,11 @@ RSpec.describe EventsController, type: :controller do
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
+    build(:event).attributes
   }
 
   let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
+    build(:invalid_event).attributes
   }
 
   # This should return the minimal set of values that should be in the session
@@ -103,14 +103,14 @@ RSpec.describe EventsController, type: :controller do
   describe "PUT #update" do
     context "with valid params" do
       let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
+        build(:update_event).attributes
       }
 
       it "updates the requested event" do
         event = Event.create! valid_attributes
         put :update, params: {id: event.to_param, event: new_attributes}, session: valid_session
         event.reload
-        skip("Add assertions for updated state")
+        expect(controller.notice).to eq("Event was successfully updated.")
       end
 
       it "assigns the requested event as @event" do
