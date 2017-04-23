@@ -3,9 +3,4 @@ class Account < ApplicationRecord
   has_many :history
 
   validates_presence_of :name
-
-  protected #------------------------------------
-  def self.updatable_attributes
-    ['id', 'use_id', 'name']
-  end
 end
