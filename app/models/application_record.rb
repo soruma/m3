@@ -1,5 +1,5 @@
 class ApplicationRecord < ActiveRecord::Base
-  include FileImportHelper
+  extend FileImportHelper
 
   self.abstract_class = true
 
