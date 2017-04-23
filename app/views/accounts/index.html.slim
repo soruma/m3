@@ -3,6 +3,7 @@ h1 Listing accounts
 table
   thead
     tr
+      th Id
       th Use
       th Name
       th
@@ -12,6 +13,7 @@ table
   tbody
     - @accounts.each do |account|
       tr
+        td = account.id
         td = account.use.name
         td = account.name
         td = link_to 'Show', account
