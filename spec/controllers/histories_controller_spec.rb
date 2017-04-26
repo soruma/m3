@@ -157,7 +157,6 @@ RSpec.describe HistoriesController, type: :controller do
   end
 
   describe "POST #import" do
-
     let(:import_file) {
       fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
     }
@@ -173,28 +172,32 @@ RSpec.describe HistoriesController, type: :controller do
       Account.csv_file_import(csv)
     end
 
-    it "not upload file" do
-      expect {
-        post :import, params: {file: nil}, session: valid_session
-      }.to change(History, :count).by(0)
-      expect(response).to redirect_to(histories_url)
-      expect(controller.alert).to eq("History was unsuccessfully imports.<br/>Please choose the file to be import.")
+    context "with valid import data" do
+      it "csv file upload" do
+        expect {
+          post :import, params: {file: import_file}, session: valid_session
+        }.to change(History, :count).by(6)
+        expect(response).to redirect_to(histories_url)
+        expect(controller.notice).to eq("History was successfully imports.")
+      end
     end
 
-    it "csv file upload" do
-      expect {
-        post :import, params: {file: import_file}, session: valid_session
-      }.to change(History, :count).by(6)
-      expect(response).to redirect_to(histories_url)
-      expect(controller.notice).to eq("History was successfully imports.")
-    end
+    context "with invalid import data" do
+      it "not upload file" do
+        expect {
+          post :import, params: {file: nil}, session: valid_session
+        }.to change(History, :count).by(0)
+        expect(response).to redirect_to(histories_url)
+        expect(controller.alert).to eq("History was unsuccessfully imports.<br/>Please choose the file to be import.")
+      end
 
-    it "import format mismatch" do
-      expect {
-        post :import, params: {file: mismatch_import_file}, session: valid_session
-      }.to change(History, :count).by(0)
-      expect(response).to redirect_to(histories_url)
-      expect(controller.alert).to eq("History was unsuccessfully imports.<br/>The file format is different.")
+      it "import format mismatch" do
+        expect {
+          post :import, params: {file: mismatch_import_file}, session: valid_session
+        }.to change(History, :count).by(0)
+        expect(response).to redirect_to(histories_url)
+        expect(controller.alert).to eq("History was unsuccessfully imports.<br/>The file format is different.")
+      end
     end
   end
 
