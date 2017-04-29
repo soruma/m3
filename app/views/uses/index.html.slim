@@ -20,6 +20,12 @@ br
 
 = link_to 'New Use', new_use_path
 
+br
+
 = form_tag({controller: 'uses', action: 'import', method: 'post'}, {multipart: true}) do
   = file_field_tag :file
   = submit_tag 'Import'
+
+'|
+
+= link_to 'Export', export_uses_path(format: 'csv'), method: :post

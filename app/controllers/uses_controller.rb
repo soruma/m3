@@ -77,6 +77,41 @@ class UsesController < ApplicationController
     end
   end
 
+  # POST /uses/export
+  def export
+    @uses = Use.all
+    respond_to do |format|
+      format.html { redirects_to :action => :export, :format => :csv }
+      format.csv do
+
+        csv_options = {
+          write_headers:  true,
+          headers:        %w[id name],
+          encoding:       "cp932",
+          converters:     nil,
+          row_sep:        "\r\n",
+        }
+
+        Tempfile.open(["downloadable", ".csv"]) do |temp|
+          CSV.open(temp.path, "w", csv_options) do |csv_file|
+            @uses.each do |use|
+              row = {}
+              row["id"] = use.id
+              row["name"] = use.name
+              csv_file << row
+            end
+          end
+
+          send_file(temp.path,
+            type:         "text/csv; charset=cp932; header=present",
+            disposition:  "attachment; filename=use.csv"
+          )
+        end
+
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_use
