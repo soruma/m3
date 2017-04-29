@@ -36,6 +36,14 @@ RSpec.describe HistoriesController, type: :controller do
   # HistoriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:import_file) {
+    fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
+  }
+
+  let(:mismatch_import_file) {
+    fixture_file_upload('spec/fixtures/csv/history_mismatch.csv', 'text/comma-separated-values')
+  }
+
   describe "GET #index" do
     it "assigns all histories as @histories" do
       history = History.create! valid_attributes
@@ -157,14 +165,6 @@ RSpec.describe HistoriesController, type: :controller do
   end
 
   describe "POST #import" do
-    let(:import_file) {
-      fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
-    }
-
-    let(:mismatch_import_file) {
-      fixture_file_upload('spec/fixtures/csv/history_mismatch.csv', 'text/comma-separated-values')
-    }
-
     before :each do
       csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
       Use.csv_file_import(csv)
@@ -197,6 +197,27 @@ RSpec.describe HistoriesController, type: :controller do
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
         expect(controller.alert).to eq("History was unsuccessfully imports.<br/>The file format is different.")
+      end
+    end
+  end
+
+  describe "POST #export" do
+    before {
+      post :import, params: {file: import_file}, session: valid_session
+    }
+
+    context "export data exists" do
+      it "export redirect to format csv" do
+        post :export, params: {}, session: valid_session
+        expect(response.status).to eq(302)
+        expect(response.headers.to_hash['Location']).to match(/histories\/export.csv/)
+      end
+
+      it "csv file export" do
+        post :export, params: {:format => 'csv'}, session: valid_session
+        expect(response).to be_success
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"history.csv\"/)
+        expect(response.content_type).to eq("text/csv")
       end
     end
   end

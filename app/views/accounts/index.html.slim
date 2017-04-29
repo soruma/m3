@@ -24,6 +24,16 @@ br
 
 = link_to 'New Account', new_account_path
 
-= form_tag({controller: 'accounts', action: 'import', method: 'post'}, {multipart: true}) do
-  = file_field_tag :file
-  = submit_tag 'Import'
+br
+
+fieldset
+  legend Import
+  = form_tag({controller: 'accounts', action: 'import', method: 'post'}, {multipart: true}) do
+    = file_field_tag :file
+    = submit_tag 'Import'
+
+br
+
+fieldset
+  legend Export
+  = link_to 'Export', export_accounts_path(format: 'csv'), method: :post

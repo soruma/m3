@@ -36,6 +36,14 @@ RSpec.describe UsesController, type: :controller do
   # UsesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
+  let(:import_file) {
+    fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
+  }
+
+  let(:mismatch_import_file) {
+    fixture_file_upload('spec/fixtures/csv/use_mismatch.csv', 'text/comma-separated-values')
+  }
+
   describe "GET #index" do
     it "assigns all uses as @uses" do
       use = Use.create! valid_attributes
@@ -157,14 +165,6 @@ RSpec.describe UsesController, type: :controller do
   end
 
   describe "POST #import" do
-    let(:import_file) {
-      fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
-    }
-
-    let(:mismatch_import_file) {
-      fixture_file_upload('spec/fixtures/csv/use_mismatch.csv', 'text/comma-separated-values')
-    }
-
     context "with valid import data" do
       it "csv file upload" do
         expect {
@@ -194,4 +194,24 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
+  describe "POST #export" do
+    before {
+      post :import, params: {file: import_file}, session: valid_session
+    }
+
+    context "export data exists" do
+      it "export redirect to format csv" do
+        post :export, params: {}, session: valid_session
+        expect(response.status).to eq(302)
+        expect(response.headers.to_hash['Location']).to match(/uses\/export.csv/)
+      end
+
+      it "csv file export" do
+        post :export, params: {:format => 'csv'}, session: valid_session
+        expect(response).to be_success
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"use.csv\"/)
+        expect(response.content_type).to eq("text/csv")
+      end
+    end
+  end
 end

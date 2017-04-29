@@ -77,6 +77,41 @@ class AccountsController < ApplicationController
     end
   end
 
+  # POST /accounts/export
+  def export
+    respond_to do |format|
+      format.html { redirect_to :action => :export, :format => :csv }
+      format.csv do
+        @accounts = Account.all
+
+        csv_options = {
+          write_headers:  true,
+          headers:        Account.updatable_attributes,
+          encoding:       "cp932",
+          converters:     nil,
+          row_sep:        "\r\n",
+        }
+
+        Tempfile.open(["account", ".csv"]) do |temp|
+          CSV.open(temp.path, "w", csv_options) do |csv_file|
+            @accounts.each do |account|
+              row = {}
+              row["id"] = account.id
+              row["use_id"] = account.use_id
+              row["name"] = account.name
+              csv_file << row
+            end
+          end
+
+          send_file(temp.path,
+            type:         "text/csv; charset=cp932; header=present",
+            disposition:  "attachment; filename=\"account.csv\""
+          )
+        end
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account

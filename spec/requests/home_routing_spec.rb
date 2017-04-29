@@ -13,9 +13,5 @@ RSpec.describe HomeController, type: :routing do
     it "routes to ja home#info" do
       expect(:get => "/ja/info").to route_to("home#info", locale: "ja")
     end
-
-    it "routes to use#import" do
-      expect(:post => "/uses/import").to route_to("uses#import")
-    end
   end
 end
