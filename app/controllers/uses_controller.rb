@@ -79,20 +79,20 @@ class UsesController < ApplicationController
 
   # POST /uses/export
   def export
-    @uses = Use.all
     respond_to do |format|
-      format.html { redirects_to :action => :export, :format => :csv }
+      format.html { redirect_to :action => :export, :format => :csv }
       format.csv do
+        @uses = Use.all
 
         csv_options = {
           write_headers:  true,
-          headers:        %w[id name],
+          headers:        Use.updatable_attributes,
           encoding:       "cp932",
           converters:     nil,
           row_sep:        "\r\n",
         }
 
-        Tempfile.open(["downloadable", ".csv"]) do |temp|
+        Tempfile.open(["use", ".csv"]) do |temp|
           CSV.open(temp.path, "w", csv_options) do |csv_file|
             @uses.each do |use|
               row = {}
@@ -104,10 +104,9 @@ class UsesController < ApplicationController
 
           send_file(temp.path,
             type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=use.csv"
+            disposition:  "attachment; filename=\"use.csv\""
           )
         end
-
       end
     end
   end
