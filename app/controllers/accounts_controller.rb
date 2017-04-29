@@ -54,9 +54,17 @@ class AccountsController < ApplicationController
   # DELETE /accounts/1
   # DELETE /accounts/1.json
   def destroy
-    @account.destroy
+    message = begin
+      @account.destroy
+      { notice: 'Account was successfully destroyed.' }
+    rescue ActiveRecord::StatementInvalid => e
+      if (e.cause.class == Mysql2::Error &&
+          e.cause.message.match(/foreign key constraint fails/))
+        { alert: 'Account was unsuccessfully destroy.<br/>Associated tables exist.' }
+      end
+    end
     respond_to do |format|
-      format.html { redirect_to accounts_url, notice: 'Account was successfully destroyed.' }
+      format.html { redirect_to accounts_url, **message }
       format.json { head :no_content }
     end
   end

@@ -150,6 +150,10 @@ RSpec.describe UsesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
+    let(:destroy_foreign_key_data) {
+      build(:account).attributes
+    }
+
     it "destroys the requested use" do
       use = Use.create! valid_attributes
       expect {
@@ -161,6 +165,14 @@ RSpec.describe UsesController, type: :controller do
       use = Use.create! valid_attributes
       delete :destroy, params: {id: use.to_param}, session: valid_session
       expect(response).to redirect_to(uses_url)
+    end
+
+    it "treatment foreign key error" do
+      account = Account.create! destroy_foreign_key_data
+      expect {
+        delete :destroy, params: {id: account.use.id}, session: valid_session
+      }.to change(Use, :count).by(0)
+      expect(controller.alert).to eq("Use was unsuccessfully destroy.<br/>Associated tables exist.")
     end
   end
 

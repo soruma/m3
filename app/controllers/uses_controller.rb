@@ -54,9 +54,17 @@ class UsesController < ApplicationController
   # DELETE /uses/1
   # DELETE /uses/1.json
   def destroy
-    @use.destroy
+    message = begin
+      @use.destroy
+      { notice: 'Use was successfully destroyed.' }
+    rescue ActiveRecord::StatementInvalid => e
+      if (e.cause.class == Mysql2::Error &&
+          e.cause.message.match(/foreign key constraint fails/))
+          { alert: 'Use was unsuccessfully destroy.<br/>Associated tables exist.' }
+      end
+    end
     respond_to do |format|
-      format.html { redirect_to uses_url, notice: 'Use was successfully destroyed.' }
+      format.html { redirect_to uses_url, **message }
       format.json { head :no_content }
     end
   end
