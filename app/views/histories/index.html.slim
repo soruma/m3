@@ -24,6 +24,16 @@ br
 
 = link_to 'New History', new_history_path
 
-= form_tag({controller: 'histories', action: 'import', method: 'post'}, {multipart: true}) do
-  = file_field_tag :file
-  = submit_tag 'Import'
+br
+
+fieldset
+  legend Import
+  = form_tag({controller: 'histories', action: 'import', method: 'post'}, {multipart: true}) do
+    = file_field_tag :file
+    = submit_tag 'Import'
+
+br
+
+fieldset
+  legend Export
+  = link_to 'Export', export_histories_path(format: 'csv'), method: :post
