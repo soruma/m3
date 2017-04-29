@@ -3,7 +3,6 @@ Rails.application.routes.draw do
 
   concern :file_bunch do
     collection do
-      post :bunch
       post :import
       post :export
     end
