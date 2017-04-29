@@ -12,9 +12,13 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+*~
 
 # Ignore Byebug command history file.
 .byebug_history
 
-*~
+# Dev Machines
 .DS_Store
+
+# Documentation cache and generated files:
+/.yardoc/
