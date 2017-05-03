@@ -1,7 +1,7 @@
 = form_for @account do |f|
   - if @account.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@account.errors.count, "error")} prohibited this account from being saved:"
+      h2 = t('errors.template.header', {count: @account.errors.count, model: Account.model_name.human})
       ul
         - @account.errors.full_messages.each do |message|
           li = message

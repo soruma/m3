@@ -1,15 +1,15 @@
 p#notice = notice
 
 p
-  strong Id:
+  strong #{Account.human_attribute_name :id}:
   = @account.id
 p
-  strong Use:
+  strong #{Use.model_name.human}:
   = @account.use.name
 p
-  strong Name:
+  strong #{Account.human_attribute_name :name}:
   = @account.name
 
-= link_to 'Edit', edit_account_path(@account)
+= link_to t('view.edit'), edit_account_path(@account)
 '  |
-= link_to 'Back', accounts_path
+= link_to t('view.back'), accounts_path
