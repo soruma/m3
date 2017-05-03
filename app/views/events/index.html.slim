@@ -1,11 +1,11 @@
-h1 Listing events
+h1 = t('view.listing', model: t('activerecord.models.event', count: @events.count))
 
 table
   thead
     tr
-      th Date of onset
-      th Name
-      th Remarks
+      th = Event.human_attribute_name :date_of_onset
+      th = Event.human_attribute_name :name
+      th = Event.human_attribute_name :remarks
       th
       th
       th
@@ -16,10 +16,10 @@ table
         td = event.date_of_onset
         td = event.name
         td = event.remarks
-        td = link_to 'Show', event
-        td = link_to 'Edit', edit_event_path(event)
-        td = link_to 'Destroy', event, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('view.show'), event
+        td = link_to t('view.edit'), edit_event_path(event)
+        td = link_to t('view.destroy'), event, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
-= link_to 'New Event', new_event_path
+= link_to t('view.new', model: Event.model_name.human), new_event_path
