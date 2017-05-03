@@ -23,6 +23,7 @@ en:
         remarks: Remarks
       history:
         date_of_onset: Date of onset
-        account: Account
+        account_id: Account
+        price: Price
       use:
         name: Name

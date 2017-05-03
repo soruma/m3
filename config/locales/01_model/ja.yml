@@ -23,6 +23,7 @@ ja:
         remarks: 備考
       history:
         date_of_onset: 対象日
-        account: 口座
+        account_id: 口座
+        price: 金額
       use:
         name: 名称

@@ -1,7 +1,7 @@
 = form_for @history do |f|
   - if @history.errors.any?
     #error_explanation
-      h2 = "#{pluralize(@history.errors.count, "error")} prohibited this history from being saved:"
+      h2 = t('errors.template.header', {count: @history.errors.count, model: History.model_name.human})
       ul
         - @history.errors.full_messages.each do |message|
           li = message

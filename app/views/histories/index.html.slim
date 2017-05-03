@@ -1,11 +1,11 @@
-h1 Listing histories
+h1 = t('view.listing', model: t('activerecord.models.history', count: @histories.count))
 
 table
   thead
     tr
-      th Date of onset
-      th Account
-      th Price
+      th = History.human_attribute_name :date_of_onset
+      th = History.human_attribute_name :account
+      th = History.human_attribute_name :price
       th
       th
       th
@@ -16,24 +16,20 @@ table
         td = date_to_month history.date_of_onset
         td = history.account.name
         td align='right' = history.price
-        td = link_to 'Show', history
-        td = link_to 'Edit', edit_history_path(history)
-        td = link_to 'Destroy', history, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('view.show'), history
+        td = link_to t('view.edit'), edit_history_path(history)
+        td = link_to t('view.destroy'), history, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
-= link_to 'New History', new_history_path
+= link_to t('view.new', model: History.model_name.human), new_history_path
 
 br
-
 fieldset
-  legend Import
+  legend = t('view.batch_processing')
+  span = t('view.import')
   = form_tag({controller: 'histories', action: 'import', method: 'post'}, {multipart: true}) do
     = file_field_tag :file
-    = submit_tag 'Import'
-
-br
-
-fieldset
-  legend Export
-  = link_to 'Export', export_histories_path(format: 'csv'), method: :post
+    = submit_tag t('view.import')
+  br
+  = link_to t('view.export'), export_histories_path(format: 'csv'), method: :post
