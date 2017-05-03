@@ -7,7 +7,7 @@
           li = message
 
   .field
-    = f.label :use
+    = f.label :use_id
     = f.collection_select(:use_id, Use.all, :id, :name)
   .field
     = f.label :name

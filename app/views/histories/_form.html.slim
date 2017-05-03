@@ -10,7 +10,7 @@
     = f.label :date_of_onset
     = f.date_select :date_of_onset, :use_month_numbers => true, :discard_day => true
   .field
-    = f.label :account
+    = f.label :account_id
     = f.collection_select(:account_id, Account.all, :id, :name)
   .field
     = f.label :price
