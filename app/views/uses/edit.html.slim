@@ -1,8 +1,7 @@
-h1 Editing use
+h1 = t('view.editing', model: Use.model_name.human)
 
 == render 'form'
 
-= link_to 'Show', @use
+= link_to t('view.show'), @use
 '  |
-= link_to 'Back', uses_path
-
+= link_to t('view.back'), uses_path
