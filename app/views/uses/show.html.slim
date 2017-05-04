@@ -1,9 +1,9 @@
 p#notice = notice
 
 p
-  strong Name:
+  strong #{Use.human_attribute_name :name}:
   = @use.name
 
-= link_to 'Edit', edit_use_path(@use)
+= link_to t('view.edit'), edit_use_path(@use)
 '  |
-= link_to 'Back', uses_path
+= link_to t('view.back'), uses_path

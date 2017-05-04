@@ -1,7 +1,29 @@
-ja:
+en:
   activerecord:
     models:
-      use: Use
+      account:
+        one: Account
+        other: accounts
+      event:
+        one: Event
+        other: events
+      history:
+        one: History
+        other: histories
+      use:
+        one: Use
+        other: uses
     attributes:
+      account:
+        use_id: Use
+        name: Name
+      event:
+        date_of_onset: Date of onset
+        name: Name
+        remarks: Remarks
+      history:
+        date_of_onset: Date of onset
+        account_id: Account
+        price: Price
       use:
         name: Name

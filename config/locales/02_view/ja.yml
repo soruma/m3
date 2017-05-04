@@ -1,0 +1,14 @@
+ja:
+  view:
+    show: 表示
+    edit: 編集
+    destroy: 削除
+    back: 戻る
+    new: "%{model}を追加"
+    import: インポート
+    export: エクスポート
+    batch_processing: 一括処理
+    listing: "%{model}一覧"
+    editing: "%{model}の編集"
+  message:
+    delete_confirm: 本当に削除しますか?

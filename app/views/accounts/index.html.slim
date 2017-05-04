@@ -1,11 +1,11 @@
-h1 Listing accounts
+h1 = t('view.listing', model: t('activerecord.models.account', count: @accounts.count))
 
 table
   thead
     tr
-      th Id
-      th Use
-      th Name
+      th = Account.human_attribute_name :id
+      th = Account.human_attribute_name :use_id
+      th = Account.human_attribute_name :name
       th
       th
       th
@@ -16,24 +16,21 @@ table
         td = account.id
         td = account.use.name
         td = account.name
-        td = link_to 'Show', account
-        td = link_to 'Edit', edit_account_path(account)
-        td = link_to 'Destroy', account, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('view.show'), account
+        td = link_to t('view.edit'), edit_account_path(account)
+        td = link_to t('view.destroy'), account, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
-= link_to 'New Account', new_account_path
+= link_to t('view.new', model: Account.model_name.human), new_account_path
 
 br
 
 fieldset
-  legend Import
+  legend = t('view.batch_processing')
+  span = t('view.import')
   = form_tag({controller: 'accounts', action: 'import', method: 'post'}, {multipart: true}) do
     = file_field_tag :file
-    = submit_tag 'Import'
-
-br
-
-fieldset
-  legend Export
-  = link_to 'Export', export_accounts_path(format: 'csv'), method: :post
+    = submit_tag t('view.import')
+  br
+  = link_to t('view.export'), export_accounts_path(format: 'csv'), method: :post

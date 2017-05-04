@@ -110,7 +110,7 @@ RSpec.describe EventsController, type: :controller do
         event = Event.create! valid_attributes
         put :update, params: {id: event.to_param, event: new_attributes}, session: valid_session
         event.reload
-        expect(controller.notice).to eq("Event was successfully updated.")
+        expect(controller.notice).to eq(I18n.t('controller.success_update', model: Event.model_name.human))
       end
 
       it "assigns the requested event as @event" do

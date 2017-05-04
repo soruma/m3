@@ -1,15 +1,15 @@
 p#notice = notice
 
 p
-  strong Date of onset:
+  strong #{Event.human_attribute_name :date_of_onset}:
   = @event.date_of_onset
 p
-  strong Name:
+  strong #{Event.human_attribute_name :name}:
   = @event.name
 p
-  strong Remarks:
+  strong #{Event.human_attribute_name :remarks}:
   = @event.remarks
 
-= link_to 'Edit', edit_event_path(@event)
+= link_to t('view.edit'), edit_event_path(@event)
 '  |
-= link_to 'Back', events_path
+= link_to t('view.back'), events_path

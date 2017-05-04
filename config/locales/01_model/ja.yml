@@ -1,7 +1,29 @@
 ja:
   activerecord:
     models:
-      use: 用途
+      account:
+        one: 口座
+        other: 口座
+      event:
+        one: イベント
+        other: イベント
+      history:
+        one: 履歴
+        other: 履歴
+      use:
+        one: 用途
+        other: 用途
     attributes:
+      account:
+        use_id: 用途
+        name: 口座名称
+      event:
+        date_of_onset: 発生日
+        name: 名称
+        remarks: 備考
+      history:
+        date_of_onset: 対象日
+        account_id: 口座
+        price: 金額
       use:
         name: 名称

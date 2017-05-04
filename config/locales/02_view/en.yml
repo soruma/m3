@@ -1,0 +1,14 @@
+en:
+  view:
+    show: Show
+    edit: Edit
+    destroy: Destroy
+    back: Back
+    new: "New %{model}"
+    import: Import
+    export: Export
+    batch_processing: Batch processing
+    listing: "Listing %{model}"
+    editing: "Editing %{model}"
+  message:
+    delete_confirm: Are you sure?

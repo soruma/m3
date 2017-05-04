@@ -1,9 +1,9 @@
-h1 Listing uses
+h1 = t('view.listing', model: t('activerecord.models.use', count: @uses.count))
 
 table
   thead
     tr
-      th = t('activerecord.attributes.use.name')
+      th = Use.human_attribute_name :name
       th
       th
       th
@@ -14,22 +14,19 @@ table
         td = use.name
         td = link_to t('view.show'), use
         td = link_to t('view.edit'), edit_use_path(use)
-        td = link_to t('view.destroy'), use, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to t('view.destroy'), use, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
-= link_to 'New Use', new_use_path
+= link_to t('view.new', model: Use.model_name.human), new_use_path
 
 br
 
 fieldset
-  legend Import
+  legend = t('view.batch_processing')
+  span = t('view.import')
   = form_tag({controller: 'uses', action: 'import', method: 'post'}, {multipart: true}) do
     = file_field_tag :file
-    = submit_tag 'Import'
-
-br
-
-fieldset
-  legend Export
-  = link_to 'Export', export_uses_path(format: 'csv'), method: :post
+    = submit_tag t('view.import')
+  br
+  = link_to t('view.export'), export_uses_path(format: 'csv'), method: :post

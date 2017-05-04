@@ -1,15 +1,15 @@
 p#notice = notice
 
 p
-  strong Date of onset:
+  strong #{History.human_attribute_name :date_of_onset}:
   = date_to_month @history.date_of_onset
 p
-  strong Account:
+  strong #{Account.model_name.human}:
   = @history.account.name
 p
-  strong Price:
+  strong #{History.human_attribute_name :price}:
   = @history.price
 
-= link_to 'Edit', edit_history_path(@history)
+= link_to t('view.edit'), edit_history_path(@history)
 '  |
-= link_to 'Back', histories_path
+= link_to t('view.back'), histories_path

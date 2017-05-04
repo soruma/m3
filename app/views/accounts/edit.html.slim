@@ -1,8 +1,7 @@
-h1 Editing account
+h1 = t('view.editing', model: Account.model_name.human)
 
 == render 'form'
 
-= link_to 'Show', @account
+= link_to t('view.show'), @account
 '  |
-= link_to 'Back', accounts_path
-
+= link_to t('view.back'), accounts_path

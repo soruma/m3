@@ -1,8 +1,7 @@
-h1 Editing history
+h1 = t('view.editing', model: History.model_name.human)
 
 == render 'form'
 
-= link_to 'Show', @history
+= link_to t('view.show'), @history
 '  |
-= link_to 'Back', histories_path
-
+= link_to t('view.back'), histories_path
