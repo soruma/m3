@@ -2,10 +2,6 @@ require 'rails_helper'
 
 RSpec.describe AccountsController, type: :routing do
   describe "routing" do
-    it "routes to accounts#bunch" do
-      expect(:post => "/accounts/bunch").to route_to("accounts#bunch")
-    end
-
     it "routes to accounts#import" do
       expect(:post => "/accounts/import").to route_to("accounts#import")
     end
