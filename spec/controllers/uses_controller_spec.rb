@@ -118,7 +118,7 @@ RSpec.describe UsesController, type: :controller do
         use = Use.create! valid_attributes
         put :update, params: {id: use.to_param, use: new_attributes}, session: valid_session
         use.reload
-        expect(controller.notice).to eq("Use was successfully updated.")
+        expect(controller.notice).to eq(I18n.t('controller.success_update', model: Use.model_name.human))
       end
 
       it "assigns the requested use as @use" do
@@ -172,7 +172,7 @@ RSpec.describe UsesController, type: :controller do
       expect {
         delete :destroy, params: {id: account.use.id}, session: valid_session
       }.to change(Use, :count).by(0)
-      expect(controller.alert).to eq("Use was unsuccessfully destroy. Associated tables exist.")
+      expect(controller.alert).to eq(I18n.t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human))
     end
   end
 
@@ -183,7 +183,7 @@ RSpec.describe UsesController, type: :controller do
           post :import, params: {file: import_file}, session: valid_session
         }.to change(Use, :count).by(2)
         expect(response).to redirect_to(uses_url)
-        expect(controller.notice).to eq("Use was successfully imports.")
+        expect(controller.notice).to eq(I18n.t('controller.success_import', model: Use.model_name.human))
       end
     end
 
@@ -193,7 +193,7 @@ RSpec.describe UsesController, type: :controller do
           post :import, params: {file: nil}, session: valid_session
         }.to change(Use, :count).by(0)
         expect(response).to redirect_to(uses_url)
-        expect(controller.alert).to eq("Use was unsuccessfully imports. Please choose the file to be import.")
+        expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: Use.model_name.human))
       end
 
       it "import format mismatch" do
@@ -201,7 +201,7 @@ RSpec.describe UsesController, type: :controller do
           post :import, params: {file: mismatch_import_file}, session: valid_session
         }.to change(Use, :count).by(0)
         expect(response).to redirect_to(uses_url)
-        expect(controller.alert).to eq("Use was unsuccessfully imports. The file format is different.")
+        expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: Use.model_name.human))
       end
     end
   end
@@ -221,7 +221,7 @@ RSpec.describe UsesController, type: :controller do
       it "csv file export" do
         post :export, params: {:format => 'csv'}, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"Use.csv\"/)
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
         expect(response.content_type).to eq("text/csv")
       end
     end

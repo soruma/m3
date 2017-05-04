@@ -118,7 +118,7 @@ RSpec.describe HistoriesController, type: :controller do
         history = History.create! valid_attributes
         put :update, params: {id: history.to_param, history: new_attributes}, session: valid_session
         history.reload
-        expect(controller.notice).to eq("History was successfully updated.")
+        expect(controller.notice).to eq(I18n.t('controller.success_update', model: History.model_name.human))
       end
 
       it "assigns the requested history as @history" do
@@ -178,7 +178,7 @@ RSpec.describe HistoriesController, type: :controller do
           post :import, params: {file: import_file}, session: valid_session
         }.to change(History, :count).by(6)
         expect(response).to redirect_to(histories_url)
-        expect(controller.notice).to eq("History was successfully imports.")
+        expect(controller.notice).to eq(I18n.t('controller.success_import', model: History.model_name.human))
       end
     end
 
@@ -188,7 +188,7 @@ RSpec.describe HistoriesController, type: :controller do
           post :import, params: {file: nil}, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
-        expect(controller.alert).to eq("History was unsuccessfully imports. Please choose the file to be import.")
+        expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: History.model_name.human))
       end
 
       it "import format mismatch" do
@@ -196,7 +196,7 @@ RSpec.describe HistoriesController, type: :controller do
           post :import, params: {file: mismatch_import_file}, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
-        expect(controller.alert).to eq("History was unsuccessfully imports. The file format is different.")
+        expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: History.model_name.human))
       end
     end
   end
@@ -216,7 +216,7 @@ RSpec.describe HistoriesController, type: :controller do
       it "csv file export" do
         post :export, params: {:format => 'csv'}, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"History.csv\"/)
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{History.model_name.human}.csv\"/)
         expect(response.content_type).to eq("text/csv")
       end
     end
