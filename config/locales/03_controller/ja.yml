@@ -1,0 +1,9 @@
+ja:
+  controller:
+    success_create: "%{model}の作成に成功しました。"
+    success_update: "%{model}の変更に成功しました。"
+    success_destroy: "%{model}を削除しました。"
+    unsuccess_destroy_key_exist: "%{model}の削除に失敗しました。 関連づけられたテーブルが存在します。"
+    success_import: "%{model}のインポートに成功しました。"
+    unsuccess_import_record_invalid: "%{model}のインポートに失敗しました。 選択されたファイルのフォーマットが異なります。"
+    unsuccess_import_no_choose:  "%{model}のインポートに失敗しました。 インポートするファイルを選択してください。"

@@ -1,0 +1,9 @@
+en:
+  controller:
+    success_create: "%{model} was successfully created."
+    success_update: "%{model} was successfully updated."
+    success_destroy: "%{model} was successfully destroyed."
+    unsuccess_destroy_key_exist: "%{model} was unsuccessfully destroy. Associated tables exist."
+    success_import: "%{model} was successfully imports."
+    unsuccess_import_record_invalid: "%{model} was unsuccessfully imports. The file format is different."
+    unsuccess_import_no_choose:  "%{model} was unsuccessfully imports. Please choose the file to be import."
