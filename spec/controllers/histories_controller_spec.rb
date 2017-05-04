@@ -188,7 +188,7 @@ RSpec.describe HistoriesController, type: :controller do
           post :import, params: {file: nil}, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
-        expect(controller.alert).to eq("History was unsuccessfully imports.<br/>Please choose the file to be import.")
+        expect(controller.alert).to eq("History was unsuccessfully imports. Please choose the file to be import.")
       end
 
       it "import format mismatch" do
@@ -196,7 +196,7 @@ RSpec.describe HistoriesController, type: :controller do
           post :import, params: {file: mismatch_import_file}, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
-        expect(controller.alert).to eq("History was unsuccessfully imports.<br/>The file format is different.")
+        expect(controller.alert).to eq("History was unsuccessfully imports. The file format is different.")
       end
     end
   end
@@ -216,7 +216,7 @@ RSpec.describe HistoriesController, type: :controller do
       it "csv file export" do
         post :export, params: {:format => 'csv'}, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"history.csv\"/)
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"History.csv\"/)
         expect(response.content_type).to eq("text/csv")
       end
     end

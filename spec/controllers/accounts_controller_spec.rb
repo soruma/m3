@@ -172,7 +172,7 @@ RSpec.describe AccountsController, type: :controller do
       expect {
         delete :destroy, params: {id: history.account.id}, session: valid_session
       }.to change(Account, :count).by(0)
-      expect(controller.alert).to eq("Account was unsuccessfully destroy.<br/>Associated tables exist.")
+      expect(controller.alert).to eq("Account was unsuccessfully destroy. Associated tables exist.")
     end
   end
 
@@ -198,7 +198,7 @@ RSpec.describe AccountsController, type: :controller do
           post :import, params: {file: nil}, session: valid_session
         }.to change(Account, :count).by(0)
         expect(response).to redirect_to(accounts_url)
-        expect(controller.alert).to eq("Account was unsuccessfully imports.<br/>Please choose the file to be import.")
+        expect(controller.alert).to eq("Account was unsuccessfully imports. Please choose the file to be import.")
       end
 
       it "import format mismatch" do
@@ -206,7 +206,7 @@ RSpec.describe AccountsController, type: :controller do
           post :import, params: {file: mismatch_import_file}, session: valid_session
         }.to change(Account, :count).by(0)
         expect(response).to redirect_to(accounts_url)
-        expect(controller.alert).to eq("Account was unsuccessfully imports.<br/>The file format is different.")
+        expect(controller.alert).to eq("Account was unsuccessfully imports. The file format is different.")
       end
     end
   end
@@ -226,7 +226,7 @@ RSpec.describe AccountsController, type: :controller do
       it "csv file export" do
         post :export, params: {:format => 'csv'}, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"account.csv\"/)
+        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"Account.csv\"/)
         expect(response.content_type).to eq("text/csv")
       end
     end

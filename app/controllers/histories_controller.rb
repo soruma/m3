@@ -31,7 +31,7 @@ class HistoriesController < ApplicationController
 
     respond_to do |format|
       if @history.save
-        format.html { redirect_to @history, notice: 'History was successfully created.' }
+        format.html { redirect_to @history, notice: t('controller.success_create', model: History.model_name.human) }
         format.json { render :show, status: :created, location: @history }
       else
         format.html { render :new }
@@ -45,7 +45,7 @@ class HistoriesController < ApplicationController
   def update
     respond_to do |format|
       if @history.update(history_params)
-        format.html { redirect_to @history, notice: 'History was successfully updated.' }
+        format.html { redirect_to @history, notice: t('controller.success_update', model: History.model_name.human) }
         format.json { render :show, status: :ok, location: @history }
       else
         format.html { render :edit }
@@ -59,7 +59,7 @@ class HistoriesController < ApplicationController
   def destroy
     @history.destroy
     respond_to do |format|
-      format.html { redirect_to histories_url, notice: 'History was successfully destroyed.' }
+      format.html { redirect_to histories_url, notice: t('controller.success_destroy', model: History.model_name.human) }
       format.json { head :no_content }
     end
   end
@@ -68,11 +68,11 @@ class HistoriesController < ApplicationController
   def import
     message = begin
       History.csv_file_import(params[:file])
-      { notice: 'History was successfully imports.' }
+      { notice: t('controller.success_import', model: History.model_name.human) }
     rescue ActiveRecord::RecordInvalid
-      { alert: 'History was unsuccessfully imports.<br/>The file format is different.' }
+      { alert: t('controller.unsuccess_import_record_invalid', model: History.model_name.human) }
     rescue NoMethodError
-      { alert: 'History was unsuccessfully imports.<br/>Please choose the file to be import.' }
+      { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to histories_url, **message }
@@ -109,7 +109,7 @@ class HistoriesController < ApplicationController
 
           send_file(temp.path,
             type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"history.csv\""
+            disposition:  "attachment; filename=\"#{History.model_name.human}.csv\""
           )
         end
       end

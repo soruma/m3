@@ -28,7 +28,7 @@ class AccountsController < ApplicationController
 
     respond_to do |format|
       if @account.save
-        format.html { redirect_to @account, notice: 'Account was successfully created.' }
+        format.html { redirect_to @account, notice: t('controller.success_create', model: Account.model_name.human) }
         format.json { render :show, status: :created, location: @account }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
   def update
     respond_to do |format|
       if @account.update(account_params)
-        format.html { redirect_to @account, notice: 'Account was successfully updated.' }
+        format.html { redirect_to @account, notice: t('controller.success_update', model: Account.model_name.human) }
         format.json { render :show, status: :ok, location: @account }
       else
         format.html { render :edit }
@@ -56,11 +56,11 @@ class AccountsController < ApplicationController
   def destroy
     message = begin
       @account.destroy
-      { notice: 'Account was successfully destroyed.' }
+      { notice: t('controller.success_destroy', model: Account.model_name.human) }
     rescue ActiveRecord::StatementInvalid => e
       if (e.cause.class == Mysql2::Error &&
           e.cause.message.match(/foreign key constraint fails/))
-        { alert: 'Account was unsuccessfully destroy.<br/>Associated tables exist.' }
+        { alert: t('controller.unsuccess_destroy_key_exist', model: Account.model_name.human) }
       end
     end
     respond_to do |format|
@@ -73,11 +73,11 @@ class AccountsController < ApplicationController
   def import
     message = begin
       Account.csv_file_import(params[:file])
-      { notice: 'Account was successfully imports.' }
+      { notice: t('controller.success_import', model: Account.model_name.human) }
     rescue ActiveRecord::RecordInvalid
-      { alert: 'Account was unsuccessfully imports.<br/>The file format is different.' }
+      { alert: t('controller.unsuccess_import_record_invalid', model: Account.model_name.human) }
     rescue NoMethodError
-      { alert: 'Account was unsuccessfully imports.<br/>Please choose the file to be import.' }
+      { alert: t('controller.unsuccess_import_no_choose', model: Account.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to accounts_url, **message }
@@ -113,7 +113,7 @@ class AccountsController < ApplicationController
 
           send_file(temp.path,
             type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"account.csv\""
+            disposition:  "attachment; filename=\"#{Account.model_name.human}.csv\""
           )
         end
       end

@@ -28,7 +28,7 @@ class UsesController < ApplicationController
 
     respond_to do |format|
       if @use.save
-        format.html { redirect_to @use, notice: 'Use was successfully created.' }
+        format.html { redirect_to @use, notice: t('controller.success_create', model: Use.model_name.human) }
         format.json { render :show, status: :created, location: @use }
       else
         format.html { render :new }
@@ -42,7 +42,7 @@ class UsesController < ApplicationController
   def update
     respond_to do |format|
       if @use.update(use_params)
-        format.html { redirect_to @use, notice: 'Use was successfully updated.' }
+        format.html { redirect_to @use, notice: t('controller.success_update', model: Use.model_name.human) }
         format.json { render :show, status: :ok, location: @use }
       else
         format.html { render :edit }
@@ -56,11 +56,11 @@ class UsesController < ApplicationController
   def destroy
     message = begin
       @use.destroy
-      { notice: 'Use was successfully destroyed.' }
+      { notice: t('controller.success_destroy', model: Use.model_name.human) }
     rescue ActiveRecord::StatementInvalid => e
       if (e.cause.class == Mysql2::Error &&
           e.cause.message.match(/foreign key constraint fails/))
-          { alert: 'Use was unsuccessfully destroy.<br/>Associated tables exist.' }
+          { alert: t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human) }
       end
     end
     respond_to do |format|
@@ -73,11 +73,11 @@ class UsesController < ApplicationController
   def import
     message = begin
       Use.csv_file_import(params[:file])
-      { notice: 'Use was successfully imports.' }
+      { notice: t('controller.success_import', model: Use.model_name.human) }
     rescue ActiveRecord::RecordInvalid
-      { alert: 'Use was unsuccessfully imports.<br/>The file format is different.' }
+      { alert: t('controller.unsuccess_import_record_invalid', model: Use.model_name.human) }
     rescue NoMethodError
-      { alert: 'Use was unsuccessfully imports.<br/>Please choose the file to be import.' }
+      { alert: t('controller.unsuccess_import_no_choose', model: Use.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to uses_url, **message }
@@ -112,7 +112,7 @@ class UsesController < ApplicationController
 
           send_file(temp.path,
             type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"use.csv\""
+            disposition:  "attachment; filename=\"#{Use.model_name.human}.csv\""
           )
         end
       end
