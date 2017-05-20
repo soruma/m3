@@ -75,12 +75,12 @@ class HistoriesController < ApplicationController
       { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
     end
     respond_to do |format|
-      format.html { redirect_to histories_url, **message }
+      format.html { redirect_to histories_url, message }
       format.json { head :no_content }
     end
   end
 
-  # POST /histories/export
+  # GET /histories/export
   def export
     respond_to do |format|
       format.html { redirect_to :action => :export, :format => :csv }

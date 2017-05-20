@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   concern :file_bunch do
     collection do
       post :import
-      post :export
+      get :export
     end
   end
 
@@ -12,13 +12,9 @@ Rails.application.routes.draw do
     root 'home#index'
     get '/info', to: 'home#info'
 
-    resources :uses
-    resources :accounts
-    resources :histories
-    resources :events
-
     resources :uses, concerns: :file_bunch
     resources :accounts, concerns: :file_bunch
     resources :histories, concerns: :file_bunch
+    resources :events
   end
 end

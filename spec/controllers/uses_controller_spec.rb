@@ -206,20 +206,20 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
-  describe "POST #export" do
+  describe "GET #export" do
     before {
-      post :import, params: {file: import_file}, session: valid_session
+      get :import, params: {file: import_file}, session: valid_session
     }
 
     context "export data exists" do
       it "export redirect to format csv" do
-        post :export, params: {}, session: valid_session
+        get :export, params: {}, session: valid_session
         expect(response.status).to eq(302)
         expect(response.headers.to_hash['Location']).to match(/uses\/export.csv/)
       end
 
       it "csv file export" do
-        post :export, params: {:format => 'csv'}, session: valid_session
+        get :export, params: {:format => 'csv'}, session: valid_session
         expect(response).to be_success
         expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
         expect(response.content_type).to eq("text/csv")

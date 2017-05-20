@@ -7,7 +7,7 @@ RSpec.describe AccountsController, type: :routing do
     end
 
     it "routes to accounts#export" do
-      expect(:post => "/accounts/export").to route_to("accounts#export")
+      expect(:get => "/accounts/export").to route_to("accounts#export")
     end
   end
 end

@@ -64,7 +64,7 @@ class AccountsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { redirect_to accounts_url, **message }
+      format.html { redirect_to accounts_url, message }
       format.json { head :no_content }
     end
   end
@@ -80,12 +80,12 @@ class AccountsController < ApplicationController
       { alert: t('controller.unsuccess_import_no_choose', model: Account.model_name.human) }
     end
     respond_to do |format|
-      format.html { redirect_to accounts_url, **message }
+      format.html { redirect_to accounts_url, message }
       format.json { head :no_content }
     end
   end
 
-  # POST /accounts/export
+  # GET /accounts/export
   def export
     respond_to do |format|
       format.html { redirect_to :action => :export, :format => :csv }

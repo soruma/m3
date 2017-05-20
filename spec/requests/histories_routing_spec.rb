@@ -7,7 +7,7 @@ RSpec.describe HistoriesController, type: :routing do
     end
 
     it "routes to histories#export" do
-      expect(:post => "/histories/export").to route_to("histories#export")
+      expect(:get => "/histories/export").to route_to("histories#export")
     end
   end
 end
