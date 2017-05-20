@@ -25,6 +25,8 @@ br
 fieldset
   legend = t('view.batch_processing')
   span = t('view.import')
+  - if alert
+    p#alert = alert
   = form_tag({controller: 'uses', action: 'import'}, {method: :post, multipart: true}) do
     = file_field_tag :file
     = submit_tag t('view.import')
