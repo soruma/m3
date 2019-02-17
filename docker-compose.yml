@@ -1,18 +1,24 @@
-rails:
-  build: .
-  command:
-    [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
-  mem_limit: 384m
-  environment:
-    DISABLE_SPRING: "1"
-  ports:
-    - "3000:3000"
-  volumes:
-    - ".:/usr/src/app"
-  links:
-    - "mysql"
+version: '3.3'
 
-mysql:
-  image: mysql:5.6
-  environment:
-    MYSQL_ROOT_PASSWORD: "passwd"
+services:
+  rails:
+    build: .
+    command:
+      [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
+    environment:
+      BUNDLE_PATH: "/bundle"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle:/bundle
+    links:
+      - "mysql"
+
+  mysql:
+    image: mysql:5.6
+    environment:
+      MYSQL_ROOT_PASSWORD: "passwd"
+
+volumes:
+  bundle:
