@@ -1,7 +1,7 @@
 version: '3.3'
 
 services:
-  app: &rails
+  app: &app_base
     build: .
     command:
       [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
@@ -15,11 +15,16 @@ services:
       - bundle:/bundle
     links:
       - db
+    tty: true
+    stdin_open: true
 
   spring:
-    <<: *rails
+    <<: *app_base
     command:
-      ["bin/spring", "start"]
+      ["bundle", "exec", "spring", "server"]
+    ports: []
+    tty: false
+    stdin_open: false
 
   db:
     image: postgres:11
