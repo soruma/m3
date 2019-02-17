@@ -4,7 +4,8 @@ ENV LANG C.UTF-8
 RUN set -x \
     && apt-get update \
     && apt-get install -y nodejs \
-                          mysql-client \
+                          libpq-dev \
+                          postgresql-client \
                           --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 

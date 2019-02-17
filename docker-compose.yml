@@ -1,24 +1,28 @@
 version: '3.3'
 
 services:
-  rails:
+  app:
     build: .
     command:
       [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
     environment:
       BUNDLE_PATH: "/bundle"
+      POSTGRES_PASSWORD: "passwd"
     ports:
-      - "3000:3000"
+      - 3000:3000
     volumes:
       - .:/app
       - bundle:/bundle
     links:
-      - "mysql"
+      - db
 
-  mysql:
-    image: mysql:5.6
+  db:
+    image: postgres:11
+    volumes:
+      - pg_data:/var/lib/postgresql/data
     environment:
-      MYSQL_ROOT_PASSWORD: "passwd"
+      POSTGRES_PASSWORD: "passwd"
 
 volumes:
   bundle:
+  pg_data:

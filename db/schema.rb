@@ -12,7 +12,10 @@
 
 ActiveRecord::Schema.define(version: 20170305042126) do
 
-  create_table "accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "accounts", force: :cascade do |t|
     t.integer  "use_id"
     t.string   "name"
     t.datetime "created_at", null: false
@@ -20,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170305042126) do
     t.index ["use_id"], name: "index_accounts_on_use_id", using: :btree
   end
 
-  create_table "events", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "events", force: :cascade do |t|
     t.date     "date_of_onset"
     t.string   "name"
     t.string   "remarks"
@@ -28,17 +31,17 @@ ActiveRecord::Schema.define(version: 20170305042126) do
     t.datetime "updated_at",    null: false
   end
 
-  create_table "histories", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "histories", force: :cascade do |t|
     t.date     "date_of_onset"
     t.integer  "account_id"
-    t.decimal  "price",         precision: 10
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.decimal  "price"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
     t.index ["account_id"], name: "index_histories_on_account_id", using: :btree
     t.index ["date_of_onset", "account_id"], name: "index_histories_on_date_of_onset_and_account_id", unique: true, using: :btree
   end
 
-  create_table "uses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "uses", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
