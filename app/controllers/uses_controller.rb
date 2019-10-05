@@ -56,8 +56,8 @@ class UsesController < ApplicationController
       @use.destroy
       { notice: t('controller.success_destroy', model: Use.model_name.human) }
               rescue ActiveRecord::StatementInvalid => e
-                if (e.cause.class == Mysql2::Error &&
-                    e.cause.message.match(/foreign key constraint fails/))
+                if e.cause.class == Mysql2::Error &&
+                   e.cause.message.match(/foreign key constraint fails/)
                   { alert: t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human) }
                 end
     end

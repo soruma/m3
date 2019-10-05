@@ -242,14 +242,6 @@ Style/NumericLiterals:
   Exclude:
     - 'db/schema.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-# Configuration parameters: AllowSafeAssignment, AllowInMultilineConditions.
-Style/ParenthesesAroundCondition:
-  Exclude:
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: PreferredDelimiters.
