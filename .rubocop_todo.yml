@@ -211,14 +211,6 @@ Style/MixinUsage:
 
 # Offense count: 1
 # Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: literals, strict
-Style/MutableConstant:
-  Exclude:
-    - 'app/models/application_record.rb'
-
-# Offense count: 1
-# Cop supports --auto-correct.
 # Configuration parameters: MinDigits, Strict.
 Style/NumericLiterals:
   Exclude:
