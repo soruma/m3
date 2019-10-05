@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -18,7 +20,7 @@ module App
     # -- all .rb files in that directory are automatically loaded.
     # locale
     config.time_zone = 'Tokyo'
-    config.i18n.available_locales = %i(ja en)
+    config.i18n.available_locales = %i[ja en]
     config.i18n.enforce_available_locales = true
     config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}').to_s]
@@ -28,12 +30,12 @@ module App
       g.stylesheets false
       g.helper false
       g.test_framework :rspec,
-        fixture: true,
-        view_specs: false,
-        helper_specs: false,
-        routing_specs: false,
-        controller_specs: true,
-        request_specs: true
+                       fixture: true,
+                       view_specs: false,
+                       helper_specs: false,
+                       routing_specs: false,
+                       controller_specs: true,
+                       request_specs: true
       g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
   end

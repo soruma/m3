@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class Account < ApplicationRecord
   belongs_to :use
   has_many :history
 
-  validates_presence_of :name
+  validates :name, presence: true
 end
