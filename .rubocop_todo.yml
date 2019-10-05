@@ -6,23 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-Lint/IneffectiveAccessModifier:
-  Exclude:
-    - 'app/models/application_record.rb'
-
-# Offense count: 2
-# Configuration parameters: AllowKeywordBlockArguments.
-Lint/UnderscorePrefixedVariableName:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
-# Offense count: 2
-# Configuration parameters: ContextCreatingMethods, MethodCreatingMethods.
-Lint/UselessAccessModifier:
-  Exclude:
-    - 'app/models/application_record.rb'
-
 # Offense count: 16
 Metrics/AbcSize:
   Max: 21
@@ -37,13 +20,6 @@ Metrics/BlockLength:
 # Configuration parameters: CountComments, ExcludedMethods.
 Metrics/MethodLength:
   Max: 29
-
-# Offense count: 1
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: slashes, arguments
-Rails/FilePath:
-  Exclude:
-    - 'db/seeds.rb'
 
 # Offense count: 2
 # Configuration parameters: Include.
@@ -62,42 +38,3 @@ Style/AsciiComments:
     - 'spec/factories/events.rb'
     - 'spec/factories/histories.rb'
     - 'spec/factories/uses.rb'
-
-# Offense count: 20
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'test/**/*'
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/application_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/home_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/helpers/file_import_helper.rb'
-    - 'app/mailers/application_mailer.rb'
-    - 'app/models/account.rb'
-    - 'app/models/application_record.rb'
-    - 'app/models/event.rb'
-    - 'app/models/history.rb'
-    - 'app/models/use.rb'
-    - 'config/application.rb'
-    - 'db/migrate/20170305013957_create_uses.rb'
-    - 'db/migrate/20170305034604_create_accounts.rb'
-    - 'db/migrate/20170305035255_create_histories.rb'
-    - 'db/migrate/20170305035355_add_history_index.rb'
-    - 'db/migrate/20170305042126_create_events.rb'
-
-# Offense count: 2
-# Configuration parameters: .
-# SupportedStyles: annotated, template, unannotated
-Style/FormatStringToken:
-  EnforcedStyle: unannotated
-
-# Offense count: 3
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-    - 'spec/rails_helper.rb'

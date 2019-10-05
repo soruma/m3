@@ -10,7 +10,7 @@
 
 # FactoryGirl
 require 'factory_girl'
-Dir[Rails.root.join('spec/factories/**/*.rb')].each { |f| require f }
+Dir[Rails.root.join('spec', 'factories', '**', '*.rb')].each { |f| require f }
 
 Account.delete_all
 Use.delete_all

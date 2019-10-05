@@ -28,8 +28,8 @@ class ApplicationController < ActionController::Base
     request.env['HTTP_ACCEPT_LANGUAGE']
            .to_s # nil 対策
            .split(',')
-           .map { |_| _[0..1].to_sym }
-           .select { |_| I18n.available_locales.include?(_) }
+           .map { |lang| lang[0..1].to_sym }
+           .select { |lang| I18n.available_locales.include?(lang) }
            .first
   end
 

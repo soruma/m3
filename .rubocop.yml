@@ -12,4 +12,7 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*
 
+Style/Documentation:
+  Enabled: false
+
 inherit_from: .rubocop_todo.yml
