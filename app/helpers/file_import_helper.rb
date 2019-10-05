@@ -7,5 +7,4 @@ module FileImportHelper
       obj.save!
     end
   end
-
 end
