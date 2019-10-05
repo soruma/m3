@@ -1,8 +1,8 @@
 FactoryGirl.define do
   factory :event do
     date_of_onset "2017-03-05"
-    sequence(:name) {|n| "event name#{n}"}
-    sequence(:remarks) {|n| "remarks#{n}"}
+    sequence(:name) { |n| "event name#{n}" }
+    sequence(:remarks) { |n| "remarks#{n}" }
   end
 
   factory :invalid_event, class: Event do
@@ -12,7 +12,7 @@ FactoryGirl.define do
   end
 
   factory :update_event, class: Event do
-    sequence(:name) {|n| "update use name#{n}"}
+    sequence(:name) { |n| "update use name#{n}" }
   end
 
   # 海外旅行

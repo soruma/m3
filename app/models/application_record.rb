@@ -12,7 +12,7 @@ class ApplicationRecord < ActiveRecord::Base
   # > Person.updatable_attributes
   # => ["id", "name", "age"]
   def self.updatable_attributes
-    attribute_names.clone.delete_if {|item| TIMESTAMP_COLUMNS.include?(item) }
+    attribute_names.clone.delete_if { |item| TIMESTAMP_COLUMNS.include?(item) }
   end
 
   private

@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :use do
-    sequence(:name) {|n| "use name#{n}"}
+    sequence(:name) { |n| "use name#{n}" }
   end
 
   factory :invalid_use, class: Use do
@@ -8,7 +8,7 @@ FactoryGirl.define do
   end
 
   factory :update_use, class: Use do
-    sequence(:name) {|n| "update use name#{n}"}
+    sequence(:name) { |n| "update use name#{n}" }
   end
 
   # 生活費
