@@ -19,18 +19,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/controllers/home_controller_spec.rb'
     - 'spec/controllers/uses_controller_spec.rb'
 
-# Offense count: 146
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, EnforcedStyleForEmptyBraces.
-# SupportedStyles: space, no_space, compact
-# SupportedStylesForEmptyBraces: space, no_space
-Layout/SpaceInsideHashLiteralBraces:
-  Exclude:
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/events_controller_spec.rb'
-    - 'spec/controllers/histories_controller_spec.rb'
-    - 'spec/controllers/uses_controller_spec.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Layout/SpaceInsidePercentLiteralDelimiters:

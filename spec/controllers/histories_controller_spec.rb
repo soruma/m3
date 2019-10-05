@@ -55,7 +55,7 @@ RSpec.describe HistoriesController, type: :controller do
   describe "GET #show" do
     it "assigns the requested history as @history" do
       history = History.create! valid_attributes
-      get :show, params: {id: history.to_param}, session: valid_session
+      get :show, params: { id: history.to_param }, session: valid_session
       expect(assigns(:history)).to eq(history)
     end
   end
@@ -70,7 +70,7 @@ RSpec.describe HistoriesController, type: :controller do
   describe "GET #edit" do
     it "assigns the requested history as @history" do
       history = History.create! valid_attributes
-      get :edit, params: {id: history.to_param}, session: valid_session
+      get :edit, params: { id: history.to_param }, session: valid_session
       expect(assigns(:history)).to eq(history)
     end
   end
@@ -79,30 +79,30 @@ RSpec.describe HistoriesController, type: :controller do
     context "with valid params" do
       it "creates a new History" do
         expect {
-          post :create, params: {history: valid_attributes}, session: valid_session
+          post :create, params: { history: valid_attributes }, session: valid_session
         }.to change(History, :count).by(1)
       end
 
       it "assigns a newly created history as @history" do
-        post :create, params: {history: valid_attributes}, session: valid_session
+        post :create, params: { history: valid_attributes }, session: valid_session
         expect(assigns(:history)).to be_a(History)
         expect(assigns(:history)).to be_persisted
       end
 
       it "redirects to the created history" do
-        post :create, params: {history: valid_attributes}, session: valid_session
+        post :create, params: { history: valid_attributes }, session: valid_session
         expect(response).to redirect_to(History.last)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved history as @history" do
-        post :create, params: {history: invalid_attributes}, session: valid_session
+        post :create, params: { history: invalid_attributes }, session: valid_session
         expect(assigns(:history)).to be_a_new(History)
       end
 
       it "re-renders the 'new' template" do
-        post :create, params: {history: invalid_attributes}, session: valid_session
+        post :create, params: { history: invalid_attributes }, session: valid_session
         expect(response).to render_template("new")
       end
     end
@@ -116,20 +116,20 @@ RSpec.describe HistoriesController, type: :controller do
 
       it "updates the requested history" do
         history = History.create! valid_attributes
-        put :update, params: {id: history.to_param, history: new_attributes}, session: valid_session
+        put :update, params: { id: history.to_param, history: new_attributes }, session: valid_session
         history.reload
         expect(controller.notice).to eq(I18n.t('controller.success_update', model: History.model_name.human))
       end
 
       it "assigns the requested history as @history" do
         history = History.create! valid_attributes
-        put :update, params: {id: history.to_param, history: valid_attributes}, session: valid_session
+        put :update, params: { id: history.to_param, history: valid_attributes }, session: valid_session
         expect(assigns(:history)).to eq(history)
       end
 
       it "redirects to the history" do
         history = History.create! valid_attributes
-        put :update, params: {id: history.to_param, history: valid_attributes}, session: valid_session
+        put :update, params: { id: history.to_param, history: valid_attributes }, session: valid_session
         expect(response).to redirect_to(history)
       end
     end
@@ -137,13 +137,13 @@ RSpec.describe HistoriesController, type: :controller do
     context "with invalid params" do
       it "assigns the history as @history" do
         history = History.create! valid_attributes
-        put :update, params: {id: history.to_param, history: invalid_attributes}, session: valid_session
+        put :update, params: { id: history.to_param, history: invalid_attributes }, session: valid_session
         expect(assigns(:history)).to eq(history)
       end
 
       it "re-renders the 'edit' template" do
         history = History.create! valid_attributes
-        put :update, params: {id: history.to_param, history: invalid_attributes}, session: valid_session
+        put :update, params: { id: history.to_param, history: invalid_attributes }, session: valid_session
         expect(response).to render_template("edit")
       end
     end
@@ -153,13 +153,13 @@ RSpec.describe HistoriesController, type: :controller do
     it "destroys the requested history" do
       history = History.create! valid_attributes
       expect {
-        delete :destroy, params: {id: history.to_param}, session: valid_session
+        delete :destroy, params: { id: history.to_param }, session: valid_session
       }.to change(History, :count).by(-1)
     end
 
     it "redirects to the histories list" do
       history = History.create! valid_attributes
-      delete :destroy, params: {id: history.to_param}, session: valid_session
+      delete :destroy, params: { id: history.to_param }, session: valid_session
       expect(response).to redirect_to(histories_url)
     end
   end
@@ -175,7 +175,7 @@ RSpec.describe HistoriesController, type: :controller do
     context "with valid import data" do
       it "csv file upload" do
         expect {
-          post :import, params: {file: import_file}, session: valid_session
+          post :import, params: { file: import_file }, session: valid_session
         }.to change(History, :count).by(6)
         expect(response).to redirect_to(histories_url)
         expect(controller.notice).to eq(I18n.t('controller.success_import', model: History.model_name.human))
@@ -185,7 +185,7 @@ RSpec.describe HistoriesController, type: :controller do
     context "with invalid import data" do
       it "not upload file" do
         expect {
-          post :import, params: {file: nil}, session: valid_session
+          post :import, params: { file: nil }, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: History.model_name.human))
@@ -193,7 +193,7 @@ RSpec.describe HistoriesController, type: :controller do
 
       it "import format mismatch" do
         expect {
-          post :import, params: {file: mismatch_import_file}, session: valid_session
+          post :import, params: { file: mismatch_import_file }, session: valid_session
         }.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: History.model_name.human))
@@ -203,7 +203,7 @@ RSpec.describe HistoriesController, type: :controller do
 
   describe "GET #export" do
     before {
-      get :import, params: {file: import_file}, session: valid_session
+      get :import, params: { file: import_file }, session: valid_session
     }
 
     context "export data exists" do
@@ -214,7 +214,7 @@ RSpec.describe HistoriesController, type: :controller do
       end
 
       it "csv file export" do
-        get :export, params: {:format => 'csv'}, session: valid_session
+        get :export, params: { :format => 'csv' }, session: valid_session
         expect(response).to be_success
         expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{History.model_name.human}.csv\"/)
         expect(response.content_type).to eq("text/csv")
