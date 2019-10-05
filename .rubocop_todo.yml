@@ -76,12 +76,6 @@ Style/AsciiComments:
     - 'spec/factories/histories.rb'
     - 'spec/factories/uses.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/ColonMethodCall:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 20
 Style/Documentation:
   Exclude:

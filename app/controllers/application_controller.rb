@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
   #   取得できなかった場合 nil
   def locale_in_params
     if params[:locale].present?
-      params[:locale].to_sym.presence_in(I18n::available_locales) || I18n.default_locale
+      params[:locale].to_sym.presence_in(I18n.available_locales) || I18n.default_locale
     else
       nil
     end
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
            .to_s # nil 対策
            .split(',')
            .map { |_| _[0..1].to_sym }
-           .select { |_| I18n::available_locales.include?(_) }
+           .select { |_| I18n.available_locales.include?(_) }
            .first
   end
 
