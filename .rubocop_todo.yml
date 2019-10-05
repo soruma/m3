@@ -326,20 +326,6 @@ Style/StringLiterals:
     - 'spec/requests/home_routing_spec.rb'
     - 'spec/requests/uses_routing_spec.rb'
 
-# Offense count: 7
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, MinSize.
-# SupportedStyles: percent, brackets
-Style/SymbolArray:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-    - 'app/models/history.rb'
-    - 'db/migrate/20170305035355_add_history_index.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyleForMultiline.
