@@ -23,26 +23,26 @@ RSpec.describe HistoriesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # History. As you add validations to History, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     build(:history).attributes
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     build(:invalid_history).attributes
-  }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # HistoriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:import_file) {
+  let(:import_file) do
     fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
-  }
+  end
 
-  let(:mismatch_import_file) {
+  let(:mismatch_import_file) do
     fixture_file_upload('spec/fixtures/csv/history_mismatch.csv', 'text/comma-separated-values')
-  }
+  end
 
   describe "GET #index" do
     it "assigns all histories as @histories" do
@@ -78,9 +78,9 @@ RSpec.describe HistoriesController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new History" do
-        expect {
+        expect do
           post :create, params: { history: valid_attributes }, session: valid_session
-        }.to change(History, :count).by(1)
+        end.to change(History, :count).by(1)
       end
 
       it "assigns a newly created history as @history" do
@@ -110,9 +110,9 @@ RSpec.describe HistoriesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         build(:update_history).attributes
-      }
+      end
 
       it "updates the requested history" do
         history = History.create! valid_attributes
@@ -152,9 +152,9 @@ RSpec.describe HistoriesController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested history" do
       history = History.create! valid_attributes
-      expect {
+      expect do
         delete :destroy, params: { id: history.to_param }, session: valid_session
-      }.to change(History, :count).by(-1)
+      end.to change(History, :count).by(-1)
     end
 
     it "redirects to the histories list" do
@@ -174,9 +174,9 @@ RSpec.describe HistoriesController, type: :controller do
 
     context "with valid import data" do
       it "csv file upload" do
-        expect {
+        expect do
           post :import, params: { file: import_file }, session: valid_session
-        }.to change(History, :count).by(6)
+        end.to change(History, :count).by(6)
         expect(response).to redirect_to(histories_url)
         expect(controller.notice).to eq(I18n.t('controller.success_import', model: History.model_name.human))
       end
@@ -184,17 +184,17 @@ RSpec.describe HistoriesController, type: :controller do
 
     context "with invalid import data" do
       it "not upload file" do
-        expect {
+        expect do
           post :import, params: { file: nil }, session: valid_session
-        }.to change(History, :count).by(0)
+        end.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: History.model_name.human))
       end
 
       it "import format mismatch" do
-        expect {
+        expect do
           post :import, params: { file: mismatch_import_file }, session: valid_session
-        }.to change(History, :count).by(0)
+        end.to change(History, :count).by(0)
         expect(response).to redirect_to(histories_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: History.model_name.human))
       end
@@ -202,9 +202,9 @@ RSpec.describe HistoriesController, type: :controller do
   end
 
   describe "GET #export" do
-    before {
+    before do
       get :import, params: { file: import_file }, session: valid_session
-    }
+    end
 
     context "export data exists" do
       it "export redirect to format csv" do

@@ -23,26 +23,26 @@ RSpec.describe UsesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Use. As you add validations to Use, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     attributes_for :use
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     attributes_for :invalid_use
-  }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # UsesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  let(:import_file) {
+  let(:import_file) do
     fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
-  }
+  end
 
-  let(:mismatch_import_file) {
+  let(:mismatch_import_file) do
     fixture_file_upload('spec/fixtures/csv/use_mismatch.csv', 'text/comma-separated-values')
-  }
+  end
 
   describe "GET #index" do
     it "assigns all uses as @uses" do
@@ -78,9 +78,9 @@ RSpec.describe UsesController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Use" do
-        expect {
+        expect do
           post :create, params: { use: valid_attributes }, session: valid_session
-        }.to change(Use, :count).by(1)
+        end.to change(Use, :count).by(1)
       end
 
       it "assigns a newly created use as @use" do
@@ -110,9 +110,9 @@ RSpec.describe UsesController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         attributes_for :update_use
-      }
+      end
 
       it "updates the requested use" do
         use = Use.create! valid_attributes
@@ -150,15 +150,15 @@ RSpec.describe UsesController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    let(:destroy_foreign_key_data) {
+    let(:destroy_foreign_key_data) do
       build(:account).attributes
-    }
+    end
 
     it "destroys the requested use" do
       use = Use.create! valid_attributes
-      expect {
+      expect do
         delete :destroy, params: { id: use.to_param }, session: valid_session
-      }.to change(Use, :count).by(-1)
+      end.to change(Use, :count).by(-1)
     end
 
     it "redirects to the uses list" do
@@ -169,9 +169,9 @@ RSpec.describe UsesController, type: :controller do
 
     it "treatment foreign key error" do
       account = Account.create! destroy_foreign_key_data
-      expect {
+      expect do
         delete :destroy, params: { id: account.use.id }, session: valid_session
-      }.to change(Use, :count).by(0)
+      end.to change(Use, :count).by(0)
       expect(controller.alert).to eq(I18n.t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human))
     end
   end
@@ -179,9 +179,9 @@ RSpec.describe UsesController, type: :controller do
   describe "POST #import" do
     context "with valid import data" do
       it "csv file upload" do
-        expect {
+        expect do
           post :import, params: { file: import_file }, session: valid_session
-        }.to change(Use, :count).by(2)
+        end.to change(Use, :count).by(2)
         expect(response).to redirect_to(uses_url)
         expect(controller.notice).to eq(I18n.t('controller.success_import', model: Use.model_name.human))
       end
@@ -189,17 +189,17 @@ RSpec.describe UsesController, type: :controller do
 
     context "with invalid import data" do
       it "not upload file" do
-        expect {
+        expect do
           post :import, params: { file: nil }, session: valid_session
-        }.to change(Use, :count).by(0)
+        end.to change(Use, :count).by(0)
         expect(response).to redirect_to(uses_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: Use.model_name.human))
       end
 
       it "import format mismatch" do
-        expect {
+        expect do
           post :import, params: { file: mismatch_import_file }, session: valid_session
-        }.to change(Use, :count).by(0)
+        end.to change(Use, :count).by(0)
         expect(response).to redirect_to(uses_url)
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: Use.model_name.human))
       end
@@ -207,9 +207,9 @@ RSpec.describe UsesController, type: :controller do
   end
 
   describe "GET #export" do
-    before {
+    before do
       get :import, params: { file: import_file }, session: valid_session
-    }
+    end
 
     context "export data exists" do
       it "export redirect to format csv" do

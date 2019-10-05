@@ -23,13 +23,13 @@ RSpec.describe EventsController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
   # Event. As you add validations to Event, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
+  let(:valid_attributes) do
     build(:event).attributes
-  }
+  end
 
-  let(:invalid_attributes) {
+  let(:invalid_attributes) do
     build(:invalid_event).attributes
-  }
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -70,9 +70,9 @@ RSpec.describe EventsController, type: :controller do
   describe "POST #create" do
     context "with valid params" do
       it "creates a new Event" do
-        expect {
+        expect do
           post :create, params: { event: valid_attributes }, session: valid_session
-        }.to change(Event, :count).by(1)
+        end.to change(Event, :count).by(1)
       end
 
       it "assigns a newly created event as @event" do
@@ -102,9 +102,9 @@ RSpec.describe EventsController, type: :controller do
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
+      let(:new_attributes) do
         build(:update_event).attributes
-      }
+      end
 
       it "updates the requested event" do
         event = Event.create! valid_attributes
@@ -144,9 +144,9 @@ RSpec.describe EventsController, type: :controller do
   describe "DELETE #destroy" do
     it "destroys the requested event" do
       event = Event.create! valid_attributes
-      expect {
+      expect do
         delete :destroy, params: { id: event.to_param }, session: valid_session
-      }.to change(Event, :count).by(-1)
+      end.to change(Event, :count).by(-1)
     end
 
     it "redirects to the events list" do
