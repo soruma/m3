@@ -102,15 +102,6 @@ Style/Documentation:
     - 'db/migrate/20170305035355_add_history_index.rb'
     - 'db/migrate/20170305042126_create_events.rb'
 
-# Offense count: 4
-# Cop supports --auto-correct.
-Style/ExpandPathArguments:
-  Exclude:
-    - 'bin/rails'
-    - 'bin/rake'
-    - 'bin/rspec'
-    - 'spec/rails_helper.rb'
-
 # Offense count: 2
 # Configuration parameters: .
 # SupportedStyles: annotated, template, unannotated
