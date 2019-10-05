@@ -45,98 +45,98 @@ RSpec.describe UsesController, type: :controller do
     fixture_file_upload('spec/fixtures/csv/use_mismatch.csv', 'text/comma-separated-values')
   end
 
-  describe "GET #index" do
-    it "assigns all uses as @uses" do
+  describe 'GET #index' do
+    it 'assigns all uses as @uses' do
       use = Use.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:uses)).to eq([use])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested use as @use" do
+  describe 'GET #show' do
+    it 'assigns the requested use as @use' do
       use = Use.create! valid_attributes
       get :show, params: { id: use.to_param }, session: valid_session
       expect(assigns(:use)).to eq(use)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new use as @use" do
+  describe 'GET #new' do
+    it 'assigns a new use as @use' do
       get :new, params: {}, session: valid_session
       expect(assigns(:use)).to be_a_new(Use)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested use as @use" do
+  describe 'GET #edit' do
+    it 'assigns the requested use as @use' do
       use = Use.create! valid_attributes
       get :edit, params: { id: use.to_param }, session: valid_session
       expect(assigns(:use)).to eq(use)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Use" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Use' do
         expect do
           post :create, params: { use: valid_attributes }, session: valid_session
         end.to change(Use, :count).by(1)
       end
 
-      it "assigns a newly created use as @use" do
+      it 'assigns a newly created use as @use' do
         post :create, params: { use: valid_attributes }, session: valid_session
         expect(assigns(:use)).to be_a(Use)
         expect(assigns(:use)).to be_persisted
       end
 
-      it "redirects to the created use" do
+      it 'redirects to the created use' do
         post :create, params: { use: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Use.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved use as @use" do
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved use as @use' do
         post :create, params: { use: invalid_attributes }, session: valid_session
         expect(assigns(:use)).to be_a_new(Use)
       end
 
       it "re-renders the 'new' template" do
         post :create, params: { use: invalid_attributes }, session: valid_session
-        expect(response).to render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) do
         attributes_for :update_use
       end
 
-      it "updates the requested use" do
+      it 'updates the requested use' do
         use = Use.create! valid_attributes
         put :update, params: { id: use.to_param, use: new_attributes }, session: valid_session
         use.reload
         expect(controller.notice).to eq(I18n.t('controller.success_update', model: Use.model_name.human))
       end
 
-      it "assigns the requested use as @use" do
+      it 'assigns the requested use as @use' do
         use = Use.create! valid_attributes
         put :update, params: { id: use.to_param, use: valid_attributes }, session: valid_session
         expect(assigns(:use)).to eq(use)
       end
 
-      it "redirects to the use" do
+      it 'redirects to the use' do
         use = Use.create! valid_attributes
         put :update, params: { id: use.to_param, use: valid_attributes }, session: valid_session
         expect(response).to redirect_to(use)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the use as @use" do
+    context 'with invalid params' do
+      it 'assigns the use as @use' do
         use = Use.create! valid_attributes
         put :update, params: { id: use.to_param, use: invalid_attributes }, session: valid_session
         expect(assigns(:use)).to eq(use)
@@ -145,30 +145,30 @@ RSpec.describe UsesController, type: :controller do
       it "re-renders the 'edit' template" do
         use = Use.create! valid_attributes
         put :update, params: { id: use.to_param, use: invalid_attributes }, session: valid_session
-        expect(response).to render_template("edit")
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
+  describe 'DELETE #destroy' do
     let(:destroy_foreign_key_data) do
       build(:account).attributes
     end
 
-    it "destroys the requested use" do
+    it 'destroys the requested use' do
       use = Use.create! valid_attributes
       expect do
         delete :destroy, params: { id: use.to_param }, session: valid_session
       end.to change(Use, :count).by(-1)
     end
 
-    it "redirects to the uses list" do
+    it 'redirects to the uses list' do
       use = Use.create! valid_attributes
       delete :destroy, params: { id: use.to_param }, session: valid_session
       expect(response).to redirect_to(uses_url)
     end
 
-    it "treatment foreign key error" do
+    it 'treatment foreign key error' do
       account = Account.create! destroy_foreign_key_data
       expect do
         delete :destroy, params: { id: account.use.id }, session: valid_session
@@ -177,9 +177,9 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
-  describe "POST #import" do
-    context "with valid import data" do
-      it "csv file upload" do
+  describe 'POST #import' do
+    context 'with valid import data' do
+      it 'csv file upload' do
         expect do
           post :import, params: { file: import_file }, session: valid_session
         end.to change(Use, :count).by(2)
@@ -188,8 +188,8 @@ RSpec.describe UsesController, type: :controller do
       end
     end
 
-    context "with invalid import data" do
-      it "not upload file" do
+    context 'with invalid import data' do
+      it 'not upload file' do
         expect do
           post :import, params: { file: nil }, session: valid_session
         end.to change(Use, :count).by(0)
@@ -197,7 +197,7 @@ RSpec.describe UsesController, type: :controller do
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: Use.model_name.human))
       end
 
-      it "import format mismatch" do
+      it 'import format mismatch' do
         expect do
           post :import, params: { file: mismatch_import_file }, session: valid_session
         end.to change(Use, :count).by(0)
@@ -207,23 +207,23 @@ RSpec.describe UsesController, type: :controller do
     end
   end
 
-  describe "GET #export" do
+  describe 'GET #export' do
     before do
       get :import, params: { file: import_file }, session: valid_session
     end
 
-    context "export data exists" do
-      it "export redirect to format csv" do
+    context 'export data exists' do
+      it 'export redirect to format csv' do
         get :export, params: {}, session: valid_session
         expect(response.status).to eq(302)
         expect(response.headers.to_hash['Location']).to match(%r{uses/export.csv})
       end
 
-      it "csv file export" do
+      it 'csv file export' do
         get :export, params: { format: 'csv' }, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
-        expect(response.content_type).to eq("text/csv")
+        expect(response.headers['Content-Disposition']).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
+        expect(response.content_type).to eq('text/csv')
       end
     end
   end

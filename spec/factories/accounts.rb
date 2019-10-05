@@ -7,7 +7,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_account, class: Account do
-    name ""
+    name ''
   end
 
   factory :update_account, class: Account do
@@ -17,7 +17,7 @@ FactoryGirl.define do
 
   # 財布
   factory :wallet, class: Account do
-    name "Wallet"
+    name 'Wallet'
     association :use, factory: :cost_of_living
   end
 end

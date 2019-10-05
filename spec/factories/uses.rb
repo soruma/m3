@@ -6,7 +6,7 @@ FactoryGirl.define do
   end
 
   factory :invalid_use, class: Use do
-    name ""
+    name ''
   end
 
   factory :update_use, class: Use do
@@ -15,6 +15,6 @@ FactoryGirl.define do
 
   # 生活費
   factory :cost_of_living, class: Use do
-    name "Cost of living"
+    name 'Cost of living'
   end
 end

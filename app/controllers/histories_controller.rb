@@ -90,25 +90,25 @@ class HistoriesController < ApplicationController
         csv_options = {
           write_headers: true,
           headers: History.updatable_attributes,
-          encoding: "cp932",
+          encoding: 'cp932',
           converters: nil,
           row_sep: "\r\n"
         }
 
-        Tempfile.open(["history", ".csv"]) do |temp|
-          CSV.open(temp.path, "w", csv_options) do |csv_file|
+        Tempfile.open(['history', '.csv']) do |temp|
+          CSV.open(temp.path, 'w', csv_options) do |csv_file|
             @histories.each do |history|
               row = {}
-              row["id"] = history.id
-              row["date_of_onset"] = history.date_of_onset
-              row["account_id"] = history.account_id
-              row["price"] = history.price
+              row['id'] = history.id
+              row['date_of_onset'] = history.date_of_onset
+              row['account_id'] = history.account_id
+              row['price'] = history.price
               csv_file << row
             end
           end
 
           send_file(temp.path,
-                    type: "text/csv; charset=cp932; header=present",
+                    type: 'text/csv; charset=cp932; header=present',
                     disposition: "attachment; filename=\"#{History.model_name.human}.csv\"")
         end
       end

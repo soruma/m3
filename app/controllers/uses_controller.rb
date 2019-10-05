@@ -95,23 +95,23 @@ class UsesController < ApplicationController
         csv_options = {
           write_headers: true,
           headers: Use.updatable_attributes,
-          encoding: "cp932",
+          encoding: 'cp932',
           converters: nil,
           row_sep: "\r\n"
         }
 
-        Tempfile.open(["use", ".csv"]) do |temp|
-          CSV.open(temp.path, "w", csv_options) do |csv_file|
+        Tempfile.open(['use', '.csv']) do |temp|
+          CSV.open(temp.path, 'w', csv_options) do |csv_file|
             @uses.each do |use|
               row = {}
-              row["id"] = use.id
-              row["name"] = use.name
+              row['id'] = use.id
+              row['name'] = use.name
               csv_file << row
             end
           end
 
           send_file(temp.path,
-                    type: "text/csv; charset=cp932; header=present",
+                    type: 'text/csv; charset=cp932; header=present',
                     disposition: "attachment; filename=\"#{Use.model_name.human}.csv\"")
         end
       end

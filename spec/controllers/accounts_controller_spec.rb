@@ -45,98 +45,98 @@ RSpec.describe AccountsController, type: :controller do
     fixture_file_upload('spec/fixtures/csv/account_mismatch.csv', 'text/comma-separated-values')
   end
 
-  describe "GET #index" do
-    it "assigns all accounts as @accounts" do
+  describe 'GET #index' do
+    it 'assigns all accounts as @accounts' do
       account = Account.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(assigns(:accounts)).to eq([account])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested account as @account" do
+  describe 'GET #show' do
+    it 'assigns the requested account as @account' do
       account = Account.create! valid_attributes
       get :show, params: { id: account.to_param }, session: valid_session
       expect(assigns(:account)).to eq(account)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new account as @account" do
+  describe 'GET #new' do
+    it 'assigns a new account as @account' do
       get :new, params: {}, session: valid_session
       expect(assigns(:account)).to be_a_new(Account)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested account as @account" do
+  describe 'GET #edit' do
+    it 'assigns the requested account as @account' do
       account = Account.create! valid_attributes
       get :edit, params: { id: account.to_param }, session: valid_session
       expect(assigns(:account)).to eq(account)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Account" do
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Account' do
         expect do
           post :create, params: { account: valid_attributes }, session: valid_session
         end.to change(Account, :count).by(1)
       end
 
-      it "assigns a newly created account as @account" do
+      it 'assigns a newly created account as @account' do
         post :create, params: { account: valid_attributes }, session: valid_session
         expect(assigns(:account)).to be_a(Account)
         expect(assigns(:account)).to be_persisted
       end
 
-      it "redirects to the created account" do
+      it 'redirects to the created account' do
         post :create, params: { account: valid_attributes }, session: valid_session
         expect(response).to redirect_to(Account.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved account as @account" do
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved account as @account' do
         post :create, params: { account: invalid_attributes }, session: valid_session
         expect(assigns(:account)).to be_a_new(Account)
       end
 
       it "re-renders the 'new' template" do
         post :create, params: { account: invalid_attributes }, session: valid_session
-        expect(response).to render_template("new")
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
+  describe 'PUT #update' do
+    context 'with valid params' do
       let(:new_attributes) do
         build(:update_account).attributes
       end
 
-      it "updates the requested account" do
+      it 'updates the requested account' do
         account = Account.create! valid_attributes
         put :update, params: { id: account.to_param, account: new_attributes }, session: valid_session
         account.reload
         expect(controller.notice).to eq(I18n.t('controller.success_update', model: Account.model_name.human))
       end
 
-      it "assigns the requested account as @account" do
+      it 'assigns the requested account as @account' do
         account = Account.create! valid_attributes
         put :update, params: { id: account.to_param, account: valid_attributes }, session: valid_session
         expect(assigns(:account)).to eq(account)
       end
 
-      it "redirects to the account" do
+      it 'redirects to the account' do
         account = Account.create! valid_attributes
         put :update, params: { id: account.to_param, account: valid_attributes }, session: valid_session
         expect(response).to redirect_to(account)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the account as @account" do
+    context 'with invalid params' do
+      it 'assigns the account as @account' do
         account = Account.create! valid_attributes
         put :update, params: { id: account.to_param, account: invalid_attributes }, session: valid_session
         expect(assigns(:account)).to eq(account)
@@ -145,30 +145,30 @@ RSpec.describe AccountsController, type: :controller do
       it "re-renders the 'edit' template" do
         account = Account.create! valid_attributes
         put :update, params: { id: account.to_param, account: invalid_attributes }, session: valid_session
-        expect(response).to render_template("edit")
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
+  describe 'DELETE #destroy' do
     let(:destroy_foreign_key_data) do
       build(:history).attributes
     end
 
-    it "destroys the requested account" do
+    it 'destroys the requested account' do
       account = Account.create! valid_attributes
       expect do
         delete :destroy, params: { id: account.to_param }, session: valid_session
       end.to change(Account, :count).by(-1)
     end
 
-    it "redirects to the accounts list" do
+    it 'redirects to the accounts list' do
       account = Account.create! valid_attributes
       delete :destroy, params: { id: account.to_param }, session: valid_session
       expect(response).to redirect_to(accounts_url)
     end
 
-    it "treatment foreign key error" do
+    it 'treatment foreign key error' do
       history = History.create! destroy_foreign_key_data
       expect do
         delete :destroy, params: { id: history.account.id }, session: valid_session
@@ -177,14 +177,14 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
-  describe "POST #import" do
+  describe 'POST #import' do
     before :each do
       csv = fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
       Use.csv_file_import(csv)
     end
 
-    context "with valid import data" do
-      it "csv file upload" do
+    context 'with valid import data' do
+      it 'csv file upload' do
         expect do
           post :import, params: { file: import_file }, session: valid_session
         end.to change(Account, :count).by(3)
@@ -193,8 +193,8 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
 
-    context "with invalid import data" do
-      it "not upload file" do
+    context 'with invalid import data' do
+      it 'not upload file' do
         expect do
           post :import, params: { file: nil }, session: valid_session
         end.to change(Account, :count).by(0)
@@ -202,7 +202,7 @@ RSpec.describe AccountsController, type: :controller do
         expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_no_choose', model: Account.model_name.human))
       end
 
-      it "import format mismatch" do
+      it 'import format mismatch' do
         expect do
           post :import, params: { file: mismatch_import_file }, session: valid_session
         end.to change(Account, :count).by(0)
@@ -212,23 +212,23 @@ RSpec.describe AccountsController, type: :controller do
     end
   end
 
-  describe "GET #export" do
+  describe 'GET #export' do
     before do
       get :import, params: { file: import_file }, session: valid_session
     end
 
-    context "export data exists" do
-      it "export redirect to format csv" do
+    context 'export data exists' do
+      it 'export redirect to format csv' do
         get :export, params: {}, session: valid_session
         expect(response.status).to eq(302)
         expect(response.headers.to_hash['Location']).to match(%r{accounts/export.csv})
       end
 
-      it "csv file export" do
+      it 'csv file export' do
         get :export, params: { format: 'csv' }, session: valid_session
         expect(response).to be_success
-        expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{Account.model_name.human}.csv\"/)
-        expect(response.content_type).to eq("text/csv")
+        expect(response.headers['Content-Disposition']).to match(/attachment; filename=\"#{Account.model_name.human}.csv\"/)
+        expect(response.content_type).to eq('text/csv')
       end
     end
   end

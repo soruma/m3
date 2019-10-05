@@ -102,44 +102,6 @@ Style/MixinUsage:
     - 'bin/update'
     - 'spec/rails_helper.rb'
 
-# Offense count: 277
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
-# SupportedStyles: single_quotes, double_quotes
-Style/StringLiterals:
-  Exclude:
-    - 'Gemfile'
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/views/accounts/show.json.jbuilder'
-    - 'app/views/events/show.json.jbuilder'
-    - 'app/views/histories/show.json.jbuilder'
-    - 'app/views/uses/show.json.jbuilder'
-    - 'bin/spring'
-    - 'bin/yarn'
-    - 'config/environments/production.rb'
-    - 'config/puma.rb'
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/events_controller_spec.rb'
-    - 'spec/controllers/histories_controller_spec.rb'
-    - 'spec/controllers/home_controller_spec.rb'
-    - 'spec/controllers/uses_controller_spec.rb'
-    - 'spec/factories/accounts.rb'
-    - 'spec/factories/events.rb'
-    - 'spec/factories/histories.rb'
-    - 'spec/factories/uses.rb'
-    - 'spec/models/account_spec.rb'
-    - 'spec/models/event_spec.rb'
-    - 'spec/models/history_spec.rb'
-    - 'spec/models/use_spec.rb'
-    - 'spec/rails_helper.rb'
-    - 'spec/requests/accounts_routing_spec.rb'
-    - 'spec/requests/histories_routing_spec.rb'
-    - 'spec/requests/home_routing_spec.rb'
-    - 'spec/requests/uses_routing_spec.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: WordRegex.

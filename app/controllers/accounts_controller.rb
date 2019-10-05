@@ -95,24 +95,24 @@ class AccountsController < ApplicationController
         csv_options = {
           write_headers: true,
           headers: Account.updatable_attributes,
-          encoding: "cp932",
+          encoding: 'cp932',
           converters: nil,
           row_sep: "\r\n"
         }
 
-        Tempfile.open(["account", ".csv"]) do |temp|
-          CSV.open(temp.path, "w", csv_options) do |csv_file|
+        Tempfile.open(['account', '.csv']) do |temp|
+          CSV.open(temp.path, 'w', csv_options) do |csv_file|
             @accounts.each do |account|
               row = {}
-              row["id"] = account.id
-              row["use_id"] = account.use_id
-              row["name"] = account.name
+              row['id'] = account.id
+              row['use_id'] = account.use_id
+              row['name'] = account.name
               csv_file << row
             end
           end
 
           send_file(temp.path,
-                    type: "text/csv; charset=cp932; header=present",
+                    type: 'text/csv; charset=cp932; header=present',
                     disposition: "attachment; filename=\"#{Account.model_name.human}.csv\"")
         end
       end
