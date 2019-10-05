@@ -28,11 +28,11 @@ class ApplicationController < ActionController::Base
   # @return [Symbol]  環境変数 HTTP_ACCEPT_LANGUAGE から取った locale 。取得できなかった場合 nil
   def locale_in_accept_language
     request.env['HTTP_ACCEPT_LANGUAGE']
-      .to_s # nil 対策
-      .split(',')
-      .map{ |_| _[0..1].to_sym }
-      .select { |_| I18n::available_locales.include?(_) }
-      .first
+           .to_s # nil 対策
+           .split(',')
+           .map{ |_| _[0..1].to_sym }
+           .select { |_| I18n::available_locales.include?(_) }
+           .first
   end
 
   # 全リンクに locale 情報をセットする

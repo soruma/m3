@@ -19,14 +19,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/controllers/home_controller_spec.rb'
     - 'spec/controllers/uses_controller_spec.rb'
 
-# Offense count: 5
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, IndentationWidth.
-# SupportedStyles: aligned, indented, indented_relative_to_receiver
-Layout/MultilineMethodCallIndentation:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 8
 # Cop supports --auto-correct.
 Layout/RescueEnsureAlignment:
