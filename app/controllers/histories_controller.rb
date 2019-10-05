@@ -59,7 +59,10 @@ class HistoriesController < ApplicationController
   def destroy
     @history.destroy
     respond_to do |format|
-      format.html { redirect_to histories_url, notice: t('controller.success_destroy', model: History.model_name.human) }
+      format.html do
+        redirect_to histories_url,
+                    notice: t('controller.success_destroy', model: History.model_name.human)
+      end
       format.json { head :no_content }
     end
   end
