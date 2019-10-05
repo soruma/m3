@@ -17,5 +17,5 @@ class ApplicationRecord < ActiveRecord::Base
 
   private
 
-  TIMESTAMP_COLUMNS = %w(created_at created_on updated_at updated_on)
+  TIMESTAMP_COLUMNS = %w[created_at created_on updated_at updated_on]
 end

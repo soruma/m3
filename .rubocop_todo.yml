@@ -244,15 +244,6 @@ Style/NumericLiterals:
 
 # Offense count: 3
 # Cop supports --auto-correct.
-# Configuration parameters: PreferredDelimiters.
-Style/PercentLiteralDelimiters:
-  Exclude:
-    - 'app/models/application_record.rb'
-    - 'config/application.rb'
-    - 'config/environments/development.rb'
-
-# Offense count: 3
-# Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
 # SupportedStyles: slashes, percent_r, mixed
 Style/RegexpLiteral:
