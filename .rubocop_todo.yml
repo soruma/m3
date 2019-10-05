@@ -259,12 +259,6 @@ Style/PercentLiteralDelimiters:
     - 'config/application.rb'
     - 'config/environments/development.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/RedundantBegin:
-  Exclude:
-    - 'bin/yarn'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, AllowInnerSlashes.
