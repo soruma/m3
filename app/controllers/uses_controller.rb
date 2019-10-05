@@ -9,8 +9,7 @@ class UsesController < ApplicationController
 
   # GET /uses/1
   # GET /uses/1.json
-  def show
-  end
+  def show; end
 
   # GET /uses/new
   def new
@@ -18,8 +17,7 @@ class UsesController < ApplicationController
   end
 
   # GET /uses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /uses
   # POST /uses.json
