@@ -12,7 +12,6 @@
 # SupportedStyles: empty_lines, no_empty_lines
 Layout/EmptyLinesAroundBlockBody:
   Exclude:
-    - 'db/schema.rb'
     - 'spec/controllers/accounts_controller_spec.rb'
     - 'spec/controllers/events_controller_spec.rb'
     - 'spec/controllers/histories_controller_spec.rb'
@@ -178,7 +177,6 @@ Style/FrozenStringLiteralComment:
     - 'db/migrate/20170305035255_create_histories.rb'
     - 'db/migrate/20170305035355_add_history_index.rb'
     - 'db/migrate/20170305042126_create_events.rb'
-    - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'spec/controllers/accounts_controller_spec.rb'
     - 'spec/controllers/events_controller_spec.rb'
@@ -209,13 +207,6 @@ Style/MixinUsage:
     - 'bin/update'
     - 'spec/rails_helper.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: MinDigits, Strict.
-Style/NumericLiterals:
-  Exclude:
-    - 'db/schema.rb'
-
 # Offense count: 277
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
@@ -235,7 +226,6 @@ Style/StringLiterals:
     - 'bin/yarn'
     - 'config/environments/production.rb'
     - 'config/puma.rb'
-    - 'db/schema.rb'
     - 'spec/controllers/accounts_controller_spec.rb'
     - 'spec/controllers/events_controller_spec.rb'
     - 'spec/controllers/histories_controller_spec.rb'
