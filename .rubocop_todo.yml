@@ -19,12 +19,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/controllers/home_controller_spec.rb'
     - 'spec/controllers/uses_controller_spec.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Layout/SpaceInsidePercentLiteralDelimiters:
-  Exclude:
-    - 'config/environments/development.rb'
-
 # Offense count: 1
 Lint/IneffectiveAccessModifier:
   Exclude:
