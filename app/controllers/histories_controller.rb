@@ -109,8 +109,7 @@ class HistoriesController < ApplicationController
 
           send_file(temp.path,
                     type: "text/csv; charset=cp932; header=present",
-                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\""
-                   )
+                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\"")
         end
       end
     end

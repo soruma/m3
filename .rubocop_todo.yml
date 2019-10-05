@@ -19,16 +19,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/controllers/home_controller_spec.rb'
     - 'spec/controllers/uses_controller_spec.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: symmetrical, new_line, same_line
-Layout/MultilineMethodCallBraceLayout:
-  Exclude:
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-
 # Offense count: 5
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, IndentationWidth.
