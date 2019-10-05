@@ -121,13 +121,13 @@ class UsesController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_use
-      @use = Use.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_use
+    @use = Use.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def use_params
-      params.require(:use).permit(:name)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def use_params
+    params.require(:use).permit(:name)
+  end
 end
