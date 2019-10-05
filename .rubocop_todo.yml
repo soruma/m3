@@ -281,16 +281,6 @@ Style/StringLiterals:
     - 'spec/requests/home_routing_spec.rb'
     - 'spec/requests/uses_routing_spec.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyleForMultiline.
-# SupportedStylesForMultiline: comma, consistent_comma, no_comma
-Style/TrailingCommaInHashLiteral:
-  Exclude:
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 # Configuration parameters: WordRegex.

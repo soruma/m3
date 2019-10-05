@@ -95,7 +95,7 @@ class AccountsController < ApplicationController
           headers: Account.updatable_attributes,
           encoding: "cp932",
           converters: nil,
-          row_sep: "\r\n",
+          row_sep: "\r\n"
         }
 
         Tempfile.open(["account", ".csv"]) do |temp|

@@ -90,7 +90,7 @@ class HistoriesController < ApplicationController
           headers: History.updatable_attributes,
           encoding: "cp932",
           converters: nil,
-          row_sep: "\r\n",
+          row_sep: "\r\n"
         }
 
         Tempfile.open(["history", ".csv"]) do |temp|

@@ -95,7 +95,7 @@ class UsesController < ApplicationController
           headers: Use.updatable_attributes,
           encoding: "cp932",
           converters: nil,
-          row_sep: "\r\n",
+          row_sep: "\r\n"
         }
 
         Tempfile.open(["use", ".csv"]) do |temp|
