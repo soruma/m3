@@ -7,8 +7,6 @@ class ApplicationRecord < ActiveRecord::Base
 
   TIMESTAMP_COLUMNS = %w[created_at created_on updated_at updated_on].freeze
 
-  protected
-
   class << self
     #=== real model attribute names
     # ex)
