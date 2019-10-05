@@ -17,11 +17,7 @@ class ApplicationController < ActionController::Base
   #   有効な値でなければ :en
   #   取得できなかった場合 nil
   def locale_in_params
-    if params[:locale].present?
-      params[:locale].to_sym.presence_in(I18n.available_locales) || I18n.default_locale
-    else
-      nil
-    end
+    params[:locale].to_sym.presence_in(I18n.available_locales) || I18n.default_locale if params[:locale].present?
   end
 
   # 環境変数 HTTP_ACCEPT_LANGUAGE を順に検証し、最初に一致した有効な locale を返す

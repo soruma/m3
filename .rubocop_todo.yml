@@ -102,14 +102,6 @@ Style/Documentation:
     - 'db/migrate/20170305035355_add_history_index.rb'
     - 'db/migrate/20170305042126_create_events.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: empty, nil, both
-Style/EmptyElse:
-  Exclude:
-    - 'app/controllers/application_controller.rb'
-
 # Offense count: 10
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
