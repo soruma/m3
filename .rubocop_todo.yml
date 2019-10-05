@@ -19,17 +19,6 @@ Layout/EmptyLinesAroundBlockBody:
     - 'spec/controllers/home_controller_spec.rb'
     - 'spec/controllers/uses_controller_spec.rb'
 
-# Offense count: 12
-# Cop supports --auto-correct.
-# Configuration parameters: Width, IgnoredPatterns.
-Layout/IndentationWidth:
-  Exclude:
-    - 'app/controllers/accounts_controller.rb'
-    - 'app/controllers/events_controller.rb'
-    - 'app/controllers/histories_controller.rb'
-    - 'app/controllers/uses_controller.rb'
-    - 'app/models/application_record.rb'
-
 # Offense count: 3
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle.
