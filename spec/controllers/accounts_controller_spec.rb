@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe AccountsController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
@@ -231,5 +230,4 @@ RSpec.describe AccountsController, type: :controller do
       end
     end
   end
-
 end

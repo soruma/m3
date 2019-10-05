@@ -19,7 +19,6 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe UsesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Use. As you add validations to Use, be sure to
   # adjust the attributes here as well.
