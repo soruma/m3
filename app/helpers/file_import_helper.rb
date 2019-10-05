@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module FileImportHelper
   #=== file import
   def csv_file_import(upload_file)
