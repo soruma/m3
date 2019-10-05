@@ -111,9 +111,9 @@ class UsesController < ApplicationController
           end
 
           send_file(temp.path,
-            type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"#{Use.model_name.human}.csv\""
-          )
+                    type:         "text/csv; charset=cp932; header=present",
+                    disposition:  "attachment; filename=\"#{Use.model_name.human}.csv\""
+                   )
         end
       end
     end
