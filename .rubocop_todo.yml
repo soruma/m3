@@ -242,12 +242,6 @@ Style/NumericLiterals:
   Exclude:
     - 'db/schema.rb'
 
-# Offense count: 1
-# Cop supports --auto-correct.
-Style/RescueModifier:
-  Exclude:
-    - 'app/helpers/file_import_helper.rb'
-
 # Offense count: 2
 # Cop supports --auto-correct.
 Style/StderrPuts:
