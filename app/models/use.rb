@@ -1,5 +1,5 @@
 class Use < ApplicationRecord
   has_many :account
 
-  validates_presence_of :name
+  validates :name, presence: true
 end
