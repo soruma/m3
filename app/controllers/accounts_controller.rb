@@ -57,11 +57,11 @@ class AccountsController < ApplicationController
     message = begin
       @account.destroy
       { notice: t('controller.success_destroy', model: Account.model_name.human) }
-    rescue ActiveRecord::StatementInvalid => e
-      if (e.cause.class == Mysql2::Error &&
-          e.cause.message.match(/foreign key constraint fails/))
-        { alert: t('controller.unsuccess_destroy_key_exist', model: Account.model_name.human) }
-      end
+              rescue ActiveRecord::StatementInvalid => e
+                if (e.cause.class == Mysql2::Error &&
+                    e.cause.message.match(/foreign key constraint fails/))
+                  { alert: t('controller.unsuccess_destroy_key_exist', model: Account.model_name.human) }
+                end
     end
     respond_to do |format|
       format.html { redirect_to accounts_url, message }
@@ -74,10 +74,10 @@ class AccountsController < ApplicationController
     message = begin
       Account.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: Account.model_name.human) }
-    rescue ActiveRecord::RecordInvalid
-      { alert: t('controller.unsuccess_import_record_invalid', model: Account.model_name.human) }
-    rescue NoMethodError
-      { alert: t('controller.unsuccess_import_no_choose', model: Account.model_name.human) }
+              rescue ActiveRecord::RecordInvalid
+                { alert: t('controller.unsuccess_import_record_invalid', model: Account.model_name.human) }
+              rescue NoMethodError
+                { alert: t('controller.unsuccess_import_no_choose', model: Account.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to accounts_url, message }

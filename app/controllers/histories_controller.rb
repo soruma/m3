@@ -69,10 +69,10 @@ class HistoriesController < ApplicationController
     message = begin
       History.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: History.model_name.human) }
-    rescue ActiveRecord::RecordInvalid
-      { alert: t('controller.unsuccess_import_record_invalid', model: History.model_name.human) }
-    rescue NoMethodError
-      { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
+              rescue ActiveRecord::RecordInvalid
+                { alert: t('controller.unsuccess_import_record_invalid', model: History.model_name.human) }
+              rescue NoMethodError
+                { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to histories_url, message }
