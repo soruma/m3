@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
 
   # 全リンクに locale 情報をセットする
   # @return [Hash] locale をキーとするハッシュ
-  def default_url_options(options = {})
+  def default_url_options(_options = {})
     { locale: I18n.locale }
   end
 end
