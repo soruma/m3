@@ -93,11 +93,11 @@ class UsesController < ApplicationController
         @uses = Use.all
 
         csv_options = {
-          write_headers:  true,
-          headers:        Use.updatable_attributes,
-          encoding:       "cp932",
-          converters:     nil,
-          row_sep:        "\r\n",
+          write_headers: true,
+          headers: Use.updatable_attributes,
+          encoding: "cp932",
+          converters: nil,
+          row_sep: "\r\n",
         }
 
         Tempfile.open(["use", ".csv"]) do |temp|
@@ -111,8 +111,8 @@ class UsesController < ApplicationController
           end
 
           send_file(temp.path,
-                    type:         "text/csv; charset=cp932; header=present",
-                    disposition:  "attachment; filename=\"#{Use.model_name.human}.csv\""
+                    type: "text/csv; charset=cp932; header=present",
+                    disposition: "attachment; filename=\"#{Use.model_name.human}.csv\""
                    )
         end
       end

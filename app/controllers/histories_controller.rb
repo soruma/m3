@@ -88,11 +88,11 @@ class HistoriesController < ApplicationController
         @histories = History.all
 
         csv_options = {
-          write_headers:  true,
-          headers:        History.updatable_attributes,
-          encoding:       "cp932",
-          converters:     nil,
-          row_sep:        "\r\n",
+          write_headers: true,
+          headers: History.updatable_attributes,
+          encoding: "cp932",
+          converters: nil,
+          row_sep: "\r\n",
         }
 
         Tempfile.open(["history", ".csv"]) do |temp|
@@ -108,8 +108,8 @@ class HistoriesController < ApplicationController
           end
 
           send_file(temp.path,
-                    type:         "text/csv; charset=cp932; header=present",
-                    disposition:  "attachment; filename=\"#{History.model_name.human}.csv\""
+                    type: "text/csv; charset=cp932; header=present",
+                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\""
                    )
         end
       end
