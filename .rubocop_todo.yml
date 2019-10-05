@@ -242,12 +242,6 @@ Style/NumericLiterals:
   Exclude:
     - 'db/schema.rb'
 
-# Offense count: 2
-# Cop supports --auto-correct.
-Style/StderrPuts:
-  Exclude:
-    - 'bin/yarn'
-
 # Offense count: 277
 # Cop supports --auto-correct.
 # Configuration parameters: EnforcedStyle, ConsistentQuotesInMultiline.
