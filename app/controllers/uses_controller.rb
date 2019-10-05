@@ -86,7 +86,7 @@ class UsesController < ApplicationController
   # GET /uses/export
   def export
     respond_to do |format|
-      format.html { redirect_to :action => :export, :format => :csv }
+      format.html { redirect_to action: :export, format: :csv }
       format.csv do
         @uses = Use.all
 

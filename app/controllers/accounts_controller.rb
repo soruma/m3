@@ -86,7 +86,7 @@ class AccountsController < ApplicationController
   # GET /accounts/export
   def export
     respond_to do |format|
-      format.html { redirect_to :action => :export, :format => :csv }
+      format.html { redirect_to action: :export, format: :csv }
       format.csv do
         @accounts = Account.all
 

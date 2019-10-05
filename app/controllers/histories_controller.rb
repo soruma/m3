@@ -81,7 +81,7 @@ class HistoriesController < ApplicationController
   # GET /histories/export
   def export
     respond_to do |format|
-      format.html { redirect_to :action => :export, :format => :csv }
+      format.html { redirect_to action: :export, format: :csv }
       format.csv do
         @histories = History.all
 

@@ -219,7 +219,7 @@ RSpec.describe UsesController, type: :controller do
       end
 
       it "csv file export" do
-        get :export, params: { :format => 'csv' }, session: valid_session
+        get :export, params: { format: 'csv' }, session: valid_session
         expect(response).to be_success
         expect(response.headers["Content-Disposition"]).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
         expect(response.content_type).to eq("text/csv")
