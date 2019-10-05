@@ -7,14 +7,16 @@ class ApplicationRecord < ActiveRecord::Base
 
   protected
 
-  #=== real model attribute names
-  # ex)
-  # > Person.attribute_names
-  # => ["id", "name", "age", "created_at", "updated_at"]
-  # > Person.updatable_attributes
-  # => ["id", "name", "age"]
-  def self.updatable_attributes
-    attribute_names.clone.delete_if { |item| TIMESTAMP_COLUMNS.include?(item) }
+  class << self
+    #=== real model attribute names
+    # ex)
+    # > Person.attribute_names
+    # => ["id", "name", "age", "created_at", "updated_at"]
+    # > Person.updatable_attributes
+    # => ["id", "name", "age"]
+    def updatable_attributes
+      attribute_names.clone.delete_if { |item| TIMESTAMP_COLUMNS.include?(item) }
+    end
   end
 
   private
