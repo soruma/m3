@@ -37,36 +37,36 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 gem 'bootsnap', '>= 1.1.0', require: false
-gem 'slim-rails', '~> 3.1', '>= 3.1.2'
 gem 'rails-i18n', '~> 5.0.0'
+gem 'slim-rails', '~> 3.1', '>= 3.1.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 
   # pry debug
-  gem 'pry-rails'
-  gem 'pry-doc'
-  gem 'pry-stack_explorer'
   gem 'pry-byebug'
+  gem 'pry-doc'
+  gem 'pry-rails'
+  gem 'pry-stack_explorer'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'
+  gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'spring-commands-rspec', '~> 1.0', '>= 1.0.4'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 
   # better_errors
   gem 'better_errors', '~> 2.1', '>= 2.1.1'
   gem 'binding_of_caller', '~> 0.7.2'
 
   # ruby debugger
-  gem 'ruby-debug-ide'
   gem 'debase'
+  gem 'ruby-debug-ide'
 
   # lint
   gem 'rubocop-rails', require: false
@@ -74,9 +74,9 @@ end
 
 group :test do
   # RSpec
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
   gem 'factory_girl_rails', '~> 4.8'
   gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
