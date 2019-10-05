@@ -5,6 +5,8 @@ class ApplicationRecord < ActiveRecord::Base
 
   self.abstract_class = true
 
+  TIMESTAMP_COLUMNS = %w[created_at created_on updated_at updated_on].freeze
+
   protected
 
   class << self
@@ -18,8 +20,4 @@ class ApplicationRecord < ActiveRecord::Base
       attribute_names.clone.delete_if { |item| TIMESTAMP_COLUMNS.include?(item) }
     end
   end
-
-  private
-
-  TIMESTAMP_COLUMNS = %w[created_at created_on updated_at updated_on].freeze
 end
