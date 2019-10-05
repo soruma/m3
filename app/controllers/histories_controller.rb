@@ -1,19 +1,20 @@
+# frozen_string_literal: true
+
 class HistoriesController < ApplicationController
-  before_action :set_history, only: [:show, :edit, :update, :destroy]
+  before_action :set_history, only: %i[show edit update destroy]
 
   # GET /histories
   # GET /histories.json
   def index
     @histories = History.all.sort do |a, b|
-        (a.date_of_onset <=> b.date_of_onset).nonzero? ||
-          (a.account <=> b.account)
+      (a.date_of_onset <=> b.date_of_onset).nonzero? ||
+        (a.account <=> b.account)
     end
   end
 
   # GET /histories/1
   # GET /histories/1.json
-  def show
-  end
+  def show; end
 
   # GET /histories/new
   def new
@@ -21,8 +22,7 @@ class HistoriesController < ApplicationController
   end
 
   # GET /histories/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /histories
   # POST /histories.json
@@ -69,10 +69,10 @@ class HistoriesController < ApplicationController
     message = begin
       History.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: History.model_name.human) }
-    rescue ActiveRecord::RecordInvalid
-      { alert: t('controller.unsuccess_import_record_invalid', model: History.model_name.human) }
-    rescue NoMethodError
-      { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
+              rescue ActiveRecord::RecordInvalid
+                { alert: t('controller.unsuccess_import_record_invalid', model: History.model_name.human) }
+              rescue NoMethodError
+                { alert: t('controller.unsuccess_import_no_choose', model: History.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to histories_url, message }
@@ -83,47 +83,47 @@ class HistoriesController < ApplicationController
   # GET /histories/export
   def export
     respond_to do |format|
-      format.html { redirect_to :action => :export, :format => :csv }
+      format.html { redirect_to action: :export, format: :csv }
       format.csv do
         @histories = History.all
 
         csv_options = {
-          write_headers:  true,
-          headers:        History.updatable_attributes,
-          encoding:       "cp932",
-          converters:     nil,
-          row_sep:        "\r\n",
+          write_headers: true,
+          headers: History.updatable_attributes,
+          encoding: 'cp932',
+          converters: nil,
+          row_sep: "\r\n"
         }
 
-        Tempfile.open(["history", ".csv"]) do |temp|
-          CSV.open(temp.path, "w", csv_options) do |csv_file|
+        Tempfile.open(['history', '.csv']) do |temp|
+          CSV.open(temp.path, 'w', csv_options) do |csv_file|
             @histories.each do |history|
               row = {}
-              row["id"] = history.id
-              row["date_of_onset"] = history.date_of_onset
-              row["account_id"] = history.account_id
-              row["price"] = history.price
+              row['id'] = history.id
+              row['date_of_onset'] = history.date_of_onset
+              row['account_id'] = history.account_id
+              row['price'] = history.price
               csv_file << row
             end
           end
 
           send_file(temp.path,
-            type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"#{History.model_name.human}.csv\""
-          )
+                    type: 'text/csv; charset=cp932; header=present',
+                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\"")
         end
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_history
-      @history = History.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def history_params
-      params.require(:history).permit(:date_of_onset, :account_id, :price)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_history
+    @history = History.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def history_params
+    params.require(:history).permit(:date_of_onset, :account_id, :price)
+  end
 end

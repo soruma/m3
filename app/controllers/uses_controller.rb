@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class UsesController < ApplicationController
-  before_action :set_use, only: [:show, :edit, :update, :destroy]
+  before_action :set_use, only: %i[show edit update destroy]
 
   # GET /uses
   # GET /uses.json
@@ -9,8 +11,7 @@ class UsesController < ApplicationController
 
   # GET /uses/1
   # GET /uses/1.json
-  def show
-  end
+  def show; end
 
   # GET /uses/new
   def new
@@ -18,8 +19,7 @@ class UsesController < ApplicationController
   end
 
   # GET /uses/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /uses
   # POST /uses.json
@@ -57,11 +57,11 @@ class UsesController < ApplicationController
     message = begin
       @use.destroy
       { notice: t('controller.success_destroy', model: Use.model_name.human) }
-    rescue ActiveRecord::StatementInvalid => e
-      if (e.cause.class == Mysql2::Error &&
-          e.cause.message.match(/foreign key constraint fails/))
-          { alert: t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human) }
-      end
+              rescue ActiveRecord::StatementInvalid => e
+                if e.cause.class == Mysql2::Error &&
+                   e.cause.message.match(/foreign key constraint fails/)
+                  { alert: t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human) }
+                end
     end
     respond_to do |format|
       format.html { redirect_to uses_url, message }
@@ -74,10 +74,10 @@ class UsesController < ApplicationController
     message = begin
       Use.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: Use.model_name.human) }
-    rescue ActiveRecord::RecordInvalid
-      { alert: t('controller.unsuccess_import_record_invalid', model: Use.model_name.human) }
-    rescue NoMethodError
-      { alert: t('controller.unsuccess_import_no_choose', model: Use.model_name.human) }
+              rescue ActiveRecord::RecordInvalid
+                { alert: t('controller.unsuccess_import_record_invalid', model: Use.model_name.human) }
+              rescue NoMethodError
+                { alert: t('controller.unsuccess_import_no_choose', model: Use.model_name.human) }
     end
     respond_to do |format|
       format.html { redirect_to uses_url, message }
@@ -88,45 +88,45 @@ class UsesController < ApplicationController
   # GET /uses/export
   def export
     respond_to do |format|
-      format.html { redirect_to :action => :export, :format => :csv }
+      format.html { redirect_to action: :export, format: :csv }
       format.csv do
         @uses = Use.all
 
         csv_options = {
-          write_headers:  true,
-          headers:        Use.updatable_attributes,
-          encoding:       "cp932",
-          converters:     nil,
-          row_sep:        "\r\n",
+          write_headers: true,
+          headers: Use.updatable_attributes,
+          encoding: 'cp932',
+          converters: nil,
+          row_sep: "\r\n"
         }
 
-        Tempfile.open(["use", ".csv"]) do |temp|
-          CSV.open(temp.path, "w", csv_options) do |csv_file|
+        Tempfile.open(['use', '.csv']) do |temp|
+          CSV.open(temp.path, 'w', csv_options) do |csv_file|
             @uses.each do |use|
               row = {}
-              row["id"] = use.id
-              row["name"] = use.name
+              row['id'] = use.id
+              row['name'] = use.name
               csv_file << row
             end
           end
 
           send_file(temp.path,
-            type:         "text/csv; charset=cp932; header=present",
-            disposition:  "attachment; filename=\"#{Use.model_name.human}.csv\""
-          )
+                    type: 'text/csv; charset=cp932; header=present',
+                    disposition: "attachment; filename=\"#{Use.model_name.human}.csv\"")
         end
       end
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_use
-      @use = Use.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def use_params
-      params.require(:use).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_use
+    @use = Use.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def use_params
+    params.require(:use).permit(:name)
+  end
 end
