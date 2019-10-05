@@ -70,10 +70,3 @@ Style/Documentation:
 # SupportedStyles: annotated, template, unannotated
 Style/FormatStringToken:
   EnforcedStyle: unannotated
-
-# Offense count: 3
-Style/MixinUsage:
-  Exclude:
-    - 'bin/setup'
-    - 'bin/update'
-    - 'spec/rails_helper.rb'
