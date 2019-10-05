@@ -64,9 +64,3 @@ Style/Documentation:
     - 'db/migrate/20170305035255_create_histories.rb'
     - 'db/migrate/20170305035355_add_history_index.rb'
     - 'db/migrate/20170305042126_create_events.rb'
-
-# Offense count: 2
-# Configuration parameters: .
-# SupportedStyles: annotated, template, unannotated
-Style/FormatStringToken:
-  EnforcedStyle: unannotated
