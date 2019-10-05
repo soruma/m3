@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   private
+
   # I18n.locale をセットする
   def set_locale
     I18n.locale = locale_in_params || locale_in_accept_language || I18n.default_locale

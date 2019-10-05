@@ -4,6 +4,7 @@ class ApplicationRecord < ActiveRecord::Base
   self.abstract_class = true
 
   protected
+
     #=== real model attribute names
     # ex)
     # > Person.attribute_names
@@ -15,5 +16,6 @@ class ApplicationRecord < ActiveRecord::Base
     end
 
   private
+
     TIMESTAMP_COLUMNS = %w(created_at created_on updated_at updated_on)
 end
