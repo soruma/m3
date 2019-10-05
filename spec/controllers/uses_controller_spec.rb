@@ -202,7 +202,9 @@ RSpec.describe UsesController, type: :controller do
           post :import, params: { file: mismatch_import_file }, session: valid_session
         end.to change(Use, :count).by(0)
         expect(response).to redirect_to(uses_url)
-        expect(controller.alert).to eq(I18n.t('controller.unsuccess_import_record_invalid', model: Use.model_name.human))
+        expect(controller.alert).to(
+          eq(I18n.t('controller.unsuccess_import_record_invalid', model: Use.model_name.human))
+        )
       end
     end
   end
@@ -222,7 +224,9 @@ RSpec.describe UsesController, type: :controller do
       it 'csv file export' do
         get :export, params: { format: 'csv' }, session: valid_session
         expect(response).to be_success
-        expect(response.headers['Content-Disposition']).to match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
+        expect(response.headers['Content-Disposition']).to(
+          match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
+        )
         expect(response.content_type).to eq('text/csv')
       end
     end
