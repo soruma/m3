@@ -242,16 +242,6 @@ Style/NumericLiterals:
   Exclude:
     - 'db/schema.rb'
 
-# Offense count: 3
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle, AllowInnerSlashes.
-# SupportedStyles: slashes, percent_r, mixed
-Style/RegexpLiteral:
-  Exclude:
-    - 'spec/controllers/accounts_controller_spec.rb'
-    - 'spec/controllers/histories_controller_spec.rb'
-    - 'spec/controllers/uses_controller_spec.rb'
-
 # Offense count: 1
 # Cop supports --auto-correct.
 Style/RescueModifier:

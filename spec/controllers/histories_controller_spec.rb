@@ -210,7 +210,7 @@ RSpec.describe HistoriesController, type: :controller do
       it "export redirect to format csv" do
         get :export, params: {}, session: valid_session
         expect(response.status).to eq(302)
-        expect(response.headers.to_hash['Location']).to match(/histories\/export.csv/)
+        expect(response.headers.to_hash['Location']).to match(%r{histories/export.csv})
       end
 
       it "csv file export" do
