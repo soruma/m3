@@ -67,6 +67,9 @@ group :development do
   # ruby debugger
   gem 'ruby-debug-ide'
   gem 'debase'
+
+  # lint
+  gem 'rubocop-rails', require: false
 end
 
 group :test do
