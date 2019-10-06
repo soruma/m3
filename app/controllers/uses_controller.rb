@@ -54,18 +54,14 @@ class UsesController < ApplicationController
   # DELETE /uses/1
   # DELETE /uses/1.json
   def destroy
-    message = begin
-      @use.destroy
-      { notice: t('controller.success_destroy', model: Use.model_name.human) }
-              rescue ActiveRecord::StatementInvalid => e
-                if e.cause.class == Mysql2::Error &&
-                   e.cause.message.match(/foreign key constraint fails/)
-                  { alert: t('controller.unsuccess_destroy_key_exist', model: Use.model_name.human) }
-                end
-    end
     respond_to do |format|
-      format.html { redirect_to uses_url, message }
-      format.json { head :no_content }
+      if @use.destroy
+        format.html { redirect_to uses_url, notice: t('controller.success_destroy', model: Use.model_name.human) }
+        format.json { head :no_content }
+      else
+        format.html { redirect_to uses_url, alert: @use.errors.full_messages.join(' ') }
+        format.json { render json: @use.errors, status: :unprocessable_entity }
+      end
     end
   end
 

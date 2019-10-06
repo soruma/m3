@@ -173,7 +173,10 @@ RSpec.describe AccountsController, type: :controller do
       expect do
         delete :destroy, params: { id: history.account.id }, session: valid_session
       end.to change(Account, :count).by(0)
-      expect(controller.alert).to eq(I18n.t('controller.unsuccess_destroy_key_exist', model: Account.model_name.human))
+      expect(controller.alert).to(
+        eq(I18n.t('activerecord.errors.messages.restrict_dependent_destroy.has_many',
+                  record: History.model_name.name.downcase))
+      )
     end
   end
 
