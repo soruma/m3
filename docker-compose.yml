@@ -6,13 +6,14 @@ services:
     command:
       [ "bash", "-c", "rm -f tmp/pids/server.pid; ./bin/rails server -b 0.0.0.0" ]
     environment:
-      BUNDLE_PATH: "/bundle"
+      POSTGRES_HOST: db
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "passwd"
     ports:
       - 3000:3000
     volumes:
       - .:/app
-      - bundle:/bundle
+      - bundle:/usr/local/bundle
     links:
       - db
     tty: true
@@ -31,6 +32,7 @@ services:
     volumes:
       - pg_data:/var/lib/postgresql/data
     environment:
+      POSTGRES_USER: postgres
       POSTGRES_PASSWORD: "passwd"
 
 volumes:
