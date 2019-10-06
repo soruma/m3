@@ -15,6 +15,9 @@ jobs:
       with:
         ruby-version: 2.6.3
 
+    - name: Install dependent packages
+      run: sudo apt-get install libpq-dev
+
     - name: Install bundler
       run: gem install bundler
 
