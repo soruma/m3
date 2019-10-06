@@ -36,6 +36,15 @@ jobs:
     - name: Lint
       run: bundle exec rubocop
 
+    - name: Setup Database
+      run: |
+        bundle exec rake db:create
+        bundle exec rake db:schema:load
+      env:
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: passwd
+
     - name: Spec
       run: bundle exec rspec
       env:
