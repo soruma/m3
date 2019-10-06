@@ -15,4 +15,8 @@ Metrics/BlockLength:
 Style/Documentation:
   Enabled: false
 
+Naming/VariableNumber:
+  Exclude:
+    - db/fixtures/**/*
+
 inherit_from: .rubocop_todo.yml
