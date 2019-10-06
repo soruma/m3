@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsesController < ApplicationController
+  include RenderCsv
+
   before_action :set_use, only: %i[show edit update destroy]
 
   # GET /uses
@@ -106,9 +108,7 @@ class UsesController < ApplicationController
             end
           end
 
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{Use.model_name.human}.csv\"")
+          render_csv temp, file_name: Use.model_name.human, charset: 'cp932'
         end
       end
     end

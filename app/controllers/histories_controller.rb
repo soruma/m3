@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HistoriesController < ApplicationController
+  include RenderCsv
+
   before_action :set_history, only: %i[show edit update destroy]
 
   # GET /histories
@@ -110,9 +112,7 @@ class HistoriesController < ApplicationController
             end
           end
 
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\"")
+          render_csv temp, file_name: History.model_name.human, charset: 'cp932'
         end
       end
     end

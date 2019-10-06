@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
+  include RenderCsv
+
   before_action :set_account, only: %i[show edit update destroy]
 
   # GET /accounts
@@ -110,9 +112,7 @@ class AccountsController < ApplicationController
             end
           end
 
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{Account.model_name.human}.csv\"")
+          render_csv temp, file_name: Account.model_name.human, charset: 'cp932'
         end
       end
     end
