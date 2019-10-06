@@ -90,8 +90,6 @@ class HistoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @histories = History.all
-
         csv_options = {
           write_headers: true,
           headers: History.updatable_attributes,
@@ -100,20 +98,7 @@ class HistoriesController < ApplicationController
           row_sep: "\r\n"
         }
 
-        Tempfile.open(['history', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @histories.each do |history|
-              row = {}
-              row['id'] = history.id
-              row['date_of_onset'] = history.date_of_onset
-              row['account_id'] = history.account_id
-              row['price'] = history.price
-              csv_file << row
-            end
-          end
-
-          render_csv temp, file_name: History.model_name.human, charset: 'cp932'
-        end
+        render_csv History.to_csv(History.all, csv_options), file_name: History.model_name.human, charset: 'cp932'
       end
     end
   end

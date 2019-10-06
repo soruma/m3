@@ -101,19 +101,7 @@ class AccountsController < ApplicationController
           row_sep: "\r\n"
         }
 
-        Tempfile.open(['account', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @accounts.each do |account|
-              row = {}
-              row['id'] = account.id
-              row['use_id'] = account.use_id
-              row['name'] = account.name
-              csv_file << row
-            end
-          end
-
-          render_csv temp, file_name: Account.model_name.human, charset: 'cp932'
-        end
+        render_csv Account.to_csv(Account.all, csv_options), file_name: Account.model_name.human, charset: 'cp932'
       end
     end
   end

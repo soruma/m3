@@ -88,8 +88,6 @@ class UsesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @uses = Use.all
-
         csv_options = {
           write_headers: true,
           headers: Use.updatable_attributes,
@@ -98,18 +96,7 @@ class UsesController < ApplicationController
           row_sep: "\r\n"
         }
 
-        Tempfile.open(['use', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @uses.each do |use|
-              row = {}
-              row['id'] = use.id
-              row['name'] = use.name
-              csv_file << row
-            end
-          end
-
-          render_csv temp, file_name: Use.model_name.human, charset: 'cp932'
-        end
+        render_csv Use.to_csv(Use.all, csv_options), file_name: Use.model_name.human, charset: 'cp932'
       end
     end
   end
