@@ -7,6 +7,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres:11
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: passwd
+        ports:
+          - 5432:5432
+
     steps:
     - uses: actions/checkout@v1
 
@@ -29,3 +38,7 @@ jobs:
 
     - name: Spec
       run: bundle exec rspec
+      env:
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: passwd
