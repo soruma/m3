@@ -40,6 +40,7 @@ gem 'jbuilder', '~> 2.5'
 
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rails-i18n', '~> 5.0.0'
+gem 'seed-fu', '~> 2.3', '>= 2.3.9'
 gem 'slim-rails', '~> 3.1', '>= 3.1.2'
 
 group :development, :test do
