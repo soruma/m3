@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class HistoriesController < ApplicationController
+  include RenderCsv
+
   before_action :set_history, only: %i[show edit update destroy]
 
   # GET /histories
@@ -88,32 +90,9 @@ class HistoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @histories = History.all
-
-        csv_options = {
-          write_headers: true,
-          headers: History.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        Tempfile.open(['history', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @histories.each do |history|
-              row = {}
-              row['id'] = history.id
-              row['date_of_onset'] = history.date_of_onset
-              row['account_id'] = history.account_id
-              row['price'] = history.price
-              csv_file << row
-            end
-          end
-
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{History.model_name.human}.csv\"")
-        end
+        render_csv History.to_csv(History.all),
+                   file_name: History.model_name.human,
+                   charset: 'cp932'
       end
     end
   end

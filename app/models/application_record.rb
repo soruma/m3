@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationRecord < ActiveRecord::Base
+  extend ToCsv
   extend FileImportHelper
 
   self.abstract_class = true

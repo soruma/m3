@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class AccountsController < ApplicationController
+  include RenderCsv
+
   before_action :set_account, only: %i[show edit update destroy]
 
   # GET /accounts
@@ -89,31 +91,9 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @accounts = Account.all
-
-        csv_options = {
-          write_headers: true,
-          headers: Account.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        Tempfile.open(['account', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @accounts.each do |account|
-              row = {}
-              row['id'] = account.id
-              row['use_id'] = account.use_id
-              row['name'] = account.name
-              csv_file << row
-            end
-          end
-
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{Account.model_name.human}.csv\"")
-        end
+        render_csv Account.to_csv(Account.all),
+                   file_name: Account.model_name.human,
+                   charset: 'cp932'
       end
     end
   end

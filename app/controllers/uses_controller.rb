@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsesController < ApplicationController
+  include RenderCsv
+
   before_action :set_use, only: %i[show edit update destroy]
 
   # GET /uses
@@ -86,30 +88,9 @@ class UsesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @uses = Use.all
-
-        csv_options = {
-          write_headers: true,
-          headers: Use.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        Tempfile.open(['use', '.csv']) do |temp|
-          CSV.open(temp.path, 'w', csv_options) do |csv_file|
-            @uses.each do |use|
-              row = {}
-              row['id'] = use.id
-              row['name'] = use.name
-              csv_file << row
-            end
-          end
-
-          send_file(temp.path,
-                    type: 'text/csv; charset=cp932; header=present',
-                    disposition: "attachment; filename=\"#{Use.model_name.human}.csv\"")
-        end
+        render_csv Use.to_csv(Use.all),
+                   file_name: Use.model_name.human,
+                   charset: 'cp932'
       end
     end
   end
