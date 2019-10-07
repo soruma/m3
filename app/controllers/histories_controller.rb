@@ -70,7 +70,7 @@ class HistoriesController < ApplicationController
   end
 
   # POST /histories/import
-  def import
+  def import # rubocop:disable Metrics/MethodLength
     message = begin
       History.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: History.model_name.human) }

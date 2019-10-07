@@ -68,7 +68,7 @@ class UsesController < ApplicationController
   end
 
   # POST /uses/import
-  def import
+  def import # rubocop:disable Metrics/MethodLength
     message = begin
       Use.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: Use.model_name.human) }
