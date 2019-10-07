@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :account do
     sequence(:name) { |n| "account name#{n}" }
     use
   end
 
   factory :invalid_account, class: Account do
-    name ''
+    name { '' }
   end
 
   factory :update_account, class: Account do
@@ -16,7 +16,7 @@ FactoryGirl.define do
   end
 
   factory :wallet, class: Account do
-    name 'Wallet'
+    name { 'Wallet' }
     association :use, factory: :cost_of_living
   end
 end
