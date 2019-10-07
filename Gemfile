@@ -39,8 +39,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rails-i18n', '~> 5.0.0'
-gem 'seed-fu', '~> 2.3', '>= 2.3.9'
-gem 'slim-rails', '~> 3.1', '>= 3.1.2'
+gem 'seed-fu'
+gem 'slim-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -59,11 +59,11 @@ group :development do
   gem 'web-console', '>= 3.3.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-commands-rspec', '~> 1.0', '>= 1.0.4'
+  gem 'spring-commands-rspec'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
   # better_errors
-  gem 'better_errors', '~> 2.1', '>= 2.1.1'
+  gem 'better_errors'
   gem 'binding_of_caller'
 
   # ruby debugger
@@ -82,9 +82,9 @@ group :test do
   gem 'webdrivers'
 
   # RSpec
-  gem 'factory_girl_rails', '~> 4.8'
-  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.1'
-  gem 'rspec-rails', '~> 3.5', '>= 3.5.2'
+  gem 'factory_girl_rails'
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
