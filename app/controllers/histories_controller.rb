@@ -90,15 +90,9 @@ class HistoriesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        csv_options = {
-          write_headers: true,
-          headers: History.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        render_csv History.to_csv(History.all, csv_options), file_name: History.model_name.human, charset: 'cp932'
+        render_csv History.to_csv(History.all),
+                   file_name: History.model_name.human,
+                   charset: 'cp932'
       end
     end
   end

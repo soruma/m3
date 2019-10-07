@@ -88,15 +88,9 @@ class UsesController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        csv_options = {
-          write_headers: true,
-          headers: Use.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        render_csv Use.to_csv(Use.all, csv_options), file_name: Use.model_name.human, charset: 'cp932'
+        render_csv Use.to_csv(Use.all),
+                   file_name: Use.model_name.human,
+                   charset: 'cp932'
       end
     end
   end

@@ -91,17 +91,9 @@ class AccountsController < ApplicationController
     respond_to do |format|
       format.html { redirect_to action: :export, format: :csv }
       format.csv do
-        @accounts = Account.all
-
-        csv_options = {
-          write_headers: true,
-          headers: Account.updatable_attributes,
-          encoding: 'cp932',
-          converters: nil,
-          row_sep: "\r\n"
-        }
-
-        render_csv Account.to_csv(Account.all, csv_options), file_name: Account.model_name.human, charset: 'cp932'
+        render_csv Account.to_csv(Account.all),
+                   file_name: Account.model_name.human,
+                   charset: 'cp932'
       end
     end
   end
