@@ -15,7 +15,6 @@ FactoryGirl.define do
     association :use, factory: :cost_of_living
   end
 
-  # 財布
   factory :wallet, class: Account do
     name 'Wallet'
     association :use, factory: :cost_of_living

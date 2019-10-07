@@ -55,7 +55,7 @@ class AccountsController < ApplicationController
 
   # DELETE /accounts/1
   # DELETE /accounts/1.json
-  def destroy
+  def destroy # rubocop:disable Metrics/MethodLength
     respond_to do |format|
       if @account.destroy
         format.html do
@@ -71,7 +71,7 @@ class AccountsController < ApplicationController
   end
 
   # POST /accounts/import
-  def import
+  def import # rubocop:disable Metrics/MethodLength
     message = begin
       Account.csv_file_import(params[:file])
       { notice: t('controller.success_import', model: Account.model_name.human) }
