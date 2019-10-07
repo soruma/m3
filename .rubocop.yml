@@ -21,5 +21,3 @@ Style/Documentation:
 Naming/VariableNumber:
   Exclude:
     - db/fixtures/**/*
-
-inherit_from: .rubocop_todo.yml

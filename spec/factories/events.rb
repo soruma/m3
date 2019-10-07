@@ -17,7 +17,6 @@ FactoryGirl.define do
     sequence(:name) { |n| "update use name#{n}" }
   end
 
-  # 海外旅行
   factory :overseas_trip, class: Event do
     name 'Overseas trip'
   end

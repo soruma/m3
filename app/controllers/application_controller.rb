@@ -1,14 +1,13 @@
 # frozen_string_literal: true
 
+# rubocop:disable Style/AsciiComments
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
-  # locale
   before_action :set_locale
 
   private
 
-  # I18n.locale をセットする
   def set_locale
     I18n.locale = locale_in_params || locale_in_accept_language || I18n.default_locale
   end
@@ -39,3 +38,4 @@ class ApplicationController < ActionController::Base
     { locale: I18n.locale }
   end
 end
+# rubocop:enable Style/AsciiComments
