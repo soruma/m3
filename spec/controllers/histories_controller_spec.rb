@@ -25,7 +25,8 @@ RSpec.describe HistoriesController, type: :controller do
   # History. As you add validations to History, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    build(:history).attributes
+    account = create(:account)
+    build(:history, account: account).attributes
   end
 
   let(:invalid_attributes) do
@@ -112,7 +113,8 @@ RSpec.describe HistoriesController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        build(:update_history).attributes
+        account = create(:account)
+        build(:update_history, account: account).attributes
       end
 
       it 'updates the requested history' do
