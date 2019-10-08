@@ -152,7 +152,8 @@ RSpec.describe UsesController, type: :controller do
 
   describe 'DELETE #destroy' do
     let(:destroy_foreign_key_data) do
-      build(:account).attributes
+      use = create(:use)
+      build(:account, use: use).attributes
     end
 
     it 'destroys the requested use' do

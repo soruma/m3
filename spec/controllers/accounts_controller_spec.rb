@@ -25,7 +25,8 @@ RSpec.describe AccountsController, type: :controller do
   # Account. As you add validations to Account, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    build(:account).attributes
+    use = create(:use)
+    build(:account, use: use).attributes
   end
 
   let(:invalid_attributes) do
@@ -112,7 +113,8 @@ RSpec.describe AccountsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        build(:update_account).attributes
+        use = create(:use)
+        build(:update_account, use: use).attributes
       end
 
       it 'updates the requested account' do
@@ -152,7 +154,8 @@ RSpec.describe AccountsController, type: :controller do
 
   describe 'DELETE #destroy' do
     let(:destroy_foreign_key_data) do
-      build(:history).attributes
+      account = create(:account)
+      build(:history, account: account).attributes
     end
 
     it 'destroys the requested account' do

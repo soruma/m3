@@ -82,7 +82,7 @@ group :test do
   gem 'webdrivers'
 
   # RSpec
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
 end

@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :use do
     sequence(:name) { |n| "use name#{n}" }
   end
 
   factory :invalid_use, class: Use do
-    name ''
+    name { '' }
   end
 
   factory :update_use, class: Use do
@@ -14,6 +14,6 @@ FactoryGirl.define do
   end
 
   factory :cost_of_living, class: Use do
-    name 'Cost of living'
+    name { 'Cost of living' }
   end
 end
