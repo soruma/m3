@@ -31,7 +31,7 @@ jobs:
       run: gem install bundler
 
     - name: Build
-      run: bundle install --jobs 4 --retry 3
+      run: bundle install --jobs 4 --retry 3 --with test
 
     - name: Lint
       run: bundle exec rubocop
@@ -39,7 +39,7 @@ jobs:
     - name: Setup Database
       run: |
         bundle exec rake db:create
-        bundle exec rake db:schema:load
+        bundle exec rake db:schema:load RAILS_ENV=test
       env:
         POSTGRES_HOST: localhost
         POSTGRES_USER: postgres
