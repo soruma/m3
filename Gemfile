@@ -69,9 +69,6 @@ group :development do
   # ruby debugger
   gem 'debase'
   gem 'ruby-debug-ide'
-
-  # lint
-  gem 'rubocop-rails', require: false
 end
 
 group :test do
@@ -85,6 +82,9 @@ group :test do
   gem 'factory_bot_rails'
   gem 'rails-controller-testing'
   gem 'rspec-rails'
+
+  # lint
+  gem 'rubocop-rails', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
