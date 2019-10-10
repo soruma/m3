@@ -27,6 +27,14 @@ services:
     tty: false
     stdin_open: false
 
+  webpacker:
+    <<: *app_base
+    command:
+      ["./bin/webpack-dev-server"]
+    ports: []
+    tty: false
+    stdin_open: false
+
   db:
     image: postgres:11
     volumes:
