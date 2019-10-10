@@ -86,6 +86,7 @@ group :test do
 
   # lint
   gem 'rubocop-rails', require: false
+  gem 'slim_lint', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
