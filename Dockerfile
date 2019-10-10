@@ -7,6 +7,7 @@ RUN set -x \
                           nodejs \
                           libpq-dev \
                           postgresql-client \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 ENV APP_HOME /app
