@@ -1,7 +1,7 @@
 = form_for @use do |f|
   - if @use.errors.any?
     #error_explanation
-      h2 = t('errors.template.header', {count: @use.errors.count, model: Use.model_name.human})
+      h2 = t('errors.template.header', count: @use.errors.count, model: Use.model_name.human)
       ul
         - @use.errors.full_messages.each do |message|
           li = message

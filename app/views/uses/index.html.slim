@@ -14,7 +14,7 @@ table
         td = use.name
         td = link_to t('view.show'), use
         td = link_to t('view.edit'), edit_use_path(use)
-        td = link_to t('view.destroy'), use, data: {confirm: t('message.delete_confirm')}, method: :delete
+        td = link_to t('view.destroy'), use, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
@@ -27,7 +27,7 @@ fieldset
   span = t('view.import')
   - if alert
     p#alert = alert
-  = form_tag({controller: 'uses', action: 'import'}, {method: :post, multipart: true}) do
+  = form_tag(controller: 'uses', action: 'import', method: :post, multipart: true) do
     = file_field_tag :file
     = submit_tag t('view.import')
   br
