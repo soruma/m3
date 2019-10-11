@@ -44,6 +44,8 @@ group :development, :test do
   gem 'pry-doc'
   gem 'pry-rails'
   gem 'pry-stack_explorer'
+
+  gem 'bullet'
 end
 
 group :development do
