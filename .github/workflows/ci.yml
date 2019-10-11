@@ -31,7 +31,12 @@ jobs:
       run: gem install bundler
 
     - name: Build
-      run: bundle install --jobs 4 --retry 3 --with test
+      run: |
+        bundle install --jobs 4 --retry 3 --with test
+        ./bin/yarn
+        ./bin/webpack
+      env:
+        RAILS_ENV: test
 
     - name: Lint
       run: bundle exec rubocop
