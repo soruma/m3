@@ -18,7 +18,7 @@ table
         td align='right' = history.price
         td = link_to t('view.show'), history
         td = link_to t('view.edit'), edit_history_path(history)
-        td = link_to t('view.destroy'), history, data: {confirm: t('message.delete_confirm')}, method: :delete
+        td = link_to t('view.destroy'), history, data: { confirm: t('message.delete_confirm') }, method: :delete
 
 br
 
@@ -30,7 +30,7 @@ fieldset
   span = t('view.import')
   - if alert
     p#alert = alert
-  = form_tag({controller: 'histories', action: 'import'}, {method: :post, multipart: true}) do
+  = form_tag(controller: 'histories', action: 'import', method: :post, multipart: true) do
     = file_field_tag :file
     = submit_tag t('view.import')
   br

@@ -1,14 +1,14 @@
 = form_for @history do |f|
   - if @history.errors.any?
     #error_explanation
-      h2 = t('errors.template.header', {count: @history.errors.count, model: History.model_name.human})
+      h2 = t('errors.template.header', count: @history.errors.count, model: History.model_name.human)
       ul
         - @history.errors.full_messages.each do |message|
           li = message
 
   .field
     = f.label :date_of_onset
-    = f.date_select :date_of_onset, :use_month_numbers => true, :discard_day => true
+    = f.date_select :date_of_onset, use_month_numbers: true, discard_day: true
   .field
     = f.label :account_id
     = f.collection_select(:account_id, Account.all, :id, :name)
