@@ -40,13 +40,13 @@ jobs:
 
     - name: Lint
       run: |
-        bundle exec rubocop
-        bundle exec slim-lint app/views/
+        rubocop
+        slim-lint app/views/
 
     - name: Setup Database
       run: |
-        bundle exec rake db:create
-        bundle exec rake db:schema:load
+        rails db:create
+        rails db:schema:load
       env:
         RAILS_ENV: test
         POSTGRES_HOST: localhost
@@ -54,7 +54,7 @@ jobs:
         POSTGRES_PASSWORD: passwd
 
     - name: Spec
-      run: bundle exec rspec
+      run: rspec
       env:
         POSTGRES_HOST: localhost
         POSTGRES_USER: postgres
