@@ -14,7 +14,7 @@ services:
     ports:
       - 3000:3000
     volumes:
-      - .:/app
+      - app-volume:/app
       - bundle:/usr/local/bundle
     depends_on:
       - db
@@ -46,5 +46,7 @@ services:
       POSTGRES_PASSWORD: passwd
 
 volumes:
+  app-volume:
+    external: true
   bundle:
   pg_data:
