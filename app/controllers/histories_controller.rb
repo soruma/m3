@@ -8,10 +8,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.all.sort do |a, b|
-      (a.date_of_onset <=> b.date_of_onset).nonzero? ||
-        (a.account <=> b.account)
-    end
+    @histories = History.account_book
   end
 
   # GET /histories/1
