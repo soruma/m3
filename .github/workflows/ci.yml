@@ -39,7 +39,9 @@ jobs:
         RAILS_ENV: test
 
     - name: Lint
-      run: bundle exec rubocop
+      run: |
+        bundle exec rubocop
+        bundle exec slim-lint app/views/
 
     - name: Setup Database
       run: |
