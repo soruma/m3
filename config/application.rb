@@ -29,6 +29,7 @@ module App
       g.javascripts false
       g.stylesheets false
       g.helper false
+      g.assets false
       g.test_framework :rspec,
                        fixture: true,
                        view_specs: false,
