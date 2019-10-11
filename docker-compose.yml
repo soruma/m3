@@ -8,7 +8,7 @@ services:
     environment:
       POSTGRES_HOST: db
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: "passwd"
+      POSTGRES_PASSWORD: passwd
       WEBPACKER_DEV_SERVER_HOST: webpacker
       WEBPACKER_DEV_SERVER_PUBLIC: 0.0.0.0:3035
     ports:
@@ -16,27 +16,25 @@ services:
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
-    links:
+    depends_on:
       - db
     tty: true
     stdin_open: true
 
   spring:
     <<: *app_base
-    command:
-      ["bundle", "exec", "spring", "server"]
+    command: [ "bundle", "exec", "spring", "server" ]
     ports: []
     tty: false
     stdin_open: false
 
   webpacker:
     <<: *app_base
-    command:
-      ["./bin/webpack-dev-server"]
+    command: [ "./bin/webpack-dev-server" ]
     ports: []
     tty: false
     stdin_open: false
-    links:
+    depends_on:
       - app
 
   db:
@@ -45,7 +43,7 @@ services:
       - pg_data:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: "passwd"
+      POSTGRES_PASSWORD: passwd
 
 volumes:
   bundle:
