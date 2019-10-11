@@ -16,7 +16,7 @@ services:
     volumes:
       - .:/app
       - bundle:/usr/local/bundle
-    links:
+    depends_on:
       - db
     tty: true
     stdin_open: true
@@ -34,7 +34,7 @@ services:
     ports: []
     tty: false
     stdin_open: false
-    links:
+    depends_on:
       - app
 
   db:
