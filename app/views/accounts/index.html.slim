@@ -31,7 +31,7 @@ fieldset
   span = t('view.import')
   - if alert
     p#alert = alert
-  = form_tag(controller: 'accounts', action: 'import', method: :post, multipart: true) do
+  = form_tag(import_accounts_path, multipart: true) do
     = file_field_tag :file
     = submit_tag t('view.import')
   br
