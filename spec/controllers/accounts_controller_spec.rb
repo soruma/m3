@@ -234,7 +234,7 @@ RSpec.describe AccountsController, type: :controller do
 
       it 'csv file export' do
         get :export, params: { format: 'csv' }, session: valid_session
-        expect(response).to be_success
+        expect(response).to be_successful
         expect(response.headers['Content-Disposition']).to(
           match(/attachment; filename=\"#{Account.model_name.human}.csv\"/)
         )
