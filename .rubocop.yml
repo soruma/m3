@@ -17,6 +17,7 @@ Metrics/LineLength:
 Metrics/BlockLength:
   Exclude:
     - spec/**/*
+    - config/environments/*
 
 Style/Documentation:
   Enabled: false
