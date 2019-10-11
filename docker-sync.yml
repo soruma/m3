@@ -1,0 +1,5 @@
+version: "2"
+syncs:
+  app-volume:
+    src: './'
+    sync_excludes: ['.gitignore', '.git/']
