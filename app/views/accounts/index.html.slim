@@ -1,4 +1,4 @@
-h1 = t('view.listing', model: t('activerecord.models.account', count: @accounts.count))
+h1 = t('view.listing', model: Account.model_name.human(count: @accounts.count))
 
 table.table.table-striped
   thead
