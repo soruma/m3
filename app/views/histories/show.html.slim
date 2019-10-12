@@ -1,4 +1,5 @@
-p#notice = notice
+- if notice
+  .alert.alert-success = notice
 
 p
   strong #{History.human_attribute_name :date_of_onset}:

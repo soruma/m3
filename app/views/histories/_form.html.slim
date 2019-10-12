@@ -1,18 +1,18 @@
 = form_for @history do |f|
   - if @history.errors.any?
-    #error_explanation
+    .alert.alert-danger
       h2 = t('errors.template.header', count: @history.errors.count, model: History.model_name.human)
       ul
         - @history.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :date_of_onset
-    = f.date_select :date_of_onset, use_month_numbers: true, discard_day: true
-  .field
-    = f.label :account_id
-    = f.collection_select(:account_id, Account.all, :id, :name)
-  .field
-    = f.label :price
-    = f.number_field :price
-  .actions = f.submit
+  .form-group
+    = f.label :date_of_onset, class: 'form-control-label'
+    = f.date_select :date_of_onset, { use_month_numbers: true, discard_day: true }, class: 'form-control inline-date'
+  .form-group
+    = f.label :account_id, class: 'form-control-label'
+    = f.collection_select :account_id, Account.all, :id, :name, nil, class: 'form-control'
+  .form-group
+    = f.label :price, class: 'form-control-label'
+    = f.number_field :price, class: 'form-control'
+  .buttons = f.submit class: 'btn btn-primary'

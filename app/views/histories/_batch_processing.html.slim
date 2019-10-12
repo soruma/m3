@@ -2,9 +2,9 @@ fieldset
   legend = t('view.batch_processing')
   span = t('view.import')
   - if alert
-    p#alert = alert
+    .alert.alert-danger = alert
   = form_tag(import_histories_path, multipart: true) do
-    = file_field_tag :file
-    = submit_tag t('view.import')
+    = file_field_tag :file, class: 'form-control-label'
+    = submit_tag t('view.import'), class: 'btn btn-primary'
   br
   = link_to t('view.export'), export_histories_path(format: 'csv'), method: :get

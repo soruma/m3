@@ -1,12 +1,12 @@
 = form_for @use do |f|
   - if @use.errors.any?
-    #error_explanation
+    .alert.alert-danger
       h2 = t('errors.template.header', count: @use.errors.count, model: Use.model_name.human)
       ul
         - @use.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :name
-    = f.text_field :name
-  .actions = f.submit
+  .form-group
+    = f.label :name, class: 'form-control-label'
+    = f.text_field :name, class: 'form-control'
+  .buttons = f.submit class: 'btn btn-primary'
