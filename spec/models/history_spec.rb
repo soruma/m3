@@ -48,7 +48,7 @@ RSpec.describe History, type: :model do
         ]
       end
 
-      it 'sort by date_of_onset and account' do
+      it 'sort by date_of_onset and account asc' do
         expect(described_class.account_book).to eq(targets)
       end
     end
