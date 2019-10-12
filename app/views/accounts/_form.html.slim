@@ -8,7 +8,7 @@
 
   .form-group
     = f.label :use_id, class: 'form-control-label'
-    = f.collection_select :use_id, Use.all, :id, :name, nil, class: 'form-control inline-date'
+    = f.collection_select :use_id, Use.all, :id, :name, {}, class: 'form-control inline-date'
   .form-group
     = f.label :name, class: 'form-control-label'
     = f.text_field :name, class: 'form-control'

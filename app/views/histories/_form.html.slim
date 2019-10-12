@@ -11,7 +11,7 @@
     = f.date_select :date_of_onset, { use_month_numbers: true, discard_day: true }, class: 'form-control inline-date'
   .form-group
     = f.label :account_id, class: 'form-control-label'
-    = f.collection_select :account_id, Account.all, :id, :name, nil, class: 'form-control'
+    = f.collection_select :account_id, Account.all, :id, :name, {}, class: 'form-control'
   .form-group
     = f.label :price, class: 'form-control-label'
     = f.number_field :price, class: 'form-control'
