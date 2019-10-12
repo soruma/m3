@@ -20,6 +20,8 @@ table
         td = link_to t('view.edit'), edit_history_path(history)
         td = link_to t('view.destroy'), history, data: { confirm: t('message.delete_confirm') }, method: :delete
 
+= paginate @histories
+
 br
 
 = link_to t('view.new', model: History.model_name.human), new_history_path
