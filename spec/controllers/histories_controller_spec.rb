@@ -224,7 +224,8 @@ RSpec.describe HistoriesController, type: :controller do
         expect(response.headers['Content-Disposition']).to(
           match(/attachment; filename=\"#{History.model_name.human}.csv\"/)
         )
-        expect(response.content_type).to eq('text/csv')
+        expect(response.content_type).to match(%r{text/csv})
+        expect(response.content_type).to match(/cp932/)
       end
     end
   end
