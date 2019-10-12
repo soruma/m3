@@ -3,14 +3,38 @@
 require 'rails_helper'
 
 RSpec.describe History, type: :model do
-  it 'is valid with date_of_onset and account and price' do
-    history = build(:history)
-    expect(history).to be_valid
-  end
+  describe 'Validation' do
+    it 'is valid with date_of_onset and account and price' do
+      history = build(:history)
+      expect(history).to be_valid
+    end
 
-  it 'is invalid with date_of_onset and account and price' do
-    history = build(:invalid_history)
-    expect(history).to be_invalid
+    it 'is invalid without a date_of_onset' do
+      history = build(:history, date_of_onset: nil)
+      history.valid?
+      expect(history.errors[:date_of_onset]).to include(%(can't be blank))
+    end
+
+    it 'is invalid without an account' do
+      history = build(:history, account: nil)
+      history.valid?
+      expect(history.errors[:account]).to include(%(can't be blank))
+    end
+
+    it 'is invalid uniqueness date_of_onset and account' do
+      account = create(:account)
+      create(:history, date_of_onset: Date.current, account: account)
+
+      history = build(:history, date_of_onset: Date.current, account: account)
+      history.valid?
+      expect(history.errors[:account]).to include('has already been taken')
+    end
+
+    it 'is invalid without a price' do
+      history = build(:history, price: nil)
+      history.valid?
+      expect(history.errors[:price]).to include(%(can't be blank))
+    end
   end
 
   describe 'Scopes' do
