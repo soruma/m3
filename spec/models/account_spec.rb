@@ -21,4 +21,18 @@ RSpec.describe Account, type: :model do
       expect(history.errors[:use]).to include('must exist')
     end
   end
+
+  describe 'Scope' do
+    describe '#referential' do
+      before do
+        use = create(:use)
+        create_list(:account, 2, use: use)
+      end
+
+      it 'eager loading of uses table' do
+        targets = described_class.referential
+        expect(targets.first.association(:use).loaded?).to be_truthy
+      end
+    end
+  end
 end

@@ -52,5 +52,18 @@ RSpec.describe History, type: :model do
         expect(described_class.account_book).to eq(targets)
       end
     end
+
+    describe '#referential' do
+      before do
+        account = create(:account)
+        create(:history, date_of_onset: Date.current, account: account)
+        create(:history, date_of_onset: Date.current + 1.month, account: account)
+      end
+
+      it 'eager loading of accounts table' do
+        targets = described_class.referential
+        expect(targets.first.association(:account).loaded?).to be_truthy
+      end
+    end
   end
 end

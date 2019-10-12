@@ -8,7 +8,7 @@ class HistoriesController < ApplicationController
   # GET /histories
   # GET /histories.json
   def index
-    @histories = History.account_book.page(params[:page])
+    @histories = History.referential.account_book.page(params[:page])
   end
 
   # GET /histories/1

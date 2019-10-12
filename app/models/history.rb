@@ -11,4 +11,5 @@ class History < ApplicationRecord
   validates :price, presence: true
 
   scope :account_book, -> { order(:date_of_onset).order(:account_id) }
+  scope :referential, -> { includes(:account) }
 end

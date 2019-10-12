@@ -5,4 +5,6 @@ class Account < ApplicationRecord
   has_many :history, dependent: :restrict_with_error
 
   validates :name, presence: true
+
+  scope :referential, -> { preload(:use) }
 end
