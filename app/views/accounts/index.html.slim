@@ -26,13 +26,4 @@ br
 
 br
 
-fieldset
-  legend = t('view.batch_processing')
-  span = t('view.import')
-  - if alert
-    p#alert = alert
-  = form_tag(import_accounts_path, multipart: true) do
-    = file_field_tag :file
-    = submit_tag t('view.import')
-  br
-  = link_to t('view.export'), export_accounts_path(format: 'csv'), method: :get
+== render 'batch_processing'
