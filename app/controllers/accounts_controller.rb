@@ -8,7 +8,7 @@ class AccountsController < ApplicationController
   # GET /accounts
   # GET /accounts.json
   def index
-    @accounts = Account.all
+    @accounts = Account.referential
   end
 
   # GET /accounts/1
