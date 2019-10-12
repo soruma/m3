@@ -3,13 +3,16 @@
 require 'rails_helper'
 
 RSpec.describe Use, type: :model do
-  it 'is valid with name' do
-    use = build(:use)
-    expect(use).to be_valid
-  end
+  describe 'Validation' do
+    it 'is valid with name' do
+      use = build(:use)
+      expect(use).to be_valid
+    end
 
-  it 'is invalid with name' do
-    use = build(:invalid_use)
-    expect(use).to be_invalid
+    it 'is invalid with name' do
+      use = build(:use, name: nil)
+      use.valid?
+      expect(use.errors[:name]).to include(%(can't be blank))
+    end
   end
 end
