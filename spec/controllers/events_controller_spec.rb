@@ -104,7 +104,7 @@ RSpec.describe EventsController, type: :controller do
   describe 'PUT #update' do
     context 'with valid params' do
       let(:new_attributes) do
-        build(:update_event).attributes
+        build(:update_event, date_of_onset: valid_attributes['date_of_onset']).attributes
       end
 
       it 'updates the requested event' do
