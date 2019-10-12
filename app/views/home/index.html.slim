@@ -1,13 +1,13 @@
 h1 Monthly Money Management(m3)
 
-a href="/info" information
+= link_to t('.information'), info_path
 
 ul#selector
   li
-    a href="/events" events
+    = link_to Event.model_name.human, events_path
   li
-    a href="/histories" histories
+    = link_to History.model_name.human, histories_path
   li
-    a href="/accounts" accounts
+    = link_to Account.model_name.human, accounts_path
   li
-    a href="/uses" uses
+    = link_to Use.model_name.human, uses_path
