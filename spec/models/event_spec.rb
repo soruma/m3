@@ -21,4 +21,19 @@ RSpec.describe Event, type: :model do
       expect(event.errors[:name]).to include(%(can't be blank))
     end
   end
+
+  describe 'Scope' do
+    describe '#time_series' do
+      let!(:targets) do
+        [
+          create(:event, date_of_onset: Date.current),
+          create(:event, date_of_onset: Date.current + 1.day)
+        ]
+      end
+
+      it 'sort by date_of_onset asc' do
+        expect(described_class.time_series).to eq(targets)
+      end
+    end
+  end
 end
