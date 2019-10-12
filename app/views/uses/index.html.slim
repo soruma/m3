@@ -1,6 +1,6 @@
 h1 = t('view.listing', model: t('activerecord.models.use', count: @uses.count))
 
-table
+table.table.table-striped
   thead
     tr
       th = Use.human_attribute_name :name
