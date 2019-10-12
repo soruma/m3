@@ -11,6 +11,7 @@ RUN set -x \
                           libpq-dev \
                           postgresql-client \
                           yarn \
+    && apt-get autoremove \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
