@@ -64,6 +64,11 @@ RSpec.describe History, type: :model do
         targets = described_class.referential
         expect(targets.first.association(:account).loaded?).to be_truthy
       end
+
+      it 'eager loading of uses table' do
+        targets = described_class.referential
+        expect(targets.first.account.association(:use).loaded?).to be_truthy
+      end
     end
   end
 end
