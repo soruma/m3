@@ -30,7 +30,7 @@ RSpec.describe AccountsController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    build(:invalid_account).attributes
+    build(:account, :invalid).attributes
   end
 
   # This should return the minimal set of values that should be in the session

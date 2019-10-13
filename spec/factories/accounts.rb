@@ -4,10 +4,10 @@ FactoryBot.define do
   factory :account do
     sequence(:name) { |n| "account name#{n}" }
     use
-  end
 
-  factory :invalid_account, class: Account do
-    name { '' }
+    trait :invalid do
+      name { '' }
+    end
   end
 
   factory :update_account, class: Account do

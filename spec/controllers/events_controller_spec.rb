@@ -29,7 +29,7 @@ RSpec.describe EventsController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    build(:invalid_event).attributes
+    build(:event, :invalid).attributes
   end
 
   # This should return the minimal set of values that should be in the session

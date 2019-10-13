@@ -5,11 +5,11 @@ FactoryBot.define do
     date_of_onset { '2017-03-05' }
     account
     price { '9.99' }
-  end
 
-  factory :invalid_history, class: History do
-    date_of_onset { nil }
-    price { nil }
+    trait :invalid do
+      date_of_onset { nil }
+      price { nil }
+    end
   end
 
   factory :update_history, class: History do

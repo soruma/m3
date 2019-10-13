@@ -29,7 +29,7 @@ RSpec.describe UsesController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    attributes_for :invalid_use
+    attributes_for :use, :invalid
   end
 
   # This should return the minimal set of values that should be in the session

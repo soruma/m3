@@ -30,7 +30,7 @@ RSpec.describe HistoriesController, type: :controller do
   end
 
   let(:invalid_attributes) do
-    build(:invalid_history).attributes
+    build(:history, :invalid).attributes
   end
 
   # This should return the minimal set of values that should be in the session

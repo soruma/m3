@@ -3,10 +3,10 @@
 FactoryBot.define do
   factory :use do
     sequence(:name) { |n| "use name#{n}" }
-  end
 
-  factory :invalid_use, class: Use do
-    name { '' }
+    trait :invalid do
+      name { '' }
+    end
   end
 
   factory :update_use, class: Use do
