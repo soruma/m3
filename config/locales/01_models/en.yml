@@ -2,28 +2,28 @@ en:
   activerecord:
     models:
       account:
-        one: Account
+        one: account
         other: accounts
       event:
-        one: Event
+        one: event
         other: events
       history:
-        one: History
+        one: history
         other: histories
       use:
-        one: Use
+        one: use
         other: uses
     attributes:
       account:
-        use_id: Use
-        name: Name
+        use_id: use
+        name: name
       event:
-        date_of_onset: Date of onset
-        name: Name
-        remarks: Remarks
+        date_of_onset: date of onset
+        name: name
+        remarks: remarks
       history:
-        date_of_onset: Date of onset
-        account_id: Account
-        price: Price
+        date_of_onset: date of onset
+        account_id: account
+        price: price
       use:
-        name: Name
+        name: name
