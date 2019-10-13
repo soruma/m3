@@ -30,6 +30,7 @@ gem 'jbuilder'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+gem 'active_decorator'
 gem 'kaminari'
 gem 'rails-i18n', '~> 6.0'
 gem 'seed-fu', git: 'git://github.com/jmkim/seed-fu', branch: 'support-rails-6'
