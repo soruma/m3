@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe Use, type: :model do
+  it_behaves_like 'to_csv'
+
   describe 'Validation' do
     it 'is valid with name' do
       use = build(:use)

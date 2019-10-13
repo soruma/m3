@@ -3,6 +3,8 @@
 require 'rails_helper'
 
 RSpec.describe History, type: :model do
+  it_behaves_like 'to_csv'
+
   describe 'Validation' do
     it 'is valid with date_of_onset and account and price' do
       history = build(:history)
