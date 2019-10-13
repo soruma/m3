@@ -17,4 +17,17 @@ RSpec.describe Use, type: :model do
       expect(use.errors[:name]).to include(%(can't be blank))
     end
   end
+
+  describe 'Scopes' do
+    describe '#referential' do
+      before do
+        create_list(:use, 2)
+      end
+
+      it 'eager loading of accounts table' do
+        targets = described_class.referential
+        expect(targets.first.association(:accounts).loaded?).to be_truthy
+      end
+    end
+  end
 end
