@@ -77,6 +77,9 @@ group :test do
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
 
+  # Cov
+  gem 'simplecov', require: false
+
   # RSpec
   gem 'factory_bot_rails'
   gem 'json_spec'
