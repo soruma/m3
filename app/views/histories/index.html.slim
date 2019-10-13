@@ -15,7 +15,7 @@ table.table.table-striped
         td = date_to_month history.date_of_onset
         td = history.account.use.name
         td = history.account.name
-        td align='right' = history.price
+        td align='right' = history.price.to_s(:currency)
         td = link_to t('view.show'), history
         td = link_to t('view.edit'), edit_history_path(history)
         td = link_to t('view.destroy'), history, data: { confirm: t('message.delete_confirm') }, method: :delete
