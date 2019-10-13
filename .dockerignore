@@ -1,0 +1,19 @@
+# Ignore all logfiles and tempfiles.
+/.docker-sync/*
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+*~
+
+/.git
+/.github
+.gitignore
+
+# simplecov
+/coverage
+
+# Dev Machines
+.DS_Store
+
+ErModel.mwb
