@@ -176,7 +176,7 @@ RSpec.describe UsesController, type: :controller do
       end.to change(Use, :count).by(0)
       expect(controller.alert).to(
         eq(I18n.t('activerecord.errors.messages.restrict_dependent_destroy.has_many',
-                  record: Account.model_name.name.downcase))
+                  record: Account.model_name.human(count: 2)))
       )
     end
   end

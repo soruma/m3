@@ -2,7 +2,7 @@
 
 class Account < ApplicationRecord
   belongs_to :use
-  has_many :history, dependent: :restrict_with_error
+  has_many :histories, dependent: :restrict_with_error
 
   validates :name, presence: true
 
