@@ -4,7 +4,7 @@ fieldset
   - if alert
     .alert.alert-danger = alert
   = form_tag(import_uses_path, multipart: true) do
-    = file_field_tag :file, accept: 'text/csv', class: 'form-control-label'
+    = file_field_tag :file, accept: 'text/csv', required: true, class: 'form-control-label'
     = submit_tag t('view.import'), class: 'btn btn-primary'
   br
   = link_to t('view.export'), export_uses_path(format: 'csv'), method: :get
