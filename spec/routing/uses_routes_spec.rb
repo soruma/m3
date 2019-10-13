@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe UsesController, type: :routing do
+RSpec.describe 'routes to the uses controller', type: :routing do
   describe 'routing' do
     it 'routes to uses#import' do
       expect(post: '/data_management/uses/import').to route_to('uses#import')

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :routing do
+RSpec.describe 'routes to the home controller', type: :routing do
   describe 'routing' do
     it 'routes to home#index' do
       expect(get: '/').to route_to('home#index')

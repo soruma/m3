@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe HistoriesController, type: :routing do
+RSpec.describe 'routes to the histories controller', type: :routing do
   describe 'routing' do
     it 'routes to histories#import' do
       expect(post: '/data_management/histories/import').to route_to('histories#import')

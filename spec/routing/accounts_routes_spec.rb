@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe AccountsController, type: :routing do
+RSpec.describe 'routes to the accounts controller', type: :routing do
   describe 'routing' do
     it 'routes to accounts#import' do
       expect(post: '/data_management/accounts/import').to route_to('accounts#import')

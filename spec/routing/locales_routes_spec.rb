@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe 'I18n' do
+describe 'routes to the locals' do
   context 'パスに言語指定がある場合' do
     it 'その言語とする' do
       get '/ja'
