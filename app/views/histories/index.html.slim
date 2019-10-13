@@ -4,6 +4,7 @@ table.table.table-striped
   thead
     tr
       th = History.human_attribute_name :date_of_onset
+      th = Use.model_name.human
       th = History.human_attribute_name :account_id
       th = History.human_attribute_name :price
       th colspan=3
@@ -12,6 +13,7 @@ table.table.table-striped
     - @histories.each do |history|
       tr
         td = date_to_month history.date_of_onset
+        td = history.account.use.name
         td = history.account.name
         td align='right' = history.price
         td = link_to t('view.show'), history
