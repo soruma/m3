@@ -12,7 +12,7 @@ table.table.table-striped
   tbody
     - @histories.each do |history|
       tr
-        td = date_to_month history.date_of_onset
+        td = history.onset_month
         td = history.account.use.name
         td = history.account.name
         td align='right' = history.price.to_s(:currency)
