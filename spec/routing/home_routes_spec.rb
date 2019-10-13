@@ -3,17 +3,15 @@
 require 'rails_helper'
 
 RSpec.describe 'routes to the home controller', type: :routing do
-  describe 'routing' do
-    it 'routes to home#index' do
-      expect(get: '/').to route_to('home#index')
-    end
+  it 'routes / to the home#index action' do
+    expect(get: '/').to route_to('home#index')
+  end
 
-    it 'routes to home#info' do
-      expect(get: '/info').to route_to('home#info')
-    end
+  it 'routes /info to the home#info action' do
+    expect(get: '/info').to route_to('home#info')
+  end
 
-    it 'routes to ja home#info' do
-      expect(get: '/ja/info').to route_to('home#info', locale: 'ja')
-    end
+  it 'routes /ja/info to the home#info action and locale to ja' do
+    expect(get: '/ja/info').to route_to('home#info', locale: 'ja')
   end
 end
