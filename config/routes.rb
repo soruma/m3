@@ -14,9 +14,11 @@ Rails.application.routes.draw do
     root 'home#index'
     get '/info', to: 'home#info'
 
-    resources :uses, concerns: :file_bunch
-    resources :accounts, concerns: :file_bunch
-    resources :histories, concerns: :file_bunch
-    resources :events
+    scope :data_management do
+      resources :uses, concerns: :file_bunch
+      resources :accounts, concerns: :file_bunch
+      resources :histories, concerns: :file_bunch
+      resources :events
+    end
   end
 end
