@@ -131,6 +131,9 @@ GEM
     jaro_winkler (1.5.3)
     jbuilder (2.9.1)
       activesupport (>= 4.2.0)
+    json_spec (1.1.5)
+      multi_json (~> 1.0)
+      rspec (>= 2.0, < 4.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -160,6 +163,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.12.2)
     msgpack (1.3.1)
+    multi_json (1.13.1)
     nenv (0.3.0)
     nio4r (2.5.2)
     nokogiri (1.10.4)
@@ -352,6 +356,7 @@ DEPENDENCIES
   guard-rspec
   guard-rubocop
   jbuilder
+  json_spec
   kaminari
   listen
   pg (>= 0.18, < 2.0)
