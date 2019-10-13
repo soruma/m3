@@ -78,6 +78,7 @@ group :test do
   gem 'webdrivers'
 
   # Cov
+  gem 'codecov', require: false
   gem 'simplecov', require: false
 
   # RSpec

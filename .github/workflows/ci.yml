@@ -56,6 +56,8 @@ jobs:
     - name: Spec
       run: rspec
       env:
+        CI: true
+        CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         POSTGRES_HOST: localhost
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: passwd
