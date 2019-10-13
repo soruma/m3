@@ -3,13 +3,16 @@
 
 p
   strong #{History.human_attribute_name :date_of_onset}:
-  = date_to_month @history.date_of_onset
+  = @history.onset_month
+p
+  strong #{Use.model_name.human}:
+  = @history.account.use.name
 p
   strong #{Account.model_name.human}:
   = @history.account.name
 p
   strong #{History.human_attribute_name :price}:
-  = @history.price
+  = @history.price.to_s(:currency)
 
 = link_to t('view.edit'), edit_history_path(@history)
 '  |
