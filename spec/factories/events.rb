@@ -11,6 +11,16 @@ FactoryBot.define do
     end
   end
 
+  factory :new_years_day, class: Event do
+    date_of_onset { '2019-01-01' }
+    name { %(New Year's Day) }
+  end
+
+  factory :christmas_day, class: Event do
+    date_of_onset { '2019-12-25' }
+    name { 'Christmas Day' }
+  end
+
   factory :update_event, class: Event do
     sequence(:name) { |n| "update use name#{n}" }
   end
