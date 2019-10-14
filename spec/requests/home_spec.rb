@@ -2,17 +2,17 @@
 
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
-  describe 'GET #index' do
+RSpec.describe 'Home' do
+  describe 'GET /' do
     it 'returns http success' do
-      get :index
+      get root_url
       expect(response).to have_http_status(:success)
     end
   end
 
-  describe 'GET #info' do
+  describe 'GET info' do
     it 'returns http success' do
-      get :info
+      get info_url
       expect(response).to have_http_status(:success)
     end
   end
