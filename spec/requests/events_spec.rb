@@ -117,13 +117,13 @@ RSpec.describe 'Events' do
 
     context 'when valid params' do
       it do
-        put event_url id: new_years_day.id, params: { event: build(:christmas_day).attributes }
+        put event_url id: new_years_day, params: { event: build(:christmas_day).attributes }
         expect(response).to have_http_status :found
       end
 
       it 'date_of_onset is updated' do
         expect do
-          put event_url id: new_years_day.id, params: { event: build(:christmas_day).attributes }
+          put event_url id: new_years_day, params: { event: build(:christmas_day).attributes }
         end.to change {
           Event.find(new_years_day.id).date_of_onset
         }.from('2019-01-01'.to_date).to('2019-12-25'.to_date)
@@ -131,14 +131,14 @@ RSpec.describe 'Events' do
 
       it 'name is updated' do
         expect do
-          put event_url id: new_years_day.id, params: { event: build(:christmas_day).attributes }
+          put event_url id: new_years_day, params: { event: build(:christmas_day).attributes }
         end.to change {
           Event.find(new_years_day.id).name
         }.from(%(New Year's Day)).to('Christmas Day')
       end
 
       it 'redirect' do
-        put event_url id: new_years_day.id, params: { event: build(:event).attributes }
+        put event_url id: new_years_day, params: { event: build(:event).attributes }
         expect(response).to redirect_to Event.last
       end
     end
