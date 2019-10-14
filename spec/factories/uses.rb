@@ -9,11 +9,15 @@ FactoryBot.define do
     end
   end
 
-  factory :update_use, class: Use do
-    sequence(:name) { |n| "update use name#{n}" }
+  factory :usually_use, class: Use do
+    name { 'Usually use' }
   end
 
-  factory :cost_of_living, class: Use do
-    name { 'Cost of living' }
+  factory :saving, class: Use do
+    name { 'Saving' }
+  end
+
+  factory :update_use, class: Use do
+    sequence(:name) { |n| "update use name#{n}" }
   end
 end
