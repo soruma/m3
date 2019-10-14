@@ -18,7 +18,7 @@
     .form-control v-html='useName'
   .form-group
     = f.label :price, class: 'form-control-label'
-    = f.number_field :price, class: 'form-control'
+    = f.number_field :price, class: 'form-control text-right'
   .buttons = f.submit class: 'btn btn-primary'
 
 = javascript_pack_tag 'selected_account'
