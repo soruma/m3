@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'routes to the accounts controller', type: :routing do
+RSpec.describe 'routes to the accounts controller' do
   it 'routes /data_management/accounts/ to the accounts#index action' do
     expect(get: '/data_management/accounts').to route_to('accounts#index')
   end

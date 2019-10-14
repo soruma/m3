@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'routes to the uses controller', type: :routing do
+RSpec.describe 'routes to the uses controller' do
   it 'routes /data_management/uses/ to the uses#index action' do
     expect(get: '/data_management/uses').to route_to('uses#index')
   end

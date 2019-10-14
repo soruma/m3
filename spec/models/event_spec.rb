@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Event, type: :model do
+RSpec.describe Event do
   describe 'Validation' do
     it 'is valid with date_of_onset and name and remarks' do
       event = build(:event)

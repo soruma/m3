@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'locales', type: :request do
+RSpec.describe 'locales' do
   context 'パスに言語指定がある場合' do
     it 'その言語とする' do
       get '/ja'

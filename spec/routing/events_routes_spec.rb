@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'routes to the events controller', type: :routing do
+RSpec.describe 'routes to the events controller' do
   it 'routes /data_management/events/ to the events#index action' do
     expect(get: '/data_management/events').to route_to('events#index')
   end

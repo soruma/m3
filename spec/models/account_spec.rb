@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Account do
   it_behaves_like 'to_csv'
 
   describe 'Validation' do

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Events', type: :request do
+RSpec.describe 'Events' do
   describe 'GET events/index' do
     before do
       create(:new_years_day)

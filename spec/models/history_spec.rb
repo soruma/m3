@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-RSpec.describe History, type: :model do
+RSpec.describe History do
   it_behaves_like 'to_csv'
 
   describe 'Validation' do
