@@ -11,8 +11,14 @@
     = f.date_select :date_of_onset, { use_month_numbers: true, discard_day: true }, class: 'form-control inline-date'
   .form-group
     = f.label :account_id, class: 'form-control-label'
-    = f.grouped_collection_select :account_id, Use.referential, :accounts, :name, :id, :name, {}, class: 'form-control'
+    = f.grouped_collection_select :account_id, Use.referential, :accounts, :name, :id, :name, {},
+      class: 'form-control', 'v-model': 'selectedAccountId'
+  .form-group
+    .form-control-label = Use.model_name.human
+    .form-control v-html='useName'
   .form-group
     = f.label :price, class: 'form-control-label'
     = f.number_field :price, class: 'form-control'
   .buttons = f.submit class: 'btn btn-primary'
+
+= javascript_pack_tag 'selected_account'
