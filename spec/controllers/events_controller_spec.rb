@@ -37,37 +37,6 @@ RSpec.describe EventsController, type: :controller do
   # EventsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe 'GET #index' do
-    it 'assigns all events as @events' do
-      event = Event.create! valid_attributes
-      get :index, params: {}, session: valid_session
-      expect(assigns(:events)).to eq([event])
-    end
-  end
-
-  describe 'GET #show' do
-    it 'assigns the requested event as @event' do
-      event = Event.create! valid_attributes
-      get :show, params: { id: event.to_param }, session: valid_session
-      expect(assigns(:event)).to eq(event)
-    end
-  end
-
-  describe 'GET #new' do
-    it 'assigns a new event as @event' do
-      get :new, params: {}, session: valid_session
-      expect(assigns(:event)).to be_a_new(Event)
-    end
-  end
-
-  describe 'GET #edit' do
-    it 'assigns the requested event as @event' do
-      event = Event.create! valid_attributes
-      get :edit, params: { id: event.to_param }, session: valid_session
-      expect(assigns(:event)).to eq(event)
-    end
-  end
-
   describe 'POST #create' do
     context 'with valid params' do
       it 'creates a new Event' do
