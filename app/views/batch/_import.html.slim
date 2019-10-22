@@ -1,0 +1,6 @@
+span = t('view.import')
+- if alert
+  .alert.alert-danger = alert
+= form_tag({ action: :import }, multipart: true) do
+  = file_field_tag :file, accept: 'text/csv', required: true, class: 'form-control-label'
+  = submit_tag t('view.import'), class: 'btn btn-primary'
