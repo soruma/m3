@@ -15,6 +15,10 @@ jobs:
           POSTGRES_PASSWORD: passwd
         ports:
           - 5432:5432
+      chrome:
+        image: selenium/standalone-chrome:3.141.59
+        ports:
+          - 4444:4444
 
     steps:
     - uses: actions/checkout@v1
@@ -61,3 +65,5 @@ jobs:
         POSTGRES_HOST: localhost
         POSTGRES_USER: postgres
         POSTGRES_PASSWORD: passwd
+        SELENIUM_HOST: localhost
+        SELENIUM_POST: 4444
