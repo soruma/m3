@@ -15,7 +15,7 @@
       class: 'form-control', 'v-model': 'selectedAccountId'
   .form-group
     .form-control-label = Use.model_name.human
-    .form-control v-html='useName'
+    .form-control#use_name v-html='useName'
   .form-group
     = f.label :price, class: 'form-control-label'
     = f.number_field :price, class: 'form-control text-right'
