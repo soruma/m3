@@ -1,19 +1,23 @@
 # Ignore all logfiles and tempfiles.
-/.docker-sync/*
-/log/*
-/tmp/*
-!/log/.keep
-!/tmp/.keep
-*~
+log
+tmp
 
-/.git
-/.github
-.gitignore
+# Ignore installed library files
+vendor/bundle
+node_modules
 
-# simplecov
-/coverage
+# Ignore related files of Git
+.git
+.github
+.gitignone
 
-# Dev Machines
-.DS_Store
+# Ignore related files of Docker
+.dockerignore
+Dockerfile
+docker-compose.yml
 
+# Ignore design documentation files
 ErModel.mwb
+
+# Ignore files created by simplecov
+coverage
