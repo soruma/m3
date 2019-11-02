@@ -37,5 +37,5 @@
 yarn-debug.log*
 .yarn-integrity
 
-# simplecov
+# Ignore files created by simplecov
 /coverage
