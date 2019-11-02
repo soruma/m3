@@ -69,6 +69,8 @@ group :development do
   # Guard
   gem 'guard-rspec', require: false
   gem 'guard-rubocop', require: false
+
+  gem 'brakeman', require: false
 end
 
 group :test do
