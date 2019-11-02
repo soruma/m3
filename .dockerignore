@@ -2,6 +2,10 @@
 log
 tmp
 
+# Ignore installed library files
+vendor/bundle
+node_modules
+
 # Ignore related files of Git
 .git
 .github
