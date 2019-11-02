@@ -77,3 +77,6 @@ jobs:
         POSTGRES_PASSWORD: passwd
         SELENIUM_HOST: localhost
         SELENIUM_POST: 4444
+
+    - name: Security check
+      run: brakeman -4 -A -w 1 -z
