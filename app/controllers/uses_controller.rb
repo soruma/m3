@@ -78,7 +78,7 @@ class UsesController < ApplicationController
                 { alert: t('controller.unsuccess_import_no_choose', model: Use.model_name.human) }
     end
     respond_to do |format|
-      format.html { redirect_to uses_url, message }
+      format.html { redirect_to ({ action: :index }), message }
       format.json { head :no_content }
     end
   end
