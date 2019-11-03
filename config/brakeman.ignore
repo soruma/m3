@@ -1,0 +1,66 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "1edd5595155d4689e7e1694ccc8ef1a7629391b1fa77b8e2bf0e87d1a87650ad",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `History#find`",
+      "file": "app/controllers/histories_controller.rb",
+      "line": 101,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "History.find(params[:id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "HistoriesController",
+        "method": "set_history"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Unscoped Find",
+      "warning_code": 82,
+      "fingerprint": "5f2005c6359cf9dfb7343c55df1fc680784c6f3bc274e4859f57e87bb25404e7",
+      "check_name": "UnscopedFind",
+      "message": "Unscoped call to `Account#find`",
+      "file": "app/controllers/accounts_controller.rb",
+      "line": 105,
+      "link": "https://brakemanscanner.org/docs/warning_types/unscoped_find/",
+      "code": "Account.find(params[:id])",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "AccountsController",
+        "method": "set_account"
+      },
+      "user_input": "params[:id]",
+      "confidence": "Weak",
+      "note": ""
+    },
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 105,
+      "fingerprint": "a78515b831316eb6dbdf48160035403d40129d3e8ef94a3230a1b8083ea312d6",
+      "check_name": "PermitAttributes",
+      "message": "Potentially dangerous key allowed for mass assignment",
+      "file": "app/controllers/histories_controller.rb",
+      "line": 106,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:history).permit(:date_of_onset, :account_id, :price)",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "HistoriesController",
+        "method": "history_params"
+      },
+      "user_input": ":account_id",
+      "confidence": "High",
+      "note": ""
+    }
+  ],
+  "updated": "2019-11-02 22:53:09 +0000",
+  "brakeman_version": "4.7.1"
+}
