@@ -2,6 +2,7 @@
 
 class AccountsController < ApplicationController
   include RenderCsv
+  include ImportFile
 
   before_action :set_account, only: %i[show edit update destroy]
 
@@ -67,22 +68,6 @@ class AccountsController < ApplicationController
         format.html { redirect_to accounts_url, alert: @account.errors.full_messages.join(' ') }
         format.json { render json: @account.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /accounts/import
-  def import # rubocop:disable Metrics/MethodLength
-    message = begin
-      Account.csv_file_import(params[:file])
-      { notice: t('controller.success_import', model: Account.model_name.human) }
-              rescue ActiveRecord::RecordInvalid
-                { alert: t('controller.unsuccess_import_record_invalid', model: Account.model_name.human) }
-              rescue NoMethodError
-                { alert: t('controller.unsuccess_import_no_choose', model: Account.model_name.human) }
-    end
-    respond_to do |format|
-      format.html { redirect_to ({ action: :index }), message }
-      format.json { head :no_content }
     end
   end
 

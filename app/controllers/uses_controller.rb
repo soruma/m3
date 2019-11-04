@@ -2,6 +2,7 @@
 
 class UsesController < ApplicationController
   include RenderCsv
+  include ImportFile
 
   before_action :set_use, only: %i[show edit update destroy]
 
@@ -64,22 +65,6 @@ class UsesController < ApplicationController
         format.html { redirect_to uses_url, alert: @use.errors.full_messages.join(' ') }
         format.json { render json: @use.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # POST /uses/import
-  def import # rubocop:disable Metrics/MethodLength
-    message = begin
-      Use.csv_file_import(params[:file])
-      { notice: t('controller.success_import', model: Use.model_name.human) }
-              rescue ActiveRecord::RecordInvalid
-                { alert: t('controller.unsuccess_import_record_invalid', model: Use.model_name.human) }
-              rescue NoMethodError
-                { alert: t('controller.unsuccess_import_no_choose', model: Use.model_name.human) }
-    end
-    respond_to do |format|
-      format.html { redirect_to ({ action: :index }), message }
-      format.json { head :no_content }
     end
   end
 
