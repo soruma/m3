@@ -3,6 +3,7 @@
 class HistoriesController < ApplicationController
   include RenderCsv
   include ImportFile
+  include ExportFile
 
   before_action :set_history, only: %i[show edit update destroy]
 
@@ -64,18 +65,6 @@ class HistoriesController < ApplicationController
                     notice: t('controller.success_destroy', model: History.model_name.human)
       end
       format.json { head :no_content }
-    end
-  end
-
-  # GET /histories/export
-  def export
-    respond_to do |format|
-      format.html { redirect_to action: :export, format: :csv }
-      format.csv do
-        render_csv History.to_csv(History.all),
-                   file_name: History.model_name.human,
-                   charset: 'cp932'
-      end
     end
   end
 

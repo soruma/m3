@@ -3,6 +3,7 @@
 class AccountsController < ApplicationController
   include RenderCsv
   include ImportFile
+  include ExportFile
 
   before_action :set_account, only: %i[show edit update destroy]
 
@@ -67,18 +68,6 @@ class AccountsController < ApplicationController
       else
         format.html { redirect_to accounts_url, alert: @account.errors.full_messages.join(' ') }
         format.json { render json: @account.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # GET /accounts/export
-  def export
-    respond_to do |format|
-      format.html { redirect_to action: :export, format: :csv }
-      format.csv do
-        render_csv Account.to_csv(Account.all),
-                   file_name: Account.model_name.human,
-                   charset: 'cp932'
       end
     end
   end

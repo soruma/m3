@@ -3,6 +3,7 @@
 class UsesController < ApplicationController
   include RenderCsv
   include ImportFile
+  include ExportFile
 
   before_action :set_use, only: %i[show edit update destroy]
 
@@ -64,18 +65,6 @@ class UsesController < ApplicationController
       else
         format.html { redirect_to uses_url, alert: @use.errors.full_messages.join(' ') }
         format.json { render json: @use.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # GET /uses/export
-  def export
-    respond_to do |format|
-      format.html { redirect_to action: :export, format: :csv }
-      format.csv do
-        render_csv Use.to_csv(Use.all),
-                   file_name: Use.model_name.human,
-                   charset: 'cp932'
       end
     end
   end
