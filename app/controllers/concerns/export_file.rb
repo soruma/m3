@@ -3,12 +3,15 @@
 module ExportFile
   extend ActiveSupport::Concern
 
+  include RenderError
+
   included do # rubocop:disable Metrics/BlockLength
     def export
       case params[:controller]
       when 'uses' then uses_export
       when 'accounts' then accounts_export
       when 'histories' then histories_export
+      else render_404
       end
     end
 
