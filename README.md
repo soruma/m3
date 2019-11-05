@@ -2,6 +2,7 @@
 
 ![](https://github.com/soruma/m3/workflows/CI/badge.svg)
 [![codecov](https://codecov.io/gh/soruma/m3/branch/master/graph/badge.svg)](https://codecov.io/gh/soruma/m3)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=soruma/m3)](https://dependabot.com)
 
 This README would normally document whatever steps are necessary to get the
 application up and running.
