@@ -11,12 +11,12 @@ var Account = {
   },
   methods: {
     getAccount: function() {
-      axios.get(`/data_management/accounts/` + this.accountId + `.json`)
+      axios.get(`/data_management/accounts/${this.accountId}.json`)
         .then(res => {
           this.setAccountInfo(res.data)
         })
     },
-    setAccountInfo(data) {
+    setAccountInfo: function(data) {
       this.accountInfo = data
     }
   },
