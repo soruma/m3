@@ -14,6 +14,12 @@ Rails.application.routes.draw do
     root 'home#index'
     get '/info', to: 'home#info'
 
+    resources :summary, only: :index do
+      collection do
+        get 'chartdata'
+      end
+    end
+
     scope :data_management do
       resources :uses, concerns: :file_bunch
       resources :accounts, concerns: :file_bunch

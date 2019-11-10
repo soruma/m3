@@ -39,9 +39,9 @@ new Vue({
   },
   methods: {
     initialize: function() {
-      this.accountId = this.selectedAccountId = this.getAccountId()
+      this.accountId = this.selectedAccountId = this.getHistoryAccountId()
     },
-    getAccountId: function() {
+    getHistoryAccountId: function() {
       return document.getElementById('history_account_id').value
     }
   },

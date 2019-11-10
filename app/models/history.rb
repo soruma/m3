@@ -15,4 +15,7 @@ class History < ApplicationRecord
 
   scope :account_book, -> { order(:date_of_onset).order(:account_id) }
   scope :referential, -> { includes(account: [:use]) }
+
+  scope :date_of_onset_list, -> { group(:date_of_onset).order(:date_of_onset).count.keys }
+  scope :price_list, -> { order(:date_of_onset).pluck(:price) }
 end
