@@ -22,6 +22,8 @@ services:
     depends_on:
       - db
       - chrome
+      - spring
+      - webpacker
     tty: true
     stdin_open: true
 
@@ -31,6 +33,7 @@ services:
     ports: []
     tty: false
     stdin_open: false
+    depends_on: []
 
   webpacker:
     <<: *app_base
@@ -38,8 +41,7 @@ services:
     ports: []
     tty: false
     stdin_open: false
-    depends_on:
-      - app
+    depends_on: []
 
   db:
     image: postgres:11
