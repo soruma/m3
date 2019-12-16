@@ -3,15 +3,12 @@
 module ImportFile
   extend ActiveSupport::Concern
 
-  include RenderError
-
   included do # rubocop:disable Metrics/BlockLength
     def import
       case params[:controller]
       when 'uses' then uses_import
       when 'accounts' then accounts_import
       when 'histories' then histories_import
-      else render_404
       end
     end
 
