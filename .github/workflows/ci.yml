@@ -41,23 +41,25 @@ jobs:
     - name: Install dependent packages
       run: sudo apt-get install libpq-dev
 
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle install --jobs 4 --retry 3 --with test
+
     - name: Build
       run: |
-        bundle install --jobs 4 --retry 3 --with test
         ./bin/yarn
         ./bin/webpack
-      env:
-        RAILS_ENV: test
 
     - name: Lint
       run: |
-        rubocop
-        slim-lint app/views/
+        bundle exec rubocop
+        bundle exec slim-lint app/views/
 
     - name: Setup Database
       run: |
-        rails db:create
-        rails db:schema:load
+        ./bin/rails db:create
+        ./bin/rails db:schema:load
       env:
         RAILS_ENV: test
         POSTGRES_HOST: localhost
@@ -65,7 +67,7 @@ jobs:
         POSTGRES_PASSWORD: passwd
 
     - name: Spec
-      run: rspec
+      run: ./bin/rspec
       env:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
@@ -76,4 +78,4 @@ jobs:
         SELENIUM_POST: 4444
 
     - name: Security check
-      run: brakeman -4 -A -w 1 -z
+      run: bundle exec brakeman -4 -A -w 1 -z
