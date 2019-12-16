@@ -41,9 +41,6 @@ jobs:
     - name: Install dependent packages
       run: sudo apt-get install libpq-dev
 
-    - name: Install bundler
-      run: gem install bundler
-
     - name: Build
       run: |
         bundle install --jobs 4 --retry 3 --with test
