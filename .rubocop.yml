@@ -7,6 +7,7 @@ AllCops:
     - log/**/*
     - node_modules/**/*
     - tmp/**/*
+    - vendor/bundle/**/*
 
 Metrics/AbcSize:
   Max: 20
