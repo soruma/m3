@@ -98,7 +98,7 @@ jobs:
       env:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
-        SELENIUM_HOST: localhost
+        SELENIUM_HOST: chrome
         SELENIUM_POST: 4444
 
     - name: Security check
