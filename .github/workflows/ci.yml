@@ -18,7 +18,7 @@ jobs:
     needs: prepare
 
     services:
-      postgres:
+      db:
         image: postgres:11
         env:
           POSTGRES_USER: postgres
@@ -32,6 +32,10 @@ jobs:
 
     container:
       image: ruby:2.6.3
+      env:
+        POSTGRES_HOST: db
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: passwd
 
     steps:
     - uses: actions/checkout@v1
@@ -85,9 +89,6 @@ jobs:
         ./bin/rails db:schema:load
       env:
         RAILS_ENV: test
-        POSTGRES_HOST: localhost
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: passwd
 
     - name: Javascript packing
       run: ./bin/webpack
@@ -97,9 +98,6 @@ jobs:
       env:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
-        POSTGRES_HOST: localhost
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: passwd
         SELENIUM_HOST: localhost
         SELENIUM_POST: 4444
 
