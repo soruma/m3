@@ -30,13 +30,11 @@ jobs:
         ports:
           - 4444:4444
 
+    container:
+      image: ruby:2.6.3
+
     steps:
     - uses: actions/checkout@v1
-
-    - name: Set up Ruby 2.6
-      uses: actions/setup-ruby@v1
-      with:
-        ruby-version: 2.6.3
 
     - name: Install dependent packages
       run: sudo apt-get install libpq-dev
