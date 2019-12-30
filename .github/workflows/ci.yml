@@ -31,7 +31,7 @@ jobs:
           - 4444:4444
 
     container:
-      image: ruby:2.6.3
+      image: ruby:2.6.5
       env:
         POSTGRES_HOST: db
         POSTGRES_USER: postgres
