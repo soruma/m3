@@ -9,11 +9,11 @@ AllCops:
     - tmp/**/*
     - vendor/bundle/**/*
 
+Layout/LineLength:
+  Max: 120
+
 Metrics/AbcSize:
   Max: 20
-
-Metrics/LineLength:
-  Max: 120
 
 Metrics/BlockLength:
   Exclude:
