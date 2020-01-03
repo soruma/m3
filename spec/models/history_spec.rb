@@ -5,6 +5,20 @@ require 'rails_helper'
 RSpec.describe History do
   it_behaves_like 'to_csv'
 
+  describe 'FileImport' do
+    before do
+      [101, 102, 103].each { |account_id| create(:account, id: account_id) }
+    end
+
+    let(:import_file) do
+      fixture_file_upload('spec/fixtures/csv/history.csv', 'text/comma-separated-values')
+    end
+    let(:file_import_new_value) { build(:history, id: 101, date_of_onset: '2017-01-31', price: 10.0, account_id: 101) }
+    let(:file_import_old_value) { build(:history, id: 101, date_of_onset: '2017-01-31', price: 20.0, account_id: 101) }
+
+    it_behaves_like 'file_import'
+  end
+
   describe 'Validation' do
     it 'is valid with date_of_onset and account and price' do
       history = build(:history)

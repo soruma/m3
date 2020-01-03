@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class History < ApplicationRecord
+  include FileImport
+
   belongs_to :account
 
   validates :date_of_onset, presence: true

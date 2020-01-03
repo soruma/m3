@@ -5,6 +5,16 @@ require 'rails_helper'
 RSpec.describe Use do
   it_behaves_like 'to_csv'
 
+  describe 'FileImport' do
+    let(:import_file) do
+      fixture_file_upload('spec/fixtures/csv/use.csv', 'text/comma-separated-values')
+    end
+    let(:file_import_new_value) { build(:use, id: 101, name: '普段使い') }
+    let(:file_import_old_value) { build(:use, id: 101, name: 'いつも使う') }
+
+    it_behaves_like 'file_import'
+  end
+
   describe 'Validation' do
     it 'is valid with name' do
       use = build(:use)
