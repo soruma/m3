@@ -32,5 +32,11 @@ module ToCsvHelper
         end
       end
     end
+
+    describe '.default_csv_options' do
+      subject { described_class.default_csv_options }
+
+      it { is_expected.to include(row_sep: "\r\n") }
+    end
   end
 end
