@@ -8,7 +8,7 @@ module FileImport
       CSV.foreach(upload_file.path, headers: true, encoding: 'Shift_JIS') do |row|
         obj = begin
                 find(row['id'])
-              rescue StandardError
+              rescue ActiveRecord::RecordNotFound
                 new
               end
         obj.attributes = row.to_hash.slice(*updatable_attributes)
