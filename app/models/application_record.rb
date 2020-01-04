@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class ApplicationRecord < ActiveRecord::Base
-  extend ToCsv
-
   self.abstract_class = true
 
   TIMESTAMP_COLUMNS = %w[created_at created_on updated_at updated_on].freeze
