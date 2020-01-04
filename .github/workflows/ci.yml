@@ -98,6 +98,7 @@ jobs:
       env:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        DISABLE_SPRING: 1
         SELENIUM_HOST: chrome
         SELENIUM_POST: 4444
 
