@@ -8,15 +8,15 @@ default: &default
 
 development:
   <<: *default
-  database: app_development
+  database: m3_development
 
 test:
   <<: *default
-  database: app_test
+  database: m3_test
 
 production:
   <<: *default
-  database: app_production
+  database: m3_production
   host: <%= ENV['PRODUCTION_DATABASE_HOST'] %>
-  username: app
+  username: m3
   password: <%= ENV['APP_DATABASE_PASSWORD'] %>
