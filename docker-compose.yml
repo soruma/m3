@@ -9,8 +9,7 @@ services:
       POSTGRES_HOST: db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: passwd
-      WEBPACKER_DEV_SERVER_HOST: webpacker
-      WEBPACKER_DEV_SERVER_PUBLIC: 0.0.0.0:3035
+      WEBPACKER_DEV_SERVER_HOST: webpacker-dev-server
       SELENIUM_HOST: chrome
       SELENIUM_POST: 4444
     ports:
@@ -23,7 +22,7 @@ services:
       - db
       - chrome
       - spring
-      - webpacker
+      - webpacker-dev-server
     tty: true
     stdin_open: true
 
@@ -35,10 +34,13 @@ services:
     stdin_open: false
     depends_on: []
 
-  webpacker:
+  webpacker-dev-server:
     <<: *app_base
     command: [ "./bin/webpack-dev-server" ]
-    ports: []
+    environment:
+      WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
+    ports:
+      - 3035:3035
     tty: false
     stdin_open: false
     depends_on: []
