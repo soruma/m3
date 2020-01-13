@@ -89,7 +89,7 @@ group :test do
   gem 'json_spec'
   gem 'rails-controller-testing'
   # TODO: The Rails 6 version is still a beta version. Once released, it is necessary to delete the specified version
-  gem 'rspec-rails', '4.0.0.beta3'
+  gem 'rspec-rails', '4.0.0.beta4'
 
   # lint
   gem 'rubocop-rails', require: false
