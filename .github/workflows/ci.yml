@@ -1,5 +1,37 @@
 name: CI
 
+container: &container
+  image: ruby:2.7.1
+  env:
+    POSTGRES_HOST: db
+    POSTGRES_USER: postgres
+    POSTGRES_PASSWORD: passwd
+
+gem-cache: &gem-cache
+  name: Cache gems
+    uses: actions/cache@v1
+    with:
+      path: vendor/bundle
+      key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+      restore-keys: |
+        ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        ${{ runner.os }}-gem-
+
+yarn-cache-dir: &yarn-cache-dir
+  name: Get yarn cache
+    id: yarn-cache
+    run: echo "::set-output name=dir::$(./bin/yarn cache dir)"
+
+yarn-cache: &yarn-cache
+  name: Cache yarn
+    uses: actions/cache@v1
+    with:
+      path: ${{ steps.yarn-cache.outputs.dir }}
+      key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+      restore-keys:
+        ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        ${{ runner.os }}-yarn-
+
 on: [push]
 
 jobs:
@@ -17,6 +49,49 @@ jobs:
 
     needs: prepare
 
+    <<: *container
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set up Ruby 2.7
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.7.x
+
+    - name: Install dependent packages
+      run: sudo apt-get install -y --no-install-recommends libpq-dev
+
+    - name: Upload apt packages
+      uses: actions/upload-artifact@v1
+      with:
+        name: use-dir
+        path: /use
+
+    - *gem-cache
+
+    - name: Install gems
+      run: |
+        bundle config path vendor/bundle
+        bundle config with test
+        bundle install --jobs 4 --retry 3
+
+    - *yarn-cache-dir
+    - *yarn-cache
+
+    - name: Install node modules
+      run: ./bin/yarn
+
+    - name: Lint
+      run: |
+        bundle exec rubocop
+        bundle exec slim-lint app/views/
+
+  test:
+    runs-on: ubuntu-latest
+
+    needs: build
+
     services:
       db:
         image: postgres:12
@@ -30,52 +105,20 @@ jobs:
         ports:
           - 4444:4444
 
+    <<: *container
+
     steps:
     - uses: actions/checkout@v1
 
-    - name: Set up Ruby 2.7
-      uses: actions/setup-ruby@v1
+    - name: Download apt packages
+      uses: actions/download-artifact@v1
       with:
-        ruby-version: 2.7.x
+        name: usr-dir
 
-    - name: Install dependent packages
-      run: sudo apt-get install -y --no-install-recommends libpq-dev
+    - *gem-cache
 
-    - name: Cache gems
-      uses: actions/cache@v1
-      with:
-        path: vendor/bundle
-        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
-          ${{ runner.os }}-gem-
-
-    - name: Install gems
-      run: |
-        bundle config path vendor/bundle
-        bundle config with test
-        bundle install --jobs 4 --retry 3
-
-    - name: Get yarn cache
-      id: yarn-cache
-      run: echo "::set-output name=dir::$(./bin/yarn cache dir)"
-
-    - name: Cache yarn
-      uses: actions/cache@v1
-      with:
-        path: ${{ steps.yarn-cache.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys:
-          ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          ${{ runner.os }}-yarn-
-
-    - name: Install node modules
-      run: ./bin/yarn
-
-    - name: Lint
-      run: |
-        bundle exec rubocop
-        bundle exec slim-lint app/views/
+    - *yarn-cache-dir
+    - *yarn-cache
 
     - name: Setup Database
       run: |
