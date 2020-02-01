@@ -30,23 +30,16 @@ jobs:
         ports:
           - 4444:4444
 
-    container:
-      image: ruby:2.7.0
-      env:
-        POSTGRES_HOST: db
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: passwd
-
     steps:
     - uses: actions/checkout@v1
 
+    - name: Set up Ruby 2.7
+      uses: actions/setup-ruby@v1
+      with:
+        ruby-version: 2.7.x
+
     - name: Install dependent packages
-      run: |
-        curl -sL https://deb.nodesource.com/setup_13.x | bash -
-        curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
-        echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
-        apt-get update
-        apt-get install -y --no-install-recommends nodejs libpq-dev yarn
+      run: sudo apt-get install -y --no-install-recommends libpq-dev
 
     - name: Cache gems
       uses: actions/cache@v1
@@ -89,6 +82,9 @@ jobs:
         ./bin/rails db:schema:load
       env:
         RAILS_ENV: test
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: passwd
 
     - name: Javascript packing
       run: ./bin/webpack
@@ -98,8 +94,11 @@ jobs:
       env:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
+        POSTGRES_HOST: localhost
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: passwd
         DISABLE_SPRING: 1
-        SELENIUM_HOST: chrome
+        SELENIUM_HOST: localhost
         SELENIUM_POST: 4444
 
     - name: Security check
