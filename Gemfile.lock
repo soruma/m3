@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/jmkim/seed-fu
+  remote: https://github.com/jmkim/seed-fu.git
   revision: 0cd6f38d2603eceb5dc8934e0ca6a2411ac2eac4
   branch: support-rails-6
   specs:

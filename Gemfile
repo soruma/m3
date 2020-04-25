@@ -33,7 +33,7 @@ gem 'bootsnap', require: false
 gem 'active_decorator'
 gem 'kaminari'
 gem 'rails-i18n', '~> 6.0'
-gem 'seed-fu', git: 'git://github.com/jmkim/seed-fu', branch: 'support-rails-6'
+gem 'seed-fu', github: 'jmkim/seed-fu', branch: 'support-rails-6'
 gem 'slim-rails'
 
 group :development, :test do
