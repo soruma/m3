@@ -93,8 +93,5 @@ group :test do
   gem 'slim_lint', require: false
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-
 # This line is require until a new version with irb#79(https://github.com/ruby/irb/pull/79) is release
 gem 'irb', '1.2.1'
