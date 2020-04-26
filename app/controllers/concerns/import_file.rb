@@ -3,42 +3,40 @@
 module ImportFile
   extend ActiveSupport::Concern
 
-  included do # rubocop:disable Metrics/BlockLength
-    def import
-      case params[:controller]
-      when 'uses' then uses_import
-      when 'accounts' then accounts_import
-      when 'histories' then histories_import
-      end
+  def import
+    case params[:controller]
+    when 'uses' then uses_import
+    when 'accounts' then accounts_import
+    when 'histories' then histories_import
     end
+  end
 
-    def uses_import
-      _import Use
-    end
+  def uses_import
+    _import Use
+  end
 
-    def accounts_import
-      _import Account
-    end
+  def accounts_import
+    _import Account
+  end
 
-    def histories_import
-      _import History
-    end
+  def histories_import
+    _import History
+  end
 
-    private
+  private
 
-    def _import(model) # rubocop:disable Metrics/MethodLength
-      message = begin
-                  model.csv_file_import(params[:file])
-                  { notice: t('controller.success_import', model: model.model_name.human) }
-                rescue ActiveRecord::RecordInvalid
-                  { alert: t('controller.unsuccess_import_record_invalid', model: model.model_name.human) }
-                rescue NoMethodError
-                  { alert: t('controller.unsuccess_import_no_choose', model: model.model_name.human) }
-                end
-      respond_to do |format|
-        format.html { redirect_to ({ action: :index }), message }
-        format.json { head :no_content }
-      end
+  def _import(model) # rubocop:disable Metrics/MethodLength
+    message = begin
+                model.csv_file_import(params[:file])
+                { notice: t('controller.success_import', model: model.model_name.human) }
+              rescue ActiveRecord::RecordInvalid
+                { alert: t('controller.unsuccess_import_record_invalid', model: model.model_name.human) }
+              rescue NoMethodError
+                { alert: t('controller.unsuccess_import_no_choose', model: model.model_name.human) }
+              end
+    respond_to do |format|
+      format.html { redirect_to ({ action: :index }), message }
+      format.json { head :no_content }
     end
   end
 end
