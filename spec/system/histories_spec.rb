@@ -2,14 +2,14 @@
 
 require 'rails_helper'
 
-RSpec.feature 'Histories', js: true do
-  background do
+RSpec.describe 'Histories', type: :system, js: true do
+  before do
     create_list(:account, 3)
     use = create(:use, name: 'Usually use')
     create(:account, name: 'Wallet', use: use)
   end
 
-  scenario 'Use appears when you select account' do
+  it 'Use appears when you select account' do
     visit new_history_path
     select 'Wallet', from: 'account'
     sleep 1
