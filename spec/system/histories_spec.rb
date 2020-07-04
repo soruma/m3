@@ -11,7 +11,7 @@ RSpec.describe 'Histories', type: :system, js: true do
 
   it 'Use appears when you select account' do
     visit new_history_path
-    select 'Wallet', from: 'account'
+    select 'Wallet', from: 'history[account_id]'
     sleep 1
 
     expect(find('#use_name').text).to eq 'Usually use'
