@@ -92,6 +92,3 @@ group :test do
   gem 'rubocop-rails', require: false
   gem 'slim_lint', require: false
 end
-
-# This line is require until a new version with irb#79(https://github.com/ruby/irb/pull/79) is release
-gem 'irb', '1.2.1'
