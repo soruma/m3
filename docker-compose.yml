@@ -10,8 +10,6 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: passwd
       WEBPACKER_DEV_SERVER_HOST: webpacker-dev-server
-      SELENIUM_HOST: chrome
-      SELENIUM_POST: 4444
     ports:
       - 3000:3000
     volumes:
@@ -20,7 +18,6 @@ services:
       - bundle:/usr/local/bundle
     depends_on:
       - db
-      - chrome
       - spring
       - webpacker-dev-server
     tty: true
@@ -52,15 +49,6 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: passwd
-
-  chrome:
-    image: selenium/standalone-chrome-debug:3.141.59
-    volumes:
-      - .:/app
-      - ./tmp/screenshots:/dev/shm
-    ports:
-      - 4444:4444
-      - 5900:5900
 
 volumes:
   bundle:

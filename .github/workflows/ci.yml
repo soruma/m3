@@ -25,10 +25,6 @@ jobs:
           POSTGRES_PASSWORD: passwd
         ports:
           - 5432:5432
-      chrome:
-        image: selenium/standalone-chrome:3.141.59
-        ports:
-          - 4444:4444
 
     container:
       image: ruby:2.7.0
@@ -44,9 +40,10 @@ jobs:
       run: |
         curl -sL https://deb.nodesource.com/setup_13.x | bash -
         curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+        curl -O https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
         echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
         apt-get update
-        apt-get install -y --no-install-recommends nodejs libpq-dev yarn
+        apt-get install -y --no-install-recommends nodejs libpq-dev yarn ./google-chrome-stable_current_amd64.deb
 
     - name: Cache gems
       uses: actions/cache@v1
@@ -100,8 +97,6 @@ jobs:
         CI: true
         CODECOV_TOKEN: ${{secrets.CODECOV_TOKEN}}
         DISABLE_SPRING: 1
-        SELENIUM_HOST: chrome
-        SELENIUM_POST: 4444
 
     - name: Security check
       run: bundle exec brakeman -4 -A -w 1 -z
