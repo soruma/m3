@@ -1,0 +1,29 @@
+# For more information: https://docs.rubocop.org/en/latest/versioning/
+
+# Added Cop from RuboCop 0.83
+Layout/EmptyLinesAroundAttributeAccessor:
+  Enabled: true
+
+# Added Cop from RuboCop 0.84
+Lint/DeprecatedOpenSSLConstant:
+  Enabled: true
+
+# Added Cop from RuboCop 0.85
+Lint/MixedRegexpCaptureTypes:
+  Enabled: true
+
+# Added Cop from RuboCop 0.86
+Style/RedundantFetchBlock:
+  Enabled: true
+
+# Added Cop from RuboCop 0.85
+Style/RedundantRegexpCharacterClass:
+  Enabled: true
+
+# Added Cop from RuboCop 0.85
+Style/RedundantRegexpEscape:
+  Enabled: true
+
+# Added Cop from RuboCop 0.83
+Style/SlicingWithRange:
+  Enabled: true

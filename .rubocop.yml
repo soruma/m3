@@ -1,5 +1,7 @@
 require: rubocop-rails
 
+inherit_from: .rubocop.added.yml
+
 AllCops:
   TargetRubyVersion: 2.7
   Exclude:

@@ -93,7 +93,7 @@ RSpec.describe UsesController, type: :controller do
         get :export, params: { format: 'csv' }, session: valid_session
         expect(response).to be_successful
         expect(response.headers['Content-Disposition']).to(
-          match(/attachment; filename=\"#{Use.model_name.human}.csv\"/)
+          match(/attachment; filename="#{Use.model_name.human}.csv"/)
         )
         expect(response.content_type).to match(%r{text/csv})
         expect(response.content_type).to match(/cp932/)
